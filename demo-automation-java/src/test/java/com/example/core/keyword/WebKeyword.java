@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.JavascriptExecutor;
 
@@ -65,6 +66,29 @@ public class WebKeyword {
     public void click(WebElement element) {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
         element.click();
+    }
+
+    /**
+     * Method to select value by option of select tag element
+     * @param element: element to select value
+     * @param option: option to select
+     * @param value: value to set to element
+     * @return: keyword to select by option for element
+     */
+    public WebKeyword selectValueByOption(WebElement element, String option, String value){
+        Select ddlElement = new Select(element);
+        switch (option){
+            case "selectByValue":
+                ddlElement.selectByValue(value);
+                break;
+            case "selectByIndex":
+                ddlElement.selectByIndex(Integer.parseInt(value));
+                break;
+            case "selectByVisibleText":
+                ddlElement.selectByVisibleText(value);
+                break;
+        }
+        return new WebKeyword(driver);
     }
 
 }
