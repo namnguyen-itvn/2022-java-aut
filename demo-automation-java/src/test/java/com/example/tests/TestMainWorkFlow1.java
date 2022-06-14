@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 
 public class TestMainWorkFlow1 extends BaseTest {
     
-    @Test(dataProvider = "AccountUnderTest", dataProviderClass = AccountUnderTest.class)
+    @Test(dataProvider = "AccountUnderTest", dataProviderClass = AccountUnderTest.class, priority = 1)
     public void verifyUserCanLoginAndLogoutSuccessfully(String username, String password) {
         LoginPage loginPage = new LoginPage(driver);
         ProductPage productPage = loginPage.actionLogin(username, password);
