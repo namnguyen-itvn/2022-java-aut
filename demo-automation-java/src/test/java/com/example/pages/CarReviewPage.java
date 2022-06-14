@@ -1,7 +1,7 @@
 package com.example.pages;
 
 public class CarReviewPage {
-    
-}
-jkhsdkfsdf
+    jkhsdkfsdf
 //code cai gi do
+}
+
