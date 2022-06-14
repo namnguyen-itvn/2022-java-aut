@@ -1,7 +1,6 @@
 package com.example.pages;
 
 public class CarReviewPage {
-    jkhsdkfsdf
-//code cai gi do
+    //ThangPV17 đã vào nghịch class này nè
 }
 
