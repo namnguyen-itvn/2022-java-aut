@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.Color;
 
 public class LoginPage extends BasePage {
-    
+
     public LoginPage() {};
 
     public LoginPage(WebDriver driver) {
@@ -21,7 +21,7 @@ public class LoginPage extends BasePage {
         keyword.setText(txtUsername, username);
         keyword.setText(txtPassword, password);
         keyword.click(btnLogin);
-        
+
         return new ProductPage(driver);
     }
 
@@ -45,5 +45,5 @@ public class LoginPage extends BasePage {
         WebElement btnLogin = keyword.findElement(By.xpath("//input[@id='login-button']"));
         return btnLogin.isDisplayed();
     }
-    
+    //TrangDT35
 }
