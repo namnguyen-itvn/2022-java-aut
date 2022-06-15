@@ -11,6 +11,5 @@ public class TestMainWorkFlow1 extends BaseTest {
 
         BasePage basePage = new BasePage(driver);
         basePage.navigateToPage("Sale");
-
     }
 }
