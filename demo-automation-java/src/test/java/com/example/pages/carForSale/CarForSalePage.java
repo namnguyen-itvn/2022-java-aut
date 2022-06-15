@@ -21,11 +21,20 @@ public class CarForSalePage extends BasePage {
         super(driver);
     }
 
+    WebElement txtSearch = keyword.findElement(By.xpath("//input[@type='text']"));
+    WebElement btnSearch = keyword.findElement(By.xpath("//button[@type='submit']//child::span"));
+    WebElement carForSales = keyword.findElement(By.xpath("//a[@label='Cars for Sale']"));
+    WebElement lblTitle = keyword.findElement(By.xpath("//h1[@data-cmp='heading']"));
+    WebElement iconZipcode = keyword.findElement(By.cssSelector("span[class='glyphicon glyphicon-map-marker']"));
+    WebElement carList = keyword.findElement(By.xpath("//div[@data-qaid='cntnr-listings']"));
+    WebElement carItem = keyword.findElement(By.xpath("(//div[@data-cmp='inventorySpotlightListing'])[1]"));
+    WebElement lblCarTitle = keyword.findElement(By.xpath("(//div[@data-cmp='inventorySpotlightListing'])[1]/descendant::h2"));
+
+
     /*
      * Return Search text box displayed or not
      */
     public boolean isSearchTextBoxDisplayed() {
-        WebElement txtSearch = keyword.findElement(By.xpath("//input[@type='text']"));
         return txtSearch.isDisplayed();
     }
 
@@ -33,7 +42,6 @@ public class CarForSalePage extends BasePage {
      * Return Search Place Holder Displayed correct or not
      */
     public boolean isSearchPlaceHolderDisplayedCorrect() {
-        WebElement txtSearch = keyword.findElement(By.xpath("//input[@type='text']"));
         String actualPlaceHolder = txtSearch.getAttribute("placeholder");
         String expectedPlaceHolder = "Search by Make, Model, Body Style or Keyword";
         return actualPlaceHolder.equals(expectedPlaceHolder);
@@ -43,7 +51,6 @@ public class CarForSalePage extends BasePage {
      * Return Search Button Displayed correct or not
      */
     public boolean isSearchButtonDisplayed() {
-        WebElement btnSearch = keyword.findElement(By.xpath("//button[@type='submit']//child::span"));
         return btnSearch.isDisplayed();
     }
 
@@ -51,7 +58,6 @@ public class CarForSalePage extends BasePage {
      * Return Car For Sales BreadCrums Enabled to click or not
      */
     public boolean isCarForSalesBreadcrumbsEnabled() {
-        WebElement carForSales = keyword.findElement(By.xpath("//a[@label='Cars for Sale']"));
         return carForSales.isEnabled();
     }
 
@@ -60,7 +66,6 @@ public class CarForSalePage extends BasePage {
      */
     public boolean isTitleDisplayedCorrect() {
         String expectedTitle = "Cars for Sale Nationwide";
-        WebElement lblTitle = keyword.findElement(By.xpath("//h1[@data-cmp='heading']"));
         String actualTitle = lblTitle.getText();
         return actualTitle.equals(expectedTitle);
     }
@@ -69,7 +74,6 @@ public class CarForSalePage extends BasePage {
      * Return Icon Zipcode Displayed or not
      */
     public boolean isIconZipcodeDisplayed() {
-        WebElement iconZipcode = keyword.findElement(By.cssSelector("span[class='glyphicon glyphicon-map-marker']"));
         return iconZipcode.isDisplayed();
     }
 
@@ -114,7 +118,6 @@ public class CarForSalePage extends BasePage {
      * Return The number of car car item displayed correct as required or not
      */
     public boolean isTheNumberOfCarCardItemDisplayedCorrectAsRequired(){
-        WebElement carList = keyword.findElement(By.xpath("//div[@data-qaid='cntnr-listings']"));
         List<WebElement> carItem = carList.findElements(By.xpath("//div[@data-cmp='inventoryListing']"));
         if(carItem.size()==25){
             return true;
@@ -126,7 +129,6 @@ public class CarForSalePage extends BasePage {
      * Action click car item
      */
     public void clickCarItem(){
-        WebElement carItem = keyword.findElement(By.xpath("(//div[@data-cmp='inventorySpotlightListing'])[1]"));
         carItem.click();
     }
 
@@ -134,7 +136,6 @@ public class CarForSalePage extends BasePage {
      * Return the title of car item
      */
     public String getTileOfCarItem(){
-        WebElement lblCarTitle = keyword.findElement(By.xpath("(//div[@data-cmp='inventorySpotlightListing'])[1]/descendant::h2"));
         return keyword.getText(lblCarTitle);
     }
 }
