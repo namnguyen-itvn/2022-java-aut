@@ -1,11 +1,12 @@
-package com.example.tests;
+package com.example.tests.carForSale;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.example.pages.BasePage;
-import com.example.pages.CarForSalePage;
-import com.example.pages.CarSearchDetailPage;
+import com.example.pages.carForSale.CarForSalePage;
+import com.example.pages.carForSale.CarSearchDetailPage;
+import com.example.tests.BaseTest;
 
 public class CarForSaleSearchModuleTest extends BaseTest{
     @Test(testName = "Verify Top Of The Page Section Should Be Displayed Correct When First Time Navigate")

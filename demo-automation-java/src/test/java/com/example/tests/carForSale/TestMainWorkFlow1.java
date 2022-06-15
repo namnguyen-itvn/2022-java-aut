@@ -1,6 +1,7 @@
-package com.example.tests;
+package com.example.tests.carForSale;
 
 import com.example.pages.*;
+import com.example.tests.BaseTest;
 
 import org.testng.annotations.Test;
 

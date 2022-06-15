@@ -1,4 +1,4 @@
-package com.example.pages;
+package com.example.pages.carForSale;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +8,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
+
+import com.example.pages.BasePage;
 
 
 public class CarForSalePage extends BasePage {
