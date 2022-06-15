@@ -27,9 +27,6 @@ public class TestMainWorkFlow1 extends BaseTest {
         // Verify the Login button is displayed
         Assert.assertTrue(loginPageAfterLogout.isLoginButtonDisplayed(), "Login button isn't displayed");
         // Verify the Login button is displayed as red color
-
-
-        ////
         String redColorHexCode = "#e2231a";
         Assert.assertTrue(loginPageAfterLogout.getLoginButtonColor().equals(redColorHexCode), "The Login button's color doesn't match");
     }
