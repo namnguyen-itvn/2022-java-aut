@@ -1,6 +1,5 @@
 package com.example.pages;
 
-import com.example.core.configuration.Configuration;
 import com.example.core.keyword.WebKeyword;
 
 import org.openqa.selenium.By;
@@ -18,43 +17,29 @@ public class BasePage {
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
-        this.keyword = new WebKeyword(driver);
-
-        try {
-            Configuration config = new Configuration("src/test/java/com/example/core/configuration/config.properties");
-            int implicitWait = Integer.parseInt(config.getProperty("implicitWait"));
-            this.wait = new WebDriverWait(driver, implicitWait);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        this.keyword = new WebKeyword(driver);        
     }
+
 /**
  *  Navigate to page
  * @param menuText
  * @return the page with driver
  */
-    public BasePage navigateToPage(String menuText) {
-        WebElement btnMenu = keyword.findElement(By.xpath("//button[@id='react-burger-menu-btn']"));
-        switch(menuText) {
-            case "Shop":
-                keyword.click(btnMenu);
-                WebElement mnuShop = keyword.findElement(By.xpath("//a[@id='inventory_sidebar_link']"));
-                keyword.click(mnuShop);
-                return new ProductPage(driver);
-            case "Logout":
-                keyword.click(btnMenu);
-                WebElement mnuLogout = keyword.findElement(By.xpath("//a[@id='logout_sidebar_link']"));
-                keyword.click(mnuLogout);
-                return new LoginPage(driver);
-            case "Cart":
-                WebElement btnCart = keyword.findElement(By.xpath("//a[@class='shopping_cart_link']"));
-                keyword.click(btnCart);
-                return null; //new CartPage(driver);
-            default:
-                System.out.println("Invalid page");
-                return new BasePage(driver);
-        }
-
+public void navigateToPage(String menuText) {
+    switch(menuText) {
+        case "Sale":
+            WebElement menuCarForSale = keyword.findElement(By.xpath("//div/a[text()='Cars for Sale']"));
+            keyword.click(menuCarForSale);
+            break;
+        case "Reviews":
+            WebElement menuCarReview = keyword.findElement(By.xpath("//div/a[text()='Car Reviews']"));
+            keyword.click(menuCarReview);
+            break;
+        default:
+            System.out.println("Invalid page");
+            break;
     }
+
+}
 
 }
