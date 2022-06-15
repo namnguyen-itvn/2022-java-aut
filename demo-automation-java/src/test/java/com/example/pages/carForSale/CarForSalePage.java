@@ -29,6 +29,7 @@ public class CarForSalePage extends BasePage {
     WebElement carList = keyword.findElement(By.xpath("//div[@data-qaid='cntnr-listings']"));
     WebElement carItem = keyword.findElement(By.xpath("(//div[@data-cmp='inventorySpotlightListing'])[1]"));
     WebElement lblCarTitle = keyword.findElement(By.xpath("(//div[@data-cmp='inventorySpotlightListing'])[1]/descendant::h2"));
+    WebElement ddlSort = keyword.findElement(By.id("149138475"));
 
 
     /*
@@ -91,8 +92,7 @@ public class CarForSalePage extends BasePage {
     /*
      * Return value list of filter sort displayed correct or not
      */
-    public void isFilterSoftValueDisplayedCorrect(){
-        WebElement ddlSort = keyword.findElement(By.id("149138475"));
+    public void isFilterSortValueListDisplayedCorrect(){
         Select select = new Select(ddlSort);
         List actualDropdownValues = new ArrayList();
         for (WebElement element : select.getOptions()) {

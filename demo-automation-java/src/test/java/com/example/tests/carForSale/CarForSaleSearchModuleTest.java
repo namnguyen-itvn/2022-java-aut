@@ -22,7 +22,7 @@ public class CarForSaleSearchModuleTest extends BaseTest{
         BasePage basePage = new BasePage(driver);
         basePage.navigateToPage("Sale");
         CarForSalePage carForSalePage = new CarForSalePage(driver);
-        carForSalePage.isFilterSoftValueDisplayedCorrect();
+        carForSalePage.isFilterSortValueListDisplayedCorrect();
     }
 
     @Test(testName = "Verify That The Total Number Of Car Item Results In One Page Should Be 25")
@@ -43,7 +43,6 @@ public class CarForSaleSearchModuleTest extends BaseTest{
         carForSalePage.clickCarItem();
         CarSearchDetailPage carSearchDetailPage = new CarSearchDetailPage(driver);
         System.out.println(carSearchDetailPage.getCarTitle());
-        Thread.sleep(5000);
         Assert.assertEquals(carTitle, carSearchDetailPage.getCarTitle());
     }
 }
