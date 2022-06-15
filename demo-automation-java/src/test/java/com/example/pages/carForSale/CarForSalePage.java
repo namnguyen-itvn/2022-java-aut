@@ -21,29 +21,31 @@ public class CarForSalePage extends BasePage {
         super(driver);
     }
 
-    WebElement txtSearch = keyword.findElement(By.xpath("//input[@type='text']"));
-    WebElement btnSearch = keyword.findElement(By.xpath("//button[@type='submit']//child::span"));
-    WebElement carForSales = keyword.findElement(By.xpath("//a[@label='Cars for Sale']"));
-    WebElement lblTitle = keyword.findElement(By.xpath("//h1[@data-cmp='heading']"));
-    WebElement iconZipcode = keyword.findElement(By.cssSelector("span[class='glyphicon glyphicon-map-marker']"));
-    WebElement carList = keyword.findElement(By.xpath("//div[@data-qaid='cntnr-listings']"));
-    WebElement carItem = keyword.findElement(By.xpath("(//div[@data-cmp='inventorySpotlightListing'])[1]"));
-    WebElement lblCarTitle = keyword.findElement(By.xpath("(//div[@data-cmp='inventorySpotlightListing'])[1]/descendant::h2"));
-    WebElement ddlSort = keyword.findElement(By.id("149138475"));
-
-
+    private By txtSearch = By.xpath("//input[@type='text']");
+    private By btnSearch = By.xpath("//button[@type='submit']//child::span");
+    private By carForSales = By.xpath("//a[@label='Cars for Sale']");
+    private By lblTitle = By.xpath("//h1[@data-cmp='heading']");
+    private By iconZipcode = By.cssSelector("span[class='glyphicon glyphicon-map-marker']");
+    private By carList = By.xpath("//div[@data-qaid='cntnr-listings']");
+    private By carItem = By.xpath("(//div[@data-cmp='inventorySpotlightListing'])[1]");
+    private By lblCarTitle = By.xpath("(//div[@data-cmp='inventorySpotlightListing'])[1]/descendant::h2");
+    private By ddlSort = By.id("149138475");
+    private By lblAlertMessage = By.xpath("//div[@id='ae-show-payments']/preceding-sibling::div");
+    private By lblSubAlertMessage = By.xpath("//div[@id='AlertContainer']/descendant::div[@id='ae-show-payments']");
+    public String expectedAlertMessage = "Due to nationwide inventory shortages, we were unable to find  matches for your search.";
+    public String expectedSubAlerMessage = "Try changing your search criteria or remove filters.";
     /*
      * Return Search text box displayed or not
      */
     public boolean isSearchTextBoxDisplayed() {
-        return txtSearch.isDisplayed();
+        return keyword.findElement(txtSearch).isDisplayed();
     }
 
     /*
      * Return Search Place Holder Displayed correct or not
      */
     public boolean isSearchPlaceHolderDisplayedCorrect() {
-        String actualPlaceHolder = txtSearch.getAttribute("placeholder");
+        String actualPlaceHolder = keyword.findElement(txtSearch).getAttribute("placeholder");
         String expectedPlaceHolder = "Search by Make, Model, Body Style or Keyword";
         return actualPlaceHolder.equals(expectedPlaceHolder);
     }
@@ -52,14 +54,14 @@ public class CarForSalePage extends BasePage {
      * Return Search Button Displayed correct or not
      */
     public boolean isSearchButtonDisplayed() {
-        return btnSearch.isDisplayed();
+        return keyword.findElement(carForSales).isDisplayed();
     }
 
     /*
      * Return Car For Sales BreadCrums Enabled to click or not
      */
     public boolean isCarForSalesBreadcrumbsEnabled() {
-        return carForSales.isEnabled();
+        return keyword.findElement(carForSales).isEnabled();
     }
 
     /*
@@ -67,7 +69,7 @@ public class CarForSalePage extends BasePage {
      */
     public boolean isTitleDisplayedCorrect() {
         String expectedTitle = "Cars for Sale Nationwide";
-        String actualTitle = lblTitle.getText();
+        String actualTitle = keyword.findElement(lblTitle).getText();
         return actualTitle.equals(expectedTitle);
     }
 
@@ -75,7 +77,7 @@ public class CarForSalePage extends BasePage {
      * Return Icon Zipcode Displayed or not
      */
     public boolean isIconZipcodeDisplayed() {
-        return iconZipcode.isDisplayed();
+        return keyword.findElement(iconZipcode).isDisplayed();
     }
 
     /*
@@ -93,7 +95,7 @@ public class CarForSalePage extends BasePage {
      * Return value list of filter sort displayed correct or not
      */
     public void isFilterSortValueListDisplayedCorrect(){
-        Select select = new Select(ddlSort);
+        Select select = new Select(keyword.findElement(ddlSort));
         List actualDropdownValues = new ArrayList();
         for (WebElement element : select.getOptions()) {
             actualDropdownValues.add(keyword.getText(element));
@@ -118,7 +120,7 @@ public class CarForSalePage extends BasePage {
      * Return The number of car car item displayed correct as required or not
      */
     public boolean isTheNumberOfCarCardItemDisplayedCorrectAsRequired(){
-        List<WebElement> carItem = carList.findElements(By.xpath("//div[@data-cmp='inventoryListing']"));
+        List<WebElement> carItem = keyword.findElement(carList).findElements(By.xpath("//div[@data-cmp='inventoryListing']"));
         if(carItem.size()==25){
             return true;
         }
@@ -129,13 +131,57 @@ public class CarForSalePage extends BasePage {
      * Action click car item
      */
     public void clickCarItem(){
-        carItem.click();
+        keyword.click(keyword.findElement(carItem));
     }
 
     /*
      * Return the title of car item
      */
     public String getTileOfCarItem(){
-        return keyword.getText(lblCarTitle);
+        return keyword.getText(keyword.findElement(lblCarTitle));
+    }
+
+    
+    /**
+     * 
+     * @param expectedAlertMessage
+     * @return Alert Message Display Correct or not
+     */
+    public boolean isAlertMessageDisplayCorrect(String expectedAlertMessage){
+        String actualAlertMessage = keyword.getText(keyword.findElement(lblAlertMessage));
+        return actualAlertMessage.equals(expectedAlertMessage);
+    }
+
+    /**
+     * 
+     * @param expectedSubAlertMessage
+     * @return Alert Sub Message Display Correct or not
+     */
+    public boolean isSubAlertMessageDisplayCorrect(String expectedSubAlertMessage){
+        String actualSubAlertMessage = keyword.getText(keyword.findElement(lblSubAlertMessage));
+        return actualSubAlertMessage.equals(expectedSubAlertMessage);
+    }
+
+    /**
+     * Action search car
+     * @param keyWord
+     * @throws Exception
+     */
+    public void searchCar(String keyWord) throws Exception{
+        keyword.setText(keyword.findElement(txtSearch), keyWord);
+        keyword.click(keyword.findElement(btnSearch));
+    }
+
+    /**
+     * 
+     * @param expectedAlertMessage
+     * @param expectedSubAlertMessage
+     * @return Alert Message Frame Display Correct or not
+     */
+    public boolean isAlertMessageFrameDisplayCorrect(String expectedAlertMessage, String expectedSubAlertMessage){
+        if(isAlertMessageDisplayCorrect(expectedAlertMessage)&isSubAlertMessageDisplayCorrect(expectedSubAlertMessage)){
+            return true;
+        }
+        else return false;
     }
 }
