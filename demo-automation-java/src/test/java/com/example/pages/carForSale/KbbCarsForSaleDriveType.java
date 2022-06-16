@@ -13,12 +13,22 @@ public class KbbCarsForSaleDriveType extends BasePage {
         this.DiveTypeElement = DriveTypeElement;
     }
 
-
     //Cars for sale element
     private String DiveTypeElement = "AWD/4WD";
     
     private WebElement ddlDiveType = keyword.findElement(By.xpath("//span[text()='Drive Type']/parent::span/parent::div"));
     private WebElement lblResults = keyword.findElement(By.cssSelector("div.text-size-md-300"));
+
+    private By localblResults = By.cssSelector("div.text-size-md-300");
+    private By locachbDiveType = By.xpath("//span[text()='Drive Type']/parent::span/parent::div/parent::div//div[@data-cmp='checkboxGroup']");
+    private By locatagDiveTypeDriveType = By.xpath(String.format("//span[text()='%s']",DiveTypeElement));
+    private By locatagDiveTypeDriveTypeXIcon = By.xpath(String.format("//span[text()='%s']/parent::*/span/span",DiveTypeElement));
+    private By locaoptDiveType = By.xpath(String.format("//div[text()='%s']",DiveTypeElement));
+    private By locabtnExitAds = By.xpath("//button[@id='fsrFocusFirst']");
+    private By locabtnExitAds2 = By.cssSelector("button.QSIWebResponsiveDialog-Layout1-SI_5d3NX5IIzg7mUmN_close-btn");
+    private By localblClearFilters = By.xpath("//span[@class='text-link']");
+    private By locaimgFirstResults = By.xpath("(//div[@data-cmp='itemCard'])[1]");
+
 
     //Result before and after change
     private double beforeResults = 0;
@@ -32,7 +42,7 @@ public class KbbCarsForSaleDriveType extends BasePage {
      * @return
      */
     public boolean isDiveTypeCheckboxDisplayed(){
-        WebElement chbDiveType = keyword.findElement(By.xpath("//span[text()='Drive Type']/parent::span/parent::div/parent::div//div[@data-cmp='checkboxGroup']"));
+        WebElement chbDiveType = keyword.findElement(locachbDiveType);
         if(chbDiveType.isDisplayed()==true){
             return true;
         }
@@ -45,14 +55,13 @@ public class KbbCarsForSaleDriveType extends BasePage {
      */
     public boolean isTagDiveTypeDisplayed(){
         //after click
-        WebElement tagDiveTypeAWD = keyword.findElement(By.xpath(String.format("//span[text()='%s']",DiveTypeElement)));
-        WebElement tagDiveTypeAWDXIcon = keyword.findElement(By.xpath(String.format("//span[text()='%s']/parent::*/span/span",DiveTypeElement)));
-        if(tagDiveTypeAWD.isDisplayed()==true & tagDiveTypeAWDXIcon.isDisplayed()==true){
+        WebElement tagDiveTypeDriveType = keyword.findElement(locatagDiveTypeDriveType);
+        WebElement tagDiveTypeDiveTypeXIcon = keyword.findElement(locatagDiveTypeDriveTypeXIcon);
+        if(tagDiveTypeDriveType.isDisplayed()==true & tagDiveTypeDiveTypeXIcon.isDisplayed()==true){
             return true;
         }
         else return false;
     }
-
 
     //action select opt Drive type and compare result before and after click
     public void actionSelectOptDriveType(){
@@ -60,13 +69,12 @@ public class KbbCarsForSaleDriveType extends BasePage {
         keyword.scrollToElement(ddlDiveType);
         keyword.click(ddlDiveType);
         beforeResults = parseStringResultsToNumber(lblResults.getText());
-        WebElement optDiveType = keyword.findElement(By.xpath(String.format("//div[text()='%s']",DiveTypeElement)));
+        WebElement optDiveType = keyword.findElement(locaoptDiveType);
         keyword.click(optDiveType);
 
         actionExitAds();
 
-        // WebElement lblResults2 = keyword.findElement(By.cssSelector("div.text-size-md-300");
-        WebElement lblResults2 = keyword.findElement(By.cssSelector("div.text-size-md-300"));
+        WebElement lblResults2 = keyword.findElement(localblResults);
         afterResults = parseStringResultsToNumber(lblResults2.getText());
 
         actionExitAds();
@@ -75,12 +83,16 @@ public class KbbCarsForSaleDriveType extends BasePage {
     //action exit ads
     public void actionExitAds(){
         try {
-            WebElement optDiveType = keyword.findElement(By.xpath("//button[@id='fsrFocusFirst']"));
-            keyword.click(optDiveType);
+            WebElement btnExitAds = keyword.findElement(locabtnExitAds);
+            keyword.click(btnExitAds);
         } catch (Exception e) {
+            try {
+                WebElement btnExitAds2 = keyword.findElement(locabtnExitAds2);
+                keyword.click(btnExitAds2);
+            } catch (Exception a) {
+            }
         }
     }
-
 
     /**  
      *  Return Number of results is change or not
@@ -105,13 +117,12 @@ public class KbbCarsForSaleDriveType extends BasePage {
         return number;
     }
 
-
     /**
      *  Return tagDiveTypeAWD is correct or not
      * @return
      */
     public boolean islblClearFiltersDisplayed(){
-        WebElement lblClearFilters = keyword.findElement(By.xpath("//span[@class='text-link']"));
+        WebElement lblClearFilters = keyword.findElement(localblClearFilters);
         if(lblClearFilters.isDisplayed()==true){
             return true;
         }
@@ -120,7 +131,7 @@ public class KbbCarsForSaleDriveType extends BasePage {
 
     //action navigate to cars-for-sale vehicle details page
     public void actionNavToCFSVehicleDetails(){
-        WebElement imgFirstResults = keyword.findElement(By.xpath("(//div[@data-cmp='itemCard'])[1]"));
+        WebElement imgFirstResults = keyword.findElement(locaimgFirstResults);
         keyword.scrollToElement(imgFirstResults);
         keyword.click(imgFirstResults);
     }
@@ -138,8 +149,6 @@ public class KbbCarsForSaleDriveType extends BasePage {
         }
         else return false;
     }
-
-    
 
 
     
