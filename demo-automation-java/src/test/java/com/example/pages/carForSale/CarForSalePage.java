@@ -22,7 +22,7 @@ public class CarForSalePage extends BasePage {
     }
 
     private By txtSearch = By.xpath("//input[@type='text']");
-    private By btnSearch = By.xpath("//button[@type='submit']//child::span");
+    private By btnSearch = By.xpath("//button[@aria-label='search-btn']");
     private By carForSales = By.xpath("//a[@label='Cars for Sale']");
     private By lblTitle = By.xpath("//h1[@data-cmp='heading']");
     private By iconZipcode = By.cssSelector("span[class='glyphicon glyphicon-map-marker']");
@@ -165,13 +165,11 @@ public class CarForSalePage extends BasePage {
     }
 
     /**
-     * Action search car
-     * 
-     * @param keyWord
+     * Action to press button Search
      * @throws Exception
      */
-    public void searchCar(String keyWord) throws Exception {
-        keyword.setText(keyword.findElement(txtSearch), keyWord);
+    public void searchCar(String invalidKeyWord) throws Exception{
+        keyword.setText(keyword.findElement(txtSearch), invalidKeyWord);
     }
 
     /**

@@ -109,6 +109,22 @@ public class WebKeyword {
     }
 
     /**
+     * Keyword for set text to element
+     * @param webElement: element to set text
+     * @param text: text
+     * @return: keyword to set text for element
+     * @throws Exception: exception
+     */
+    public WebKeyword sendKey(WebElement webElement) throws Exception{
+        try {
+            waitForElementVisibilities(webElement).sendKeys(Keys.ENTER);
+        } catch (Exception e) {
+            throw new Exception("Element is not enable to send key");
+        }
+        return new WebKeyword(driver);
+    }
+
+    /**
      * Keyword for get text of element
      * @param webElement: element to get text
      * @return: keyword to get text from element

@@ -57,7 +57,6 @@ public class CarForSaleSearchModuleTest extends BaseTest {
         basePage.navigateToPage("Sale");
         basePage.actionExitAds();
         CarForSalePage carForSalePage = new CarForSalePage(driver);
-        basePage.actionExitAds();
         carForSalePage.searchCar(keyWord);
         Assert.assertTrue(carForSalePage.isAlertMessageFrameDisplayCorrect(carForSalePage.expectedAlertMessage,
                 carForSalePage.expectedSubAlertMessage));
