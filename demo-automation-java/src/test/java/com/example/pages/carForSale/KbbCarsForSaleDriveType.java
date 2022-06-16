@@ -1,9 +1,11 @@
-package com.example.pages;
+package com.example.pages.carForSale;
 
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+
+import com.example.pages.BasePage;
 
 public class KbbCarsForSaleDriveType extends BasePage {
     public KbbCarsForSaleDriveType(WebDriver driver,String DriveTypeElement) {
