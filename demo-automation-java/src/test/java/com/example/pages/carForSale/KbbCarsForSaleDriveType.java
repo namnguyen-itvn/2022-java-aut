@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import com.example.core.keyword.WebKeyword;
 import com.example.pages.BasePage;
 
 public class KbbCarsForSaleDriveType extends BasePage {
@@ -29,13 +30,13 @@ public class KbbCarsForSaleDriveType extends BasePage {
     private By localblClearFilters = By.xpath("//span[@class='text-link']");
     private By locaimgFirstResults = By.xpath("(//div[@data-cmp='itemCard'])[1]");
 
+    private By locaoptDiveType1 = By.xpath("//input[@value='AWD4WD']");
+    private By locaoptDiveType2 = By.xpath("//input[@value='FWD']");
+    private By locaoptDiveType3 = By.xpath("//input[@value='RWD']");
 
     //Result before and after change
     private double beforeResults = 0;
     private double afterResults = 0;
-
-    //first img
-
 
     /**
      *  Return DiveTypeCheckbox is correct or not
@@ -129,13 +130,6 @@ public class KbbCarsForSaleDriveType extends BasePage {
         else return false;
     }
 
-    //action navigate to cars-for-sale vehicle details page
-    public void actionNavToCFSVehicleDetails(){
-        WebElement imgFirstResults = keyword.findElement(locaimgFirstResults);
-        keyword.scrollToElement(imgFirstResults);
-        keyword.click(imgFirstResults);
-    }
-
     /**
      *  Return AllDriveTypeAfterClick is correct or not
      * @return
@@ -150,6 +144,33 @@ public class KbbCarsForSaleDriveType extends BasePage {
         else return false;
     }
 
+    /**
+     *  Return AllDriveTypeAfterClick is correct or not
+     * @return
+     */
+    public boolean isCheckBoxNotSelect(){
+        actionExitAds();
+        keyword.scrollToElement(ddlDiveType);
+        keyword.click(ddlDiveType);
+        actionExitAds();
+        WebElement optDiveType1 = keyword.findElement(locaoptDiveType1);
+        WebElement optDiveType2 = keyword.findElement(locaoptDiveType2);
+        WebElement optDiveType3 = keyword.findElement(locaoptDiveType3);
+        
+        if (optDiveType1.isSelected() == false &
+            optDiveType2.isSelected() == false &
+            optDiveType3.isSelected() == false) {
+            return true;
+        }
+        else return false;
+    }
+
+    //action navigate to cars-for-sale vehicle details page
+    public void actionNavToCFSVehicleDetails(){
+        WebElement imgFirstResults = keyword.findElement(locaimgFirstResults);
+        keyword.scrollToElement(imgFirstResults);
+        keyword.click(imgFirstResults);
+    }
 
     
 }

@@ -12,10 +12,14 @@ public class KbbCarsForSaleDetailVehicle extends BasePage {
         this.DriveTypeData = DriveTypeData;
     }
 
+    // car4sale detail vehicle element
     private String DriveTypeData = "";
     private WebElement lblTypeOfWheelDrive = keyword.findElement(By.xpath("//div[@aria-label='DRIVE TYPE']/parent::div/parent::div/child::div[@class='col-xs-10 margin-bottom-0']"));
-    //div.col-xs-12.col-sm-7.col-md-8 li:nth-child(4)
 
+        /**
+     *  Return TypeOfWheelDriveDisplayed is correct or not
+     * @return
+     */
     public boolean isTypeOfWheelDriveDisplayed(){
         if (DriveTypeData == "AWD/4WD") {
             if ((lblTypeOfWheelDrive.getText().contains("All wheel drive")) | (lblTypeOfWheelDrive.getText().contains("4 wheel drive"))){
