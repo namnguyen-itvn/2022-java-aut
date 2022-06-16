@@ -22,9 +22,9 @@ public class CarReviewsModulePage extends BasePage{
     private WebElement btnGetReview = driver.findElement(By.cssSelector("form button[type='submit']"));         
 
     public void getCarReviews(String year, String make, String model, String zipCode) throws Exception {
-        keyword.setValueForElement(ddlYear, chooseTypeOfSelect.selectByVisibleText, year);
-        keyword.setValueForElement(ddlMake, chooseTypeOfSelect.selectByVisibleText, make);
-        keyword.setValueForElement(ddlModel, chooseTypeOfSelect.selectByVisibleText, model); 
+        keyword.setValueForSelectElement(ddlYear, chooseTypeOfSelect.selectByVisibleText, year);
+        keyword.setValueForSelectElement(ddlMake, chooseTypeOfSelect.selectByVisibleText, make);
+        keyword.setValueForSelectElement(ddlModel, chooseTypeOfSelect.selectByVisibleText, model); 
         keyword.setText(txtZIPCode, zipCode);
         keyword.click(btnGetReview);
         Thread.sleep(10000);  

@@ -2,6 +2,7 @@ package com.example.tests;
 
 
 import com.example.core.configuration.Configuration;
+import com.example.core.configuration.drivers.Chrome;
 import com.example.core.driver.DriverFactory;
 import com.example.core.keyword.WebKeyword;
 
@@ -12,10 +13,22 @@ import org.testng.annotations.BeforeMethod;
 
 public class BaseTest {
 
-    public WebDriver driver;
+    public static WebDriver driver;
     public WebKeyword keyword;
     public Configuration config;
     public WebDriverWait wait;
+
+    /**
+     * Method get driver to use for add screen shot method in ExtentTestManager class
+     * @return: driver
+     */
+    public static WebDriver getDriver(){
+        if(driver == null){
+            driver = new Chrome().createDriver();
+            return driver;
+        }
+        return driver;
+    }
 
     @BeforeMethod
     public void setUp() throws Exception {                
