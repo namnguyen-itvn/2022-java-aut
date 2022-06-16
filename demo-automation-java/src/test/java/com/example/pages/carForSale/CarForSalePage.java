@@ -11,7 +11,6 @@ import org.testng.Assert;
 
 import com.example.pages.BasePage;
 
-
 public class CarForSalePage extends BasePage {
 
     public CarForSalePage() {
@@ -33,7 +32,8 @@ public class CarForSalePage extends BasePage {
     private By lblAlertMessage = By.xpath("//div[@id='ae-show-payments']/preceding-sibling::div");
     private By lblSubAlertMessage = By.xpath("//div[@id='AlertContainer']/descendant::div[@id='ae-show-payments']");
     public String expectedAlertMessage = "Due to nationwide inventory shortages, we were unable to find  matches for your search.";
-    public String expectedSubAlerMessage = "Try changing your search criteria or remove filters.";
+    public String expectedSubAlertMessage = "Try changing your search criteria or remove filters.";
+
     /*
      * Return Search text box displayed or not
      */
@@ -94,7 +94,7 @@ public class CarForSalePage extends BasePage {
     /*
      * Return value list of filter sort displayed correct or not
      */
-    public void isFilterSortValueListDisplayedCorrect(){
+    public void isFilterSortValueListDisplayedCorrect() {
         Select select = new Select(keyword.findElement(ddlSort));
         List actualDropdownValues = new ArrayList();
         for (WebElement element : select.getOptions()) {
@@ -112,42 +112,43 @@ public class CarForSalePage extends BasePage {
         expectedDropdownValues.add("Year - Oldest");
         expectedDropdownValues.add("Year - Newest");
         for (int i = 0; i < actualDropdownValues.size(); i++) {
-            Assert.assertTrue(actualDropdownValues.get(i).equals(expectedDropdownValues.get(i)),"The actual result of filter sort doesn't match with expected result");
+            Assert.assertTrue(actualDropdownValues.get(i).equals(expectedDropdownValues.get(i)),
+                    "The actual result of filter sort doesn't match with expected result");
         }
     }
 
     /*
      * Return The number of car car item displayed correct as required or not
      */
-    public boolean isTheNumberOfCarCardItemDisplayedCorrectAsRequired(){
-        List<WebElement> carItem = keyword.findElement(carList).findElements(By.xpath("//div[@data-cmp='inventoryListing']"));
-        if(carItem.size()==25){
+    public boolean isTheNumberOfCarCardItemDisplayedCorrectAsRequired() {
+        List<WebElement> carItem = keyword.findElement(carList)
+                .findElements(By.xpath("//div[@data-cmp='inventoryListing']"));
+        if (carItem.size() == 25) {
             return true;
-        }
-        else return false;
+        } else
+            return false;
     }
 
     /*
      * Action click car item
      */
-    public void clickCarItem(){
+    public void clickCarItem() {
         keyword.click(keyword.findElement(carItem));
     }
 
     /*
      * Return the title of car item
      */
-    public String getTileOfCarItem(){
+    public String getTileOfCarItem() {
         return keyword.getText(keyword.findElement(lblCarTitle));
     }
 
-    
     /**
      * 
      * @param expectedAlertMessage
      * @return Alert Message Display Correct or not
      */
-    public boolean isAlertMessageDisplayCorrect(String expectedAlertMessage){
+    public boolean isAlertMessageDisplayCorrect(String expectedAlertMessage) {
         String actualAlertMessage = keyword.getText(keyword.findElement(lblAlertMessage));
         return actualAlertMessage.equals(expectedAlertMessage);
     }
@@ -157,17 +158,18 @@ public class CarForSalePage extends BasePage {
      * @param expectedSubAlertMessage
      * @return Alert Sub Message Display Correct or not
      */
-    public boolean isSubAlertMessageDisplayCorrect(String expectedSubAlertMessage){
+    public boolean isSubAlertMessageDisplayCorrect(String expectedSubAlertMessage) {
         String actualSubAlertMessage = keyword.getText(keyword.findElement(lblSubAlertMessage));
         return actualSubAlertMessage.equals(expectedSubAlertMessage);
     }
 
     /**
      * Action search car
+     * 
      * @param keyWord
      * @throws Exception
      */
-    public void searchCar(String keyWord) throws Exception{
+    public void searchCar(String keyWord) throws Exception {
         keyword.setText(keyword.findElement(txtSearch), keyWord);
         keyword.click(keyword.findElement(btnSearch));
     }
@@ -178,10 +180,11 @@ public class CarForSalePage extends BasePage {
      * @param expectedSubAlertMessage
      * @return Alert Message Frame Display Correct or not
      */
-    public boolean isAlertMessageFrameDisplayCorrect(String expectedAlertMessage, String expectedSubAlertMessage){
-        if(isAlertMessageDisplayCorrect(expectedAlertMessage)&isSubAlertMessageDisplayCorrect(expectedSubAlertMessage)){
+    public boolean isAlertMessageFrameDisplayCorrect(String expectedAlertMessage, String expectedSubAlertMessage) {
+        if (isAlertMessageDisplayCorrect(expectedAlertMessage)
+                & isSubAlertMessageDisplayCorrect(expectedSubAlertMessage)) {
             return true;
-        }
-        else return false;
+        } else
+            return false;
     }
 }
