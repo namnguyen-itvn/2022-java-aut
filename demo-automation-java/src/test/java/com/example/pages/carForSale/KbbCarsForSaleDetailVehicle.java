@@ -28,13 +28,13 @@ public class KbbCarsForSaleDetailVehicle extends BasePage {
             else return false;
         }
         else if (DriveTypeData == "Front Wheel Drive") {
-            if (lblTypeOfWheelDrive.getText().contains("Front Wheel Drive")) {
+            if (lblTypeOfWheelDrive.getText().contains("front")) {
                 return true;
             }
             else return false;
         }
         else if (DriveTypeData == "Rear Wheel Drive") {
-            if (lblTypeOfWheelDrive.getText().contains("rear wheel default")) {
+            if (lblTypeOfWheelDrive.getText().contains("rear")) {
                 return true;
             }
             else return false;

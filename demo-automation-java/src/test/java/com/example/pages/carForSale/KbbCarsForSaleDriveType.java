@@ -9,9 +9,9 @@ import com.example.core.keyword.WebKeyword;
 import com.example.pages.BasePage;
 
 public class KbbCarsForSaleDriveType extends BasePage {
-    public KbbCarsForSaleDriveType(WebDriver driver,String DriveTypeElement) {
+    public KbbCarsForSaleDriveType(WebDriver driver,String DiveTypeElement) {
         super(driver);
-        this.DiveTypeElement = DriveTypeElement;
+        this.DiveTypeElement = DiveTypeElement;
     }
 
     //Cars for sale element
@@ -145,14 +145,16 @@ public class KbbCarsForSaleDriveType extends BasePage {
     }
 
     /**
-     *  Return AllDriveTypeAfterClick is correct or not
+     *  Return isCheckBoxNotSelect is correct or not
      * @return
+     * @throws InterruptedException
      */
-    public boolean isCheckBoxNotSelect(){
+    public boolean isCheckBoxNotSelect() throws InterruptedException{
         actionExitAds();
         keyword.scrollToElement(ddlDiveType);
         keyword.click(ddlDiveType);
         actionExitAds();
+        Thread.sleep(3000);
         WebElement optDiveType1 = keyword.findElement(locaoptDiveType1);
         WebElement optDiveType2 = keyword.findElement(locaoptDiveType2);
         WebElement optDiveType3 = keyword.findElement(locaoptDiveType3);

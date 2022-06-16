@@ -3,6 +3,7 @@ package com.example.tests.carForSale;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import com.example.core.datadriven.DriveTypeUnderTest;
 import com.example.pages.BasePage;
 import com.example.pages.carForSale.KbbCarsForSaleDetailVehicle;
 import com.example.pages.carForSale.KbbCarsForSaleDriveType;
@@ -32,13 +33,13 @@ public class KbbCarsForSaleDriveTypeTests extends BaseTest {
         Assert.assertTrue(kbbCarsForSaleDetailVehicle.isTypeOfWheelDriveDisplayed());
     }
 
-    @Test(testName = "Verify all check box of Drive Type shouldn't be selected as default")
-    public void VerifyAllCheckBoxOfDriveTypeShouldnNotBeSelectedAsDefault()
-    {
-        BasePage basePage = new BasePage(driver);
-        basePage.navigateToPage("Sale");
+    // @Test(testName = "Verify all check box of Drive Type shouldn't be selected as default")
+    // public void VerifyAllCheckBoxOfDriveTypeShouldnNotBeSelectedAsDefault() throws InterruptedException
+    // {
+    //     BasePage basePage = new BasePage(driver);
+    //     basePage.navigateToPage("Sale");
         
-        KbbCarsForSaleDriveType kbbCarsForSaleDriveType = new KbbCarsForSaleDriveType(driver, "AWD/4WD");
-        kbbCarsForSaleDriveType.isCheckBoxNotSelect();
-    }
+    //     KbbCarsForSaleDriveType kbbCarsForSaleDriveType = new KbbCarsForSaleDriveType(driver, "AWD/4WD");
+    //     kbbCarsForSaleDriveType.isCheckBoxNotSelect();
+    // }
 }
