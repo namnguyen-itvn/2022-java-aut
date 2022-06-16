@@ -3,6 +3,8 @@ package com.example.pages.car_reviews_pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.Select;
 
 import com.example.core.keyword.WebKeyword.chooseTypeOfSelect;
 import com.example.pages.BasePage;
@@ -22,11 +24,22 @@ public class CarReviewsModulePage extends BasePage{
     private WebElement btnGetReview = driver.findElement(By.cssSelector("form button[type='submit']"));         
 
     public void getCarReviews(String year, String make, String model, String zipCode) throws Exception {
-        keyword.setValueForSelectElement(ddlYear, chooseTypeOfSelect.selectByVisibleText, year);
-        keyword.setValueForSelectElement(ddlMake, chooseTypeOfSelect.selectByVisibleText, make);
-        keyword.setValueForSelectElement(ddlModel, chooseTypeOfSelect.selectByVisibleText, model); 
+        try{
+            // Wait until expected condition size of the dropdown increases and becomes more than 1
+            wait.until((ExpectedCondition<Boolean>) new ExpectedCondition<Boolean>(){
+                public Boolean apply(WebDriver driver)  
+                {
+                    Select select = new Select(keyword.waitForElementToBeClickable(ddlYear));
+                    return select.getOptions().size()>1;
+                }
+            });
+        }catch(Throwable e){
+            System.out.println("Error found: "+e.getMessage());
+        }
+        keyword.setValueForSelectElement(ddlYear, chooseTypeOfSelect.selectByValue, year);
+        keyword.setValueForSelectElement(ddlMake, chooseTypeOfSelect.selectByValue, make);
+        keyword.setValueForSelectElement(ddlModel, chooseTypeOfSelect.selectByValue, model); 
         keyword.setText(txtZIPCode, zipCode);
         keyword.click(btnGetReview);
-        Thread.sleep(10000);  
     }
 }
