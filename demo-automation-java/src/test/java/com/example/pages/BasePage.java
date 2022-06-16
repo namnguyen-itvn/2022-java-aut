@@ -39,7 +39,28 @@ public void navigateToPage(String menuText) {
             System.out.println("Invalid page");
             break;
     }
+}
 
+/**
+ * Method for verify that element should be displayed
+ * @param webElement
+ * @return true or false
+ */
+public boolean isElementDisplayed(WebElement webElement){
+    if (webElement.isDisplayed()){
+        return true;
+    }else return false;
+}
+
+/**
+ * Method for verify that element shoulde be enable
+ * @param webElement
+ * @return true or false
+ */
+public boolean isElementCanClicked(WebElement webElement){
+    if (webElement.isEnabled()){
+        return true;
+    }else return false;
 }
 
 }
