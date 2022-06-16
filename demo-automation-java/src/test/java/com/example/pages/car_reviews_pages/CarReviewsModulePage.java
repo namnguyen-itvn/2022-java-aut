@@ -33,14 +33,18 @@ public class CarReviewsModulePage extends BasePage{
     * @return
     */
     public boolean isSelectAVehicleBoxBackgroundColorCorrect(WebElement element){
-        Color loginButtonColour = Color.fromString(element.getCssValue("background-color"));
+        Color elementColour = Color.fromString(element.getCssValue("background-color"));
         if (
-            loginButtonColour.asHex().equals("#2b5195") &&
+            elementColour.asHex().equals("#2b5195") &&
             isElementDisplayed(element)
         ) return true;
         return false;
     }
 
+    /**
+     * Verify car review mudule is displayed correct or not
+     * @return
+     */
     public boolean isCarReviewsModuleDisplayed(){
         if (
             isSelectAVehicleBoxBackgroundColorCorrect(boxSelectAVehicle) &&
@@ -55,13 +59,21 @@ public class CarReviewsModulePage extends BasePage{
         return false;
     }
 
+    /**
+     * Search for vehicle action
+     * @param year
+     * @param make
+     * @param model
+     * @param zipCode
+     * @throws Exception
+     */
     public void searchForVehicle(String year, String make, String model, String zipCode) throws Exception{
         keyword.setValueForSelectElement(ddYear, chooseTypeOfSelect.selectByValue, year);
         keyword.setValueForSelectElement(ddMake, chooseTypeOfSelect.selectByValue, make);
         keyword.setValueForSelectElement(ddModel, chooseTypeOfSelect.selectByValue, model);
 
-        expectedCarReviewHeaderTitle = year + " " + make +" " + model;
-        expectedCarReviewDetailsPageTitle = expectedCarReviewHeaderTitle + " Values & Cars for Sale | Kelley Blue Book";
+        expectedCarReviewDetailHeaderTitle = "Used " + year + " " + make +" " + model;
+        expectedCarReviewDetailsPageTitle = expectedCarReviewDetailHeaderTitle + " Values & Cars for Sale | Kelley Blue Book";
 
         keyword.setText(txtZipcode, zipCode);
 
@@ -70,6 +82,6 @@ public class CarReviewsModulePage extends BasePage{
 
     //Expected value
     public String expectedSelectAVehicleMessage = "Get the straight story from our experts and real-world feedback from consumers like you.";
-    public String expectedCarReviewHeaderTitle = "";
+    public String expectedCarReviewDetailHeaderTitle = "";
     public String expectedCarReviewDetailsPageTitle = "";
 }
