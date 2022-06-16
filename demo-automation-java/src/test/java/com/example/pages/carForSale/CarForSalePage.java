@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -96,11 +97,11 @@ public class CarForSalePage extends BasePage {
      */
     public void isFilterSortValueListDisplayedCorrect() {
         Select select = new Select(keyword.findElement(ddlSort));
-        List actualDropdownValues = new ArrayList();
+        List<String> actualDropdownValues = new ArrayList<String>();
         for (WebElement element : select.getOptions()) {
             actualDropdownValues.add(keyword.getText(element));
         }
-        List expectedDropdownValues = new ArrayList();
+        List<String> expectedDropdownValues = new ArrayList<String>();
         expectedDropdownValues.add("Relevance");
         expectedDropdownValues.add("Price - Lowest");
         expectedDropdownValues.add("Price - Highest");
@@ -171,7 +172,6 @@ public class CarForSalePage extends BasePage {
      */
     public void searchCar(String keyWord) throws Exception {
         keyword.setText(keyword.findElement(txtSearch), keyWord);
-        keyword.click(keyword.findElement(btnSearch));
     }
 
     /**

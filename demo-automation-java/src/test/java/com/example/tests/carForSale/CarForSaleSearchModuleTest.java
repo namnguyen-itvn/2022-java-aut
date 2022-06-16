@@ -14,6 +14,7 @@ public class CarForSaleSearchModuleTest extends BaseTest {
     public void verifyTopOfThePageSectionShouldBeDisplayedCorrectWhenFirstTimeNavigate() {
         BasePage basePage = new BasePage(driver);
         basePage.navigateToPage("Sale");
+        basePage.actionExitAds();
         CarForSalePage carForSalePage = new CarForSalePage(driver);
         Assert.assertTrue(carForSalePage.isTheTopOfTheCarForSalePageSectionDisplayedAsDefault());
     }
@@ -22,6 +23,7 @@ public class CarForSaleSearchModuleTest extends BaseTest {
     public void verifyFilterSortResultShouldBeDisplayedAsDefault() {
         BasePage basePage = new BasePage(driver);
         basePage.navigateToPage("Sale");
+        basePage.actionExitAds();
         CarForSalePage carForSalePage = new CarForSalePage(driver);
         carForSalePage.isFilterSortValueListDisplayedCorrect();
     }
@@ -30,6 +32,7 @@ public class CarForSaleSearchModuleTest extends BaseTest {
     public void verifyThatThetotalNumberOfCarItemResultsInOnePageShouldBe25() {
         BasePage basePage = new BasePage(driver);
         basePage.navigateToPage("Sale");
+        basePage.actionExitAds();
         CarForSalePage carForSalePage = new CarForSalePage(driver);
         Assert.assertTrue(carForSalePage.isTheNumberOfCarCardItemDisplayedCorrectAsRequired());
     }
@@ -38,9 +41,9 @@ public class CarForSaleSearchModuleTest extends BaseTest {
     public void verifyThatUserCanNavigateToVehicleDetailPageWhenClickingOnCarItem() throws InterruptedException {
         BasePage basePage = new BasePage(driver);
         basePage.navigateToPage("Sale");
+        basePage.actionExitAds();
         CarForSalePage carForSalePage = new CarForSalePage(driver);
         String carTitle = carForSalePage.getTileOfCarItem();
-        System.out.println(carTitle);
         carForSalePage.clickCarItem();
         CarSearchDetailPage carSearchDetailPage = new CarSearchDetailPage(driver);
         System.out.println(carSearchDetailPage.getCarTitle());
@@ -52,7 +55,9 @@ public class CarForSaleSearchModuleTest extends BaseTest {
             throws Exception {
         BasePage basePage = new BasePage(driver);
         basePage.navigateToPage("Sale");
+        basePage.actionExitAds();
         CarForSalePage carForSalePage = new CarForSalePage(driver);
+        basePage.actionExitAds();
         carForSalePage.searchCar(keyWord);
         Assert.assertTrue(carForSalePage.isAlertMessageFrameDisplayCorrect(carForSalePage.expectedAlertMessage,
                 carForSalePage.expectedSubAlertMessage));
