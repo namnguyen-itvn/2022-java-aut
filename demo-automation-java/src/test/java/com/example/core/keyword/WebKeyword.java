@@ -15,7 +15,7 @@ public class WebKeyword {
 
     private WebDriver driver;
     private WebDriverWait wait;
-    private int timeout = 60;
+    private int timeout = 30;
 
     public WebKeyword(WebDriver driver) {
         this.driver = driver;
@@ -25,24 +25,26 @@ public class WebKeyword {
     /**
      * Options for select value
      */
-    public enum chooseTypeOfSelect{
-        selectByValue, 
-        selectByVisibleText, 
+    public enum chooseTypeOfSelect {
+        selectByValue,
+        selectByVisibleText,
         selectByIndex
     }
 
     /**
      * set value for Element by Select
+     * 
      * @param webElement element to set value
-     * @param type type of select element (e.g selectByValue, selectByVisibleText, selectByIndex)
-     * @param value value of element
+     * @param type       type of select element (e.g selectByValue,
+     *                   selectByVisibleText, selectByIndex)
+     * @param value      value of element
      * @return WebKeyword to set value for element
      */
-    public WebKeyword setValueForSelectElement(WebElement webElement, chooseTypeOfSelect type, String value){
+    public WebKeyword setValueForSelectElement(WebElement webElement, chooseTypeOfSelect type, String value) {
         Select ddlElement = new Select(waitForElementToBeClickable(webElement));
-        switch (type){
+        switch (type) {
             case selectByValue:
-                ddlElement.selectByValue(value);            
+                ddlElement.selectByValue(value);
                 break;
             case selectByVisibleText:
                 ddlElement.selectByVisibleText(value);
@@ -60,9 +62,9 @@ public class WebKeyword {
      * @param element drop down list
      * @return List of options
      */
-    public List<String> getSelectOptionsList(WebElement element){
+    public List<String> getSelectOptionsList(WebElement element) {
         List<String> optionsList = new ArrayList<String>();
-        for(WebElement item :new Select(element).getOptions())
+        for (WebElement item : new Select(element).getOptions())
             optionsList.add(item.getText());
         return optionsList;
     }
@@ -92,12 +94,13 @@ public class WebKeyword {
 
     /**
      * Keyword for set text to element
+     * 
      * @param webElement: element to set text
-     * @param text: text
+     * @param text:       text
      * @return: keyword to set text for element
      * @throws Exception: exception
      */
-    public WebKeyword setText(WebElement webElement, String text) throws Exception{
+    public WebKeyword setText(WebElement webElement, String text) throws Exception {
         try {
             waitForElementVisibilities(webElement).clear();
             waitForElementVisibilities(webElement).sendKeys(text);
@@ -109,46 +112,61 @@ public class WebKeyword {
 
     /**
      * Keyword for get text of element
+     * 
      * @param webElement: element to get text
      * @return: keyword to get text from element
      */
-    public String getText(WebElement webElement){
+    public String getText(WebElement webElement) {
         scrollToElement(webElement);
-        return waitForElementVisibilities(webElement).getText();        
+        return waitForElementVisibilities(webElement).getText();
     }
 
     /**
      * Keyword for click on element
+     * 
      * @param webElement: element to click
      * @return: keyword to click on element
      */
-    public WebKeyword click(WebElement webElement){
+    public WebKeyword click(WebElement webElement) {
         scrollToElement(webElement);
         waitForElementToBeClickable(webElement).click();
         return new WebKeyword(driver);
     }
 
-    /**\
-     * wait for element visibilities in page
+    /**
+     * Keyword for click on element but used by JavaScript for some situation that throw Click Exception
+     * 
+     * @param webElement: element to click
+     * @return: keyword to click on element
      */
-    public WebElement waitForElementVisibilities(WebElement webElement){
-        return wait.until(ExpectedConditions.visibilityOf(webElement));        
+    public WebKeyword clickByJS(WebElement webElement) {
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", webElement);
+        return new WebKeyword(driver);
     }
 
-    /**\
+    /*
      * wait for element visibilities in page
      */
-    public WebElement waitForElementToBeClickable(WebElement webElement){
-        return wait.until(ExpectedConditions.elementToBeClickable(webElement));        
+    public WebElement waitForElementVisibilities(WebElement webElement) {
+        return wait.until(ExpectedConditions.visibilityOf(webElement));
+    }
+
+    /**
+     * \
+     * wait for element visibilities in page
+     */
+    public WebElement waitForElementToBeClickable(WebElement webElement) {
+        return wait.until(ExpectedConditions.elementToBeClickable(webElement));
     }
 
     /**
      * Keyword for scroll to element
-     * @param webElement: element 
+     * 
+     * @param webElement: element
      * @return: keyword for scroll to element
      */
-    public WebKeyword scrollToElement(WebElement webElement){
-        ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true)", webElement);
+    public WebKeyword scrollToElement(WebElement webElement) {
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true)", webElement);
         return new WebKeyword(driver);
     }
 }

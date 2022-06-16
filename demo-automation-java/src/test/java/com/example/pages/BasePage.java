@@ -24,6 +24,7 @@ public class BasePage {
  *  Navigate to page
  * @param menuText
  * @return the page with driver
+ * @throws InterruptedException
  */
 public void navigateToPage(String menuText) {
     switch(menuText) {
