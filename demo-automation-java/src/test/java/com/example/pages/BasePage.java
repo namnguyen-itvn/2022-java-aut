@@ -13,33 +13,44 @@ public class BasePage {
     public WebKeyword keyword;
     public WebDriverWait wait;
 
-    public BasePage() {};
+    public BasePage() {
+    }
+
+    ;
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
-        this.keyword = new WebKeyword(driver);        
+        this.keyword = new WebKeyword(driver);
     }
 
-/**
- *  Navigate to page
- * @param menuText
- * @return the page with driver
- */
-public void navigateToPage(String menuText) {
-    switch(menuText) {
-        case "Sale":
-            WebElement menuCarForSale = keyword.findElement(By.xpath("//div/a[text()='Cars for Sale']"));
-            keyword.click(menuCarForSale);
-            break;
-        case "Reviews":
-            WebElement menuCarReview = keyword.findElement(By.xpath("//div/a[text()='Car Reviews']"));
-            keyword.click(menuCarReview);
-            break;
-        default:
-            System.out.println("Invalid page");
-            break;
+    /**
+     * Navigate to page
+     *
+     * @param menuText
+     * @return the page with driver
+     */
+    public void navigateToPage(String menuText) {
+        switch (menuText) {
+            case "Sale":
+                WebElement menuCarForSale = keyword.findElement(By.xpath("//div/a[text()='Cars for Sale']"));
+                keyword.click(menuCarForSale);
+                break;
+            case "Reviews":
+                WebElement menuCarReview = keyword.findElement(By.xpath("//div/a[text()='Car Reviews']"));
+                keyword.click(menuCarReview);
+                break;
+            default:
+                System.out.println("Invalid page");
+                break;
+        }
+
     }
 
-}
-
+    /**
+     * @param byWebElement
+     * @return webElement is display or not
+     */
+    public boolean isWebElementDisplayed(By byWebElement) {
+        return keyword.findElement(byWebElement).isDisplayed();
+    }
 }
