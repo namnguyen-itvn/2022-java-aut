@@ -42,7 +42,7 @@ public void navigateToPage(String menuText) {
 }
 
 /**
- * Method for verify that element should be displayed
+ * Method for verify that element is displayed or not
  * @param webElement
  * @return true or false
  */
@@ -53,7 +53,7 @@ public boolean isElementDisplayed(WebElement webElement){
 }
 
 /**
- * Method for verify that element shoulde be enable
+ * Method for return element can be clickable or not
  * @param webElement
  * @return true or false
  */
