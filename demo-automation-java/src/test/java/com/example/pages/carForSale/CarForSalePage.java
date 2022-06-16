@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -22,16 +21,23 @@ public class CarForSalePage extends BasePage {
     }
 
     private By txtSearch = By.xpath("//input[@type='text']");
-    private By btnSearch = By.xpath("//button[@aria-label='search-btn']");
     private By carForSales = By.xpath("//a[@label='Cars for Sale']");
     private By lblTitle = By.xpath("//h1[@data-cmp='heading']");
     private By iconZipcode = By.cssSelector("span[class='glyphicon glyphicon-map-marker']");
     private By carList = By.xpath("//div[@data-qaid='cntnr-listings']");
     private By carItem = By.xpath("(//div[@data-cmp='inventorySpotlightListing'])[1]");
     private By lblCarTitle = By.xpath("(//div[@data-cmp='inventorySpotlightListing'])[1]/descendant::h2");
+    private By lblCarDistance = By.xpath(
+            "(//div[@data-cmp='inventorySpotlightListing'])[1]/descendant::div[@class='row']/descendant::div[@class='text-bold']");
+    private By lblCarPrice = By
+            .xpath("(//div[@data-cmp='inventorySpotlightListing'])[1]/descendant::span[@class='first-price']");
+    private By lblSeePayMent = By
+            .xpath("(//div[@data-cmp='inventorySpotlightListing'])[1]/descendant::span[contains(text(),'See')]");
+    private By imgCar = By.xpath("(//div[@data-cmp='inventorySpotlightListing'])[1]/descendant::img");
     private By ddlSort = By.id("149138475");
-    private By lblAlertMessage = By.xpath("//div[@id='ae-show-payments']/preceding-sibling::div");
-    private By lblSubAlertMessage = By.xpath("//div[@id='AlertContainer']/descendant::div[@id='ae-show-payments']");
+    private By lblAlertMessage = By
+            .xpath("//div[@id='showSupplementalMessage']/preceding::div[contains(text(),'Due')]");
+    private By lblSubAlertMessage = By.xpath("//div[@id='showSupplementalMessage']");
     public String expectedAlertMessage = "Due to nationwide inventory shortages, we were unable to find  matches for your search.";
     public String expectedSubAlertMessage = "Try changing your search criteria or remove filters.";
 
@@ -166,10 +172,12 @@ public class CarForSalePage extends BasePage {
 
     /**
      * Action to press button Search
+     * 
      * @throws Exception
      */
-    public void searchCar(String invalidKeyWord) throws Exception{
+    public void searchCar(String invalidKeyWord) throws Exception {
         keyword.setText(keyword.findElement(txtSearch), invalidKeyWord);
+        keyword.pressEnter(keyword.findElement(txtSearch));
     }
 
     /**
@@ -181,6 +189,54 @@ public class CarForSalePage extends BasePage {
     public boolean isAlertMessageFrameDisplayCorrect(String expectedAlertMessage, String expectedSubAlertMessage) {
         if (isAlertMessageDisplayCorrect(expectedAlertMessage)
                 & isSubAlertMessageDisplayCorrect(expectedSubAlertMessage)) {
+            return true;
+        } else
+            return false;
+    }
+
+    /**
+     * 
+     * @return Car Image Displayed or not
+     */
+    public boolean isCarImageDisplayed() {
+        return keyword.findElement(imgCar).isDisplayed();
+    }
+
+    /**
+     * 
+     * @return Car Title Displayed or not
+     */
+    public boolean isCarTitleDisplayed() {
+        return keyword.findElement(lblCarTitle).isDisplayed();
+    }
+
+    /**
+     * 
+     * @return Car Distance Displayed or not
+     */
+    public boolean isCarDistanceDisplayed() {
+        return keyword.findElement(lblCarDistance).isDisplayed();
+    }
+
+    /**
+     * 
+     * @return Car Price Displayed or not
+     */
+    public boolean isCarPriceDisplayed() {
+        return keyword.findElement(lblCarPrice).isDisplayed();
+    }
+
+    /**
+     * 
+     * @return Car Price Displayed or not
+     */
+    public boolean isSeeEstimatedPaymentDisplayed() {
+        return keyword.findElement(lblSeePayMent).isDisplayed();
+    }
+
+    public boolean isCarCardItemDisplayCorrect() {
+        if (isCarImageDisplayed() & isCarTitleDisplayed() & isCarPriceDisplayed() & isCarDistanceDisplayed()
+                & isSeeEstimatedPaymentDisplayed()) {
             return true;
         } else
             return false;

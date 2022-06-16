@@ -61,4 +61,13 @@ public class CarForSaleSearchModuleTest extends BaseTest {
         Assert.assertTrue(carForSalePage.isAlertMessageFrameDisplayCorrect(carForSalePage.expectedAlertMessage,
                 carForSalePage.expectedSubAlertMessage));
     }
+
+    @Test(testName = "Verify That Image, Vehicle Name, Distance, Price And See Estimated Payment Should Be Displayed")
+    public void verifyThatImageVehicleNameDistancePriceAndSeeEstimatedPaymentShouldBeDisplayed() {
+        BasePage basePage = new BasePage(driver);
+        basePage.navigateToPage("Sale");
+        basePage.actionExitAds();
+        CarForSalePage carForSalePage = new CarForSalePage(driver);
+        Assert.assertTrue(carForSalePage.isCarCardItemDisplayCorrect());
+    }
 }
