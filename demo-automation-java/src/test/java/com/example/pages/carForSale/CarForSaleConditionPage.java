@@ -1,4 +1,4 @@
-package com.example.pages.car_for_sale_pages;
+package com.example.pages.carForSale;
 
 import java.util.concurrent.TimeUnit;
 
@@ -70,6 +70,12 @@ public class CarForSaleConditionPage extends BasePage {
 
     }
 
+    /**
+     * Check element is Displayed
+     * 
+     * @param element
+     * @return
+     */
     public boolean checkElementDisplayed(WebElement element) {
         if (element.isDisplayed()) {
 
@@ -78,20 +84,31 @@ public class CarForSaleConditionPage extends BasePage {
             return false;
     }
 
+    /**
+     * Check Three element is Displayed
+     * 
+     * @return
+     */
     public boolean checkOptionCorrectDisplayed() {
         WebElement optionConditionYourSearch = keyword.findElement(By.xpath(
                 "//div[@class='chip btn input-chip display-inline-flex align-items-center margin-right-2 margin-bottom-2 text-bold']"));
         WebElement clearFilterLink = keyword.findElement(By.xpath(
                 "//span[@class='text-link']"));
+        WebElement titleModuleYourSearch = keyword.findElement(By.xpath(
+                "//span[@class='text-size-400 text-bold text-gray-base']"));
 
         if (checkElementDisplayed(optionConditionYourSearch) == true
-                && checkElementDisplayed(clearFilterLink) == true) {
+                && checkElementDisplayed(clearFilterLink) == true
+                && checkElementDisplayed(titleModuleYourSearch) == true) {
 
             return true;
         } else
             return false;
     }
 
+    /**
+     * Negative to page car for sale option
+     */
     public void chooseCar() {
         WebElement firstProductOfListCar = keyword.findElement(By.xpath(
                 "(//div[@class='col-xs-8 item-card-content display-flex flex-column justify-content-between'])[2]"));

@@ -2,9 +2,7 @@ package com.example.tests;
 
 import com.example.core.utils.listener.ReportListener;
 import com.example.pages.*;
-import com.example.pages.car_for_sale_pages.CarForSaleConditionPage;
 
-import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 

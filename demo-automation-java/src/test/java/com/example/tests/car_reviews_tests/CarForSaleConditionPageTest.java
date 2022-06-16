@@ -1,11 +1,11 @@
-package com.example.tests.car_for_sale_tests;
+package com.example.tests.car_reviews_tests;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.example.pages.BasePage;
-import com.example.pages.car_for_sale_pages.CarForSaleCarOptionPage;
-import com.example.pages.car_for_sale_pages.CarForSaleConditionPage;
+import com.example.pages.carForSale.CarForSaleCarOptionPage;
+import com.example.pages.carForSale.CarForSaleConditionPage;
 import com.example.tests.BaseTest;
 
 public class CarForSaleConditionPageTest extends BaseTest {
@@ -17,6 +17,17 @@ public class CarForSaleConditionPageTest extends BaseTest {
         CarForSaleConditionPage conditionPage = new CarForSaleConditionPage(driver);
         conditionPage.actionExitAds();
         conditionPage.chooseOptionCondition("New");
+        Assert.assertTrue(conditionPage.checkOptionCorrectDisplayed());
+    }
+
+    @Test(testName = "Verify Results Displayed When User Choose Used Option")
+
+    public void VerifyResultsDisplayedWhenUserChooseUsedOption() {
+        BasePage basePage = new BasePage(driver);
+        basePage.navigateToPage("Sale");
+        CarForSaleConditionPage conditionPage = new CarForSaleConditionPage(driver);
+        conditionPage.actionExitAds();
+        conditionPage.chooseOptionCondition("Used");
         Assert.assertTrue(conditionPage.checkOptionCorrectDisplayed());
     }
 
@@ -35,9 +46,9 @@ public class CarForSaleConditionPageTest extends BaseTest {
         Assert.assertEquals(carOptionPage.getQuantityOfMyWallet(), 3);
     }
 
-    @Test(testName = "Verify MyWallet Have Three OpTion When User Choose New And CLick First Car")
+    @Test(testName = "Verify MyWallet Have Two OpTion When User Choose ManufacturerCertified And CLick First Car")
 
-    public void VerifyMyWalletHaveTwoOpTionWhenUserChooseAndCLickFirstCar() {
+    public void VerifyMyWalletHaveTwoOpTionWhenUserChooseManufacturerCertifiedAndCLickFirstCar() {
         BasePage basePage = new BasePage(driver);
         basePage.navigateToPage("Sale");
         CarForSaleConditionPage conditionPage = new CarForSaleConditionPage(driver);

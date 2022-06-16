@@ -39,7 +39,7 @@ public class BaseTest {
         driver = DriverFactory.getDriver(config.getProperty("browser"));
         keyword = new WebKeyword(driver);
         driver.manage().window().maximize();
-        keyword.openUrl(config.getProperty("url"));//// day ne
+        keyword.openUrl(config.getProperty("url"));
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     }
 

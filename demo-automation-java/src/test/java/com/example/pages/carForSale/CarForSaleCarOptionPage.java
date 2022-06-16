@@ -1,4 +1,4 @@
-package com.example.pages.car_for_sale_pages;
+package com.example.pages.carForSale;
 
 import java.util.List;
 
@@ -17,11 +17,21 @@ public class CarForSaleCarOptionPage extends BasePage {
     private WebElement myWallet = keyword.findElement(By.xpath(
             "//body/div[@id='mountNode']/div/div[@data-cmp='TabNavBarContainer']/div[@data-cmp='stickyContainer']/div/div[@id='calculatePayment']/div[@class='container']/div[@class='row padding-vertical-4 padding-vertical-md-5']/div[@id='nativeDealContainer']/div[1]"));
 
+    /**
+     * Get Size of list element My Wallet
+     * 
+     * @return
+     */
     public int getQuantityOfMyWallet() {
-        List<WebElement> products = driver.findElements(By.xpath("//ul[@class='nav nav-tabs']//li"));
-        return products.size();
+        List<WebElement> listWallet = driver.findElements(By.xpath("//ul[@class='nav nav-tabs']//li"));
+        return listWallet.size();
     }
 
+    /**
+     * Check Module My Wallet is displayed
+     * 
+     * @return
+     */
     public boolean checkDisplayMyWallet() {
         if (myWallet.isDisplayed() == true) {
             return true;
