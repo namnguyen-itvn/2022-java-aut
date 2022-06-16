@@ -12,11 +12,13 @@ public class BasePage {
     public WebDriver driver;
     public WebKeyword keyword;
     public WebDriverWait wait;
+    private int timeout = 60;
 
     public BasePage() {};
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
+        this.wait = new WebDriverWait(driver, timeout);
         this.keyword = new WebKeyword(driver);        
     }
 
