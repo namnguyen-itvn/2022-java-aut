@@ -106,10 +106,24 @@ public class CarReviewsDetailNewCarPriceQuotePage extends BasePage {
     }
 
     /**
+     * Close Ads
+     */
+    public void actionExitAds() {
+        try {
+            WebElement optDiveType = driver.findElement(By.xpath("//button[contains(@aria-label,'Close')]"));
+            keyword.click(optDiveType);
+        } catch (Exception e){
+
+        }
+        
+    }
+    /**
      * Click button Find Dealers
      */
     public void clickButtonFindDealers() {
-        keyword.click(keyword.findElement(btnFindDealers));
+        actionExitAds();
+        //keyword.click(keyword.findElement(btnFindDealers));
+        keyword.waitForElementIsClickable(keyword.findElement(btnFindDealers)).click();
     }
 
     /**
@@ -120,8 +134,8 @@ public class CarReviewsDetailNewCarPriceQuotePage extends BasePage {
         return  keyword.checkDisplay(keyword.findElement(txtTitleNewCarPriceQuote))&& 
         keyword.checkDisplay(keyword.findElement(txtDescriptionTitle)) &&  keyword.checkDisplay(keyword.findElement(txtDescriptionSubtitle)) &&
         keyword.checkClickable(keyword.findElement(txtChangZipcode)) &&  keyword.checkDisplay(keyword.findElement(txtYearMakeModel)) && 
-        keyword.checkClickable(keyword.findElement(txtChangVehicle)) &&  keyword.checkClickable(keyword.findElement(btnGetMyFreeQuote))
-        &&  keyword.checkDisplay(keyword.findElement(txtStyle));// && checkSelect(checkboxDealer1) 
+        keyword.checkClickable(keyword.findElement(txtChangVehicle)) &&  keyword.checkClickable(keyword.findElement(btnGetMyFreeQuote));
+        //&&  keyword.checkDisplay(keyword.findElement(txtStyle));// && checkSelect(checkboxDealer1) 
         // && checkSelect(checkboxDealer2) && checkSelect(checkboxDealer3)
     }
 

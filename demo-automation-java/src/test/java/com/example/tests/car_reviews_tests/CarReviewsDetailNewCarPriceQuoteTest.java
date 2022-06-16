@@ -23,7 +23,6 @@ public class CarReviewsDetailNewCarPriceQuoteTest extends BaseTest {
          "The New Car Price Quote section not display");
     }
     
-
     @Test(testName = "Verify UI Of New Car Price Quote", dataProvider = "InfoCarUnderTest", dataProviderClass = InfoCarUnderTest.class)
     public void verifyUIOfNewCarPriceQuote(String year, String make, String model,
     String makeQuote, String modelQuote, String styleQuote,String zipQuote) {
@@ -37,7 +36,6 @@ public class CarReviewsDetailNewCarPriceQuoteTest extends BaseTest {
         Assert.assertTrue(CarReviewsDetailNewCarPriceQuotePage.checkUINewCarPriceQuote(),
          "UI Of New Car Price Quote display not correct");
     }
-
 
     @Test(testName = "Verify Default The Items Of Make Model In DropdownList", dataProvider = "InfoCarUnderTest", dataProviderClass = InfoCarUnderTest.class)
     public void verifyDefaultTheItemsOfMakeModelInDropdownList(String year, String make, String model,
@@ -53,7 +51,6 @@ public class CarReviewsDetailNewCarPriceQuoteTest extends BaseTest {
          "The Items Of Make Model In DropdownList display not default");
     }
 
-    //4
     @Test(testName = "Verify Make Model Style Can Select And Zip code Can Enter Data", dataProvider = "InfoCarUnderTest", dataProviderClass = InfoCarUnderTest.class)
     public void verifyMakeModelStyleCanSelectAndZipcodeCanEnterData(String year, String make, String model,
     String makeQuote, String modelQuote, String styleQuote,String zipQuote) throws Exception {
@@ -84,9 +81,6 @@ public class CarReviewsDetailNewCarPriceQuoteTest extends BaseTest {
         "Car Price Quote Section Work not Correct When Input Valid Data and click button find dealers");
     }
 
-
-
-    //7
     @Test(testName = "Verify UI Of Car You May Like", dataProvider = "InfoCarUnderTest", dataProviderClass = InfoCarUnderTest.class)
     public void verifyUIOfCarYouMayLike(String year, String make, String model,
     String makeQuote, String modelQuote, String styleQuote,String zipQuote) throws Exception {
@@ -101,8 +95,6 @@ public class CarReviewsDetailNewCarPriceQuoteTest extends BaseTest {
         "UI Of Car You May Like display not correct");
     }
 
-
-    //8
     @Test(testName = "Verify UI Of Car You May Like Correct When Car No Longer Avaiable", dataProvider = "InfoCarUnderTest", dataProviderClass = InfoCarUnderTest.class)
     public void verifyUIOfCarYouMayLikeCorrectWhenCarNoLongerAvaiable(String year, String make, String model,
     String makeQuote, String modelQuote, String styleQuote,String zipQuote) throws Exception {
@@ -120,8 +112,6 @@ public class CarReviewsDetailNewCarPriceQuoteTest extends BaseTest {
         "UI Of Car You May Like Not Correct When Car No Longer Avaiable");
     }
 
-
-    //9
     @Test(testName = "Verify UI Of Car You May Like Correct When Car Avaiable", dataProvider = "InfoCarUnderTest", dataProviderClass = InfoCarUnderTest.class)
     public void verifyUIOfCarYouMayLikeCorrectWhenCarAvaiable(String year, String make, String model,
     String makeQuote, String modelQuote, String styleQuote,String zipQuote) throws Exception {

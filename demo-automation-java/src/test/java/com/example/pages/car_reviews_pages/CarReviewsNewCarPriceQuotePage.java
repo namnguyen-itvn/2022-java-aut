@@ -25,6 +25,9 @@ public class CarReviewsNewCarPriceQuotePage extends BasePage {
      * @param model
      */
 
+     /**
+      * Close Ads
+      */
     public void actionExitAds() {
         try {
             WebElement optDiveType = driver.findElement(By.xpath("//button[contains(@aria-label,'Close')]"));
