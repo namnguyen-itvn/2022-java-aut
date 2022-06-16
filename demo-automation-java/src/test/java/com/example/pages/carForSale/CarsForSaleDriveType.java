@@ -5,11 +5,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import com.example.core.keyword.WebKeyword;
 import com.example.pages.BasePage;
 
-public class KbbCarsForSaleDriveType extends BasePage {
-    public KbbCarsForSaleDriveType(WebDriver driver,String DiveTypeElement) {
+public class CarsForSaleDriveType extends BasePage {
+    public CarsForSaleDriveType(WebDriver driver,String DiveTypeElement) {
         super(driver);
         this.DiveTypeElement = DiveTypeElement;
     }
@@ -25,8 +24,7 @@ public class KbbCarsForSaleDriveType extends BasePage {
     private By locatagDiveTypeDriveType = By.xpath(String.format("//span[text()='%s']",DiveTypeElement));
     private By locatagDiveTypeDriveTypeXIcon = By.xpath(String.format("//span[text()='%s']/parent::*/span/span",DiveTypeElement));
     private By locaoptDiveType = By.xpath(String.format("//div[text()='%s']",DiveTypeElement));
-    private By locabtnExitAds = By.xpath("//button[@id='fsrFocusFirst']");
-    private By locabtnExitAds2 = By.cssSelector("button.QSIWebResponsiveDialog-Layout1-SI_5d3NX5IIzg7mUmN_close-btn");
+
     private By localblClearFilters = By.xpath("//span[@class='text-link']");
     private By locaimgFirstResults = By.xpath("(//div[@data-cmp='itemCard'])[1]");
 
@@ -81,8 +79,10 @@ public class KbbCarsForSaleDriveType extends BasePage {
         actionExitAds();
     }
 
-    //action exit ads
+    //action exit ads: including 2 ads, if showing 2 ads in a row, it will fail
     public void actionExitAds(){
+        By locabtnExitAds = By.xpath("//button[@id='fsrFocusFirst']");
+        By locabtnExitAds2 = By.cssSelector("button.QSIWebResponsiveDialog-Layout1-SI_5d3NX5IIzg7mUmN_close-btn");
         try {
             WebElement btnExitAds = keyword.findElement(locabtnExitAds);
             keyword.click(btnExitAds);
@@ -92,6 +92,15 @@ public class KbbCarsForSaleDriveType extends BasePage {
                 keyword.click(btnExitAds2);
             } catch (Exception a) {
             }
+        }
+    }
+    
+    public void actionExitAds1(){
+        By locabtnExitAds = By.xpath("//button[@id='fsrFocusFirst']");
+        try {
+            WebElement btnExitAds = keyword.findElement(locabtnExitAds);
+            keyword.click(btnExitAds);
+        } catch (Exception e) {
         }
     }
 
@@ -149,12 +158,11 @@ public class KbbCarsForSaleDriveType extends BasePage {
      * @return
      * @throws InterruptedException
      */
-    public boolean isCheckBoxNotSelect() throws InterruptedException{
+    public boolean isCheckBoxNotSelect(){
         actionExitAds();
         keyword.scrollToElement(ddlDiveType);
         keyword.click(ddlDiveType);
         actionExitAds();
-        Thread.sleep(3000);
         WebElement optDiveType1 = keyword.findElement(locaoptDiveType1);
         WebElement optDiveType2 = keyword.findElement(locaoptDiveType2);
         WebElement optDiveType3 = keyword.findElement(locaoptDiveType3);
