@@ -86,8 +86,8 @@ public class WebKeyword {
      * @param locator: By.xpath or By.cssSelector...
      * @return element to be located
      */
-    public WebElement findElement(By locator) {
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+    public WebElement findElement(By by) {
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(by));
     }
 
     /**
@@ -143,6 +143,10 @@ public class WebKeyword {
     public WebKeyword scrollToElement(WebElement webElement){
         ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true)", webElement);
         return new WebKeyword(driver);
+    }
+
+    public WebElement findElement(WebElement locaMoreInfo) {
+        return null;
     }
 
 
