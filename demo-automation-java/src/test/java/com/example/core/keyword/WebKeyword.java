@@ -144,7 +144,4 @@ public class WebKeyword {
         ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true)", webElement);
         return new WebKeyword(driver);
     }
-
-
-
 }
