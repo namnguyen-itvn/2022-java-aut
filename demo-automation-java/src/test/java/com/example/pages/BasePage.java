@@ -20,26 +20,69 @@ public class BasePage {
         this.keyword = new WebKeyword(driver);        
     }
 
-/**
- *  Navigate to page
- * @param menuText
- * @return the page with driver
- */
-public void navigateToPage(String menuText) {
-    switch(menuText) {
-        case "Sale":
-            WebElement menuCarForSale = keyword.findElement(By.xpath("//div/a[text()='Cars for Sale']"));
-            keyword.click(menuCarForSale);
-            break;
-        case "Reviews":
-            WebElement menuCarReview = keyword.findElement(By.xpath("//div/a[text()='Car Reviews']"));
-            keyword.click(menuCarReview);
-            break;
-        default:
-            System.out.println("Invalid page");
-            break;
+    /**
+     *  Navigate to page
+     * @param menuText
+     * @return the page with driver
+     */
+    public void navigateToPage(String menuText) {
+        switch(menuText) {
+            case "Sale":
+                WebElement menuCarForSale = keyword.findElement(By.xpath("//div/a[text()='Cars for Sale']"));
+                keyword.click(menuCarForSale);
+                break;
+            case "Reviews":
+                WebElement menuCarReview = keyword.findElement(By.xpath("//div/a[text()='Car Reviews']"));
+                keyword.click(menuCarReview);
+                break;
+            default:
+                System.out.println("Invalid page");
+                break;
+        }
+
     }
 
-}
+    /**
+     * Check element is displayed or not
+     * @param element
+     * @return
+     */
+    public boolean isElementDisplayed(WebElement element){
+        return element.isDisplayed();
+    }
+
+    /**
+     * Check element is enabled or not
+     * @param element
+     * @return
+     */
+    public boolean isElementEnabled(WebElement element){
+        return element.isEnabled();
+    }
+
+    /**
+     * Check element text is match expected text or not
+     * 
+     * @param element to get text
+     * @param expectedText expected text
+     * @return True (Match) || False (Not Match)
+     */
+    public boolean isElementTextEqualExpectedText(WebElement element, String expectedText){
+        return keyword.getText(element).equals(expectedText);
+    }
+
+    public boolean isTitlePageDisplaysCorrect(String year, String make, String model){
+
+        String expectedCarReviewDetailHeaderTitle = "Used " + year + " " + make +" " + model;
+        String expectedCarReviewDetailsPageTitle = expectedCarReviewDetailHeaderTitle + " Values & Cars for Sale | Kelley Blue Book";
+        return driver.getTitle().trim().equals(expectedCarReviewDetailsPageTitle);
+    }
+    /**
+     * Get page title
+     * @return
+     */
+    public String pageTitle() {
+        return driver.getTitle();
+    }
 
 }
