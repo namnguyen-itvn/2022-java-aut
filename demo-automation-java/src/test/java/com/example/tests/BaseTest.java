@@ -18,9 +18,7 @@ public class BaseTest {
     public WebDriverWait wait;
 
     @BeforeMethod
-    public void setUp() throws Exception {
-<<<<<<< Updated upstream
-                
+    public void setUp() throws Exception {                
         try {            
             config = new Configuration("src/test/java/com/example/core/configuration/config.properties");
             driver = DriverFactory.getDriver(config.getProperty("browser"));
@@ -31,14 +29,6 @@ public class BaseTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
-=======
-        config = new Configuration("src/test/java/com/example/core/configuration/config.properties");
-        driver = DriverFactory.getDriver(config.getProperty("browser"));
-        keyword = new WebKeyword(driver);
-        driver.manage().window().maximize();
-        keyword.openUrl(config.getProperty("url"));//// day ne
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
->>>>>>> Stashed changes
     }
 
     @AfterMethod
