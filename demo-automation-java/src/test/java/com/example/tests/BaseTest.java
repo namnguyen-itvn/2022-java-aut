@@ -18,8 +18,12 @@ public class BaseTest {
     public WebDriverWait wait;
 
     @BeforeMethod
+<<<<<<< Updated upstream
     public void setUp() throws Exception {
                 
+=======
+    public void setUp() throws Exception {              
+>>>>>>> Stashed changes
         try {            
             config = new Configuration("src/test/java/com/example/core/configuration/config.properties");
             driver = DriverFactory.getDriver(config.getProperty("browser"));
