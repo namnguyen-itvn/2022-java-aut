@@ -3,6 +3,7 @@ package com.example.pages.car_reviews_pages;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -24,30 +25,30 @@ public class CarReviewsDetailNewCarPriceQuotePage extends BasePage {
     private By inputZipcode = By.xpath("//input[@id='zipInput']");
     private By btnFindDealers = By.xpath("//button[@id='Step1Button']");
 
-    public By txtChangZipcode=By.xpath("//a[text()='Change ZIP Code']");
-    public By txtYearMakeModel=By.xpath("//div[@id='test-vehicleymm']//p");
-    public By txtStyle=By.xpath("//div[contains(@class,'css-osapl5-Content')]//div[2]//p");
-    public By txtChangVehicle=By.xpath("//div[@id='test-page-content']//a[text()='Change Vehicle']");
-    public By btnGetMyFreeQuote=By.xpath("// button[@id='Step2Button']");
-    public By checkboxDealer1=By.xpath("//input[@id='dealerkey1']");
-    public By checkboxDealer2=By.xpath("//input[@id='dealerkey2']");
-    public By checkboxDealer3=By.xpath("//input[@id='dealerkey3']");
+    private By txtChangZipcode=By.xpath("//a[text()='Change ZIP Code']");
+    private By txtYearMakeModel=By.xpath("//div[@id='test-vehicleymm']//p");
+    private By txtStyle=By.xpath("//div[contains(@class,'css-osapl5-Content')]//div[2]//p");
+    private By txtChangVehicle=By.xpath("//div[@id='test-page-content']//a[text()='Change Vehicle']");
+    private By btnGetMyFreeQuote=By.xpath("// button[@id='Step2Button']");
+    private By checkboxDealer1=By.xpath("//input[@id='dealerkey1']");
+    private By checkboxDealer2=By.xpath("//input[@id='dealerkey2']");
+    private By checkboxDealer3=By.xpath("//input[@id='dealerkey3']");
 
-    public By txtFirstName=By.xpath("//input[@id='firstName']");
-    public By txtLastName=By.xpath("//input[@id='lastName']");
-    public By txtEmail=By.xpath("//input[@id='email']");
-    public By txtPhone=By.xpath("//input[@id='phoneNumber']");
-    public By btnSend=By.xpath("//button[@name='Step3Button']");
-    public By linkPolicy=By.xpath("//div[@id='test-page-content']//a[text()='Privacy Policy']");
+    private By txtFirstName=By.xpath("//input[@id='firstName']");
+    private By txtLastName=By.xpath("//input[@id='lastName']");
+    private By txtEmail=By.xpath("//input[@id='email']");
+    private By txtPhone=By.xpath("//input[@id='phoneNumber']");
+    private By btnSend=By.xpath("//button[@name='Step3Button']");
+    private By linkPolicy=By.xpath("//div[@id='test-page-content']//a[text()='Privacy Policy']");
 
-    public By txtDescriptionSubtitleCYML=By.xpath("//div[contains(@class,'css-8foxlt-HeadingWrapper')]/span");
-    public By txtVihicleCard=By.xpath("//div[contains(@class,'efy00sb1')]");
-    public By linkBrowseAllListings=By.xpath("//a[@data-analytics='inv_ncymm_buynew_browse_list_btn']");
-    public By txtTitleCarYouMayLike=By.xpath("//div[@id='carsforsale']//h3");
+    private By txtDescriptionSubtitleCYML=By.xpath("//div[contains(@class,'css-8foxlt-HeadingWrapper')]/span");
+    private By txtVihicleCard=By.xpath("//div[contains(@class,'efy00sb1')]");
+    private By linkBrowseAllListings=By.xpath("//a[@data-analytics='inv_ncymm_buynew_browse_list_btn']");
+    private By txtTitleCarYouMayLike=By.xpath("//div[@id='carsforsale']//h3");
 
-    public By txtVihicleCard1=By.xpath("//div[contains(@class,'efy00sb1')][1]/div");
-    public By txtYearVihicleCard=By.xpath("//div[contains(@class,'efy00sb1')][1]/div//div[@type='default']/div");
-    public By txtMakeModelVihicleCard=By.xpath("//div[contains(@class,'efy00sb1')][1]/div//div[@type='default']/following-sibling::*");
+    private By txtVihicleCard1=By.xpath("//div[contains(@class,'efy00sb1')][1]/div");
+    private By txtYearVihicleCard=By.xpath("//div[contains(@class,'efy00sb1')][1]/div//div[@type='default']/div");
+    private By txtMakeModelVihicleCard=By.xpath("//div[contains(@class,'efy00sb1')][1]/div//div[@type='default']/following-sibling::*");
 
     /**
      * check Car Price Quote Section Display
@@ -95,14 +96,16 @@ public class CarReviewsDetailNewCarPriceQuotePage extends BasePage {
      * @throws Exception
      */
     public void selectMakeModelStyleAndFillZipcodeData(String makeQuote, String modelQuote, String styleQuote,String zipQuote) throws Exception {
+        actionExitAds();
         keyword.scrollToElement(keyword.findElement(iframeNewCarPriceQuote));
         driver.switchTo().frame(keyword.findElement(iframeNewCarPriceQuote));
         keyword.setValueForElement(keyword.findElement(selectMake), chooseTypeOfSelect.selectByVisibleText, makeQuote);
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         keyword.setValueForElement(keyword.findElement(selectModel), chooseTypeOfSelect.selectByVisibleText, modelQuote);
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         keyword.setValueForElement(keyword.findElement(selectStyle), chooseTypeOfSelect.selectByVisibleText, styleQuote);
         keyword.setText(keyword.findElement(inputZipcode),zipQuote);
+        actionExitAds();
     }
 
     /**
@@ -123,7 +126,10 @@ public class CarReviewsDetailNewCarPriceQuotePage extends BasePage {
     public void clickButtonFindDealers() {
         actionExitAds();
         //keyword.click(keyword.findElement(btnFindDealers));
-        keyword.waitForElementIsClickable(keyword.findElement(btnFindDealers)).click();
+        //keyword.waitForElementIsClickable(keyword.findElement(btnFindDealers)).click();
+        WebElement element = keyword.findElement(btnFindDealers);
+        JavascriptExecutor executor = (JavascriptExecutor)driver;
+        executor.executeScript("arguments[0].click();", element);
     }
 
     /**
@@ -137,6 +143,27 @@ public class CarReviewsDetailNewCarPriceQuotePage extends BasePage {
         keyword.checkClickable(keyword.findElement(txtChangVehicle)) &&  keyword.checkClickable(keyword.findElement(btnGetMyFreeQuote));
         //&&  keyword.checkDisplay(keyword.findElement(txtStyle));// && checkSelect(checkboxDealer1) 
         // && checkSelect(checkboxDealer2) && checkSelect(checkboxDealer3)
+    }
+
+    /**
+     * Click button Get My Free Quote
+     */
+    public void clickButtonGetMyFreeQuote() {
+        actionExitAds();
+        keyword.waitForElementIsClickable(keyword.findElement(btnGetMyFreeQuote)).click();
+        //keyword.click(keyword.findElement(btnGetMyFreeQuote));
+    }
+
+    /**
+     * Check Check car price quote section work correct when fill data and click button get my free quote
+     * @return
+     */
+    public boolean checkCarPriceQuoteSectionWorkCorrectWhenInputValidDataAndClickButtonGetMyFreeQuote() {
+        return keyword.checkDisplay(keyword.findElement(txtDescriptionTitle)) && 
+        keyword.checkDisplay(keyword.findElement(txtDescriptionSubtitle)) &&
+        keyword.checkDisplay(keyword.findElement(txtFirstName)) &&  keyword.checkDisplay(keyword.findElement(txtLastName)) && 
+        keyword.checkDisplay(keyword.findElement(txtEmail)) && keyword.checkDisplay(keyword.findElement(txtPhone)) &&  
+        keyword.checkClickable(keyword.findElement(btnSend)) && keyword.checkClickable(keyword.findElement(linkPolicy));
     }
 
     /**
@@ -191,9 +218,9 @@ public class CarReviewsDetailNewCarPriceQuotePage extends BasePage {
     }
 
     //data expected
-    String  titleSection="New Car Price Quote";
-    String descriptionTitleExpected="Get the best deal on a new car!";
-    String descriptionSubtitleExpected="Compare prices from three local dealers.";
-    String descriptionSubtitleCYMLExpected="We’Ve Rounded Up Cars That Could Be Your Perfect Match.";
+    private String  titleSection="New Car Price Quote";
+    private String descriptionTitleExpected="Get the best deal on a new car!";
+    private String descriptionSubtitleExpected="Compare prices from three local dealers.";
+    private String descriptionSubtitleCYMLExpected="We’Ve Rounded Up Cars That Could Be Your Perfect Match.";
 
 }

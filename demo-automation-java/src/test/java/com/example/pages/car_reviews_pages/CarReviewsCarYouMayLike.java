@@ -9,8 +9,8 @@ public class CarReviewsCarYouMayLike extends BasePage {
     }
 
     //declare
-    public By txtMessage=By.xpath("//div[@data-cmp='heading']");
-    public By txtLabelVihicle=By.xpath("//h1");
+    private By txtMessage=By.xpath("//div[@data-cmp='heading']");
+    private By txtLabelVihicle=By.xpath("//h1");
 
     /**
      * Check message display correct when select card vihicle no long avalible
@@ -34,6 +34,6 @@ public class CarReviewsCarYouMayLike extends BasePage {
     }
     
     //data expected
-    String messageExpected="This car is no longer available. One moment while we take you to the search results page.";
+    private String messageExpected="This car is no longer available. One moment while we take you to the search results page.";
     
 }

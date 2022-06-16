@@ -39,7 +39,7 @@ public class WebKeyword {
      * @return WebKeyword to set value for element
      */
     public WebKeyword setValueForElement(WebElement webElement, chooseTypeOfSelect type, String value){
-        Select ddlElement = new Select(waitForElementIsClickable(webElement));
+        Select ddlElement = new Select(waitForElementToBeClickable(webElement));
         switch (type){
             case selectByValue:
                 ddlElement.selectByValue(value);            
@@ -124,7 +124,7 @@ public class WebKeyword {
      */
     public WebKeyword click(WebElement webElement){
         scrollToElement(webElement);
-        waitForElementIsClickable(webElement).click();
+        waitForElementToBeClickable(webElement).click();
         return new WebKeyword(driver);
     }
 
@@ -133,6 +133,13 @@ public class WebKeyword {
      */
     public WebElement waitForElementVisibilities(WebElement webElement){
         return wait.until(ExpectedConditions.visibilityOf(webElement));        
+    }
+
+    /**\
+     * wait for element visibilities in page
+     */
+    public WebElement waitForElementToBeClickable(WebElement webElement){
+        return wait.until(ExpectedConditions.elementToBeClickable(webElement));        
     }
 
     /**
@@ -173,6 +180,7 @@ public class WebKeyword {
      */
     public boolean checkDisplay(WebElement webElement) {
         return waitForElementIsDisplay(webElement).isDisplayed();
+        //return waitForElementVisibilities(webElement).isDisplayed();
     }
 
     /**
@@ -182,10 +190,11 @@ public class WebKeyword {
      */
     public boolean checkClickable(WebElement webElement) {
         return waitForElementIsDisplay(webElement).isEnabled();
+        //return waitForElementToBeClickable(webElement).isEnabled();
     }
 
     /**
-     * check message correct
+     * check message correct with message expected
      * @param webElement
      * @param expectedMessage
      * @return
@@ -200,10 +209,10 @@ public class WebKeyword {
      * @param expectedMessage
      * @return
      */
-    public boolean isOptionSelectedIsCorrect(WebElement webElement, String expectedMessage) {
+    public boolean isOptionSelectedIsCorrect(WebElement webElement, String dataInput) {
         Select select = new Select(waitForElementIsDisplay(webElement));
         System.out.println(select.getFirstSelectedOption().getText());
-        return select.getFirstSelectedOption().getText().equals(expectedMessage);
+        return select.getFirstSelectedOption().getText().equals(dataInput);
     }
     
     /**

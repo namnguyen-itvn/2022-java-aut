@@ -64,7 +64,6 @@ public class CarReviewsDetailNewCarPriceQuoteTest extends BaseTest {
         CarReviewsDetailNewCarPriceQuotePage.selectMakeModelStyleAndFillZipcodeData(makeQuote, modelQuote, styleQuote, zipQuote);
     }
 
-    //5--erorr
     @Test(testName = "Verify Car Price Quote Section Work Correct When Input Valid Data And Click Button Find Dealers", dataProvider = "InfoCarUnderTest", dataProviderClass = InfoCarUnderTest.class)
     public void verifyCarPriceQuoteSectionWorkCorrectWhenInputValidDataAndClickButtonFindDealers(String year, String make, String model,
     String makeQuote, String modelQuote, String styleQuote,String zipQuote) throws Exception {
@@ -79,6 +78,23 @@ public class CarReviewsDetailNewCarPriceQuoteTest extends BaseTest {
         CarReviewsDetailNewCarPriceQuotePage.clickButtonFindDealers();
         Assert.assertTrue(CarReviewsDetailNewCarPriceQuotePage.checkCarPriceQuoteSectionWorkCorrectWhenInputValidDataAndClickButtonFindDealers(), 
         "Car Price Quote Section Work not Correct When Input Valid Data and click button find dealers");
+    }
+
+    @Test(testName = "Verify Car Price Quote Section Work Correct When Input Valid Data And Click Button Get My Free Quote", dataProvider = "InfoCarUnderTest", dataProviderClass = InfoCarUnderTest.class)
+    public void verifyCarPriceQuoteSectionWorkCorrectWhenInputValidDataAndClickButtonGetMyFreeQuote(String year, String make, String model,
+    String makeQuote, String modelQuote, String styleQuote,String zipQuote) throws Exception {
+        BasePage basePage = new BasePage(driver);
+        basePage.navigateToPage("Reviews");
+
+        CarReviewsNewCarPriceQuotePage CarReviewsNewCarPriceQuotePage = new CarReviewsNewCarPriceQuotePage(driver);
+        CarReviewsNewCarPriceQuotePage.inputDataCar(year, make, model);
+
+        CarReviewsDetailNewCarPriceQuotePage CarReviewsDetailNewCarPriceQuotePage = new CarReviewsDetailNewCarPriceQuotePage(driver);
+        CarReviewsDetailNewCarPriceQuotePage.selectMakeModelStyleAndFillZipcodeData(makeQuote, modelQuote, styleQuote, zipQuote);
+        CarReviewsDetailNewCarPriceQuotePage.clickButtonFindDealers();
+        CarReviewsDetailNewCarPriceQuotePage.clickButtonGetMyFreeQuote();
+        Assert.assertTrue(CarReviewsDetailNewCarPriceQuotePage.checkCarPriceQuoteSectionWorkCorrectWhenInputValidDataAndClickButtonGetMyFreeQuote(), 
+        "Car Price Quote Section Work not Correct When Input Valid Data and click button Get My Free Quote");
     }
 
     @Test(testName = "Verify UI Of Car You May Like", dataProvider = "InfoCarUnderTest", dataProviderClass = InfoCarUnderTest.class)
