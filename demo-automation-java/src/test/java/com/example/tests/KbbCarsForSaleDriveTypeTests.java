@@ -4,8 +4,8 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.example.pages.BasePage;
-import com.example.pages.KbbCarsForSaleDetailVehicle;
-import com.example.pages.KbbCarsForSaleDriveType;
+import com.example.pages.carForSale.KbbCarsForSaleDetailVehicle;
+import com.example.pages.carForSale.KbbCarsForSaleDriveType;
 
 public class KbbCarsForSaleDriveTypeTests extends BaseTest {
     @Test(testName = "Verify selected option in Drive Type should be shown in Vehicle Detail Page when click on return result")
