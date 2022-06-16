@@ -38,7 +38,7 @@ public class WebKeyword {
      * @param value value of element
      * @return WebKeyword to set value for element
      */
-    public WebKeyword setValueForElement(WebElement webElement, chooseTypeOfSelect type, String value){
+    public WebKeyword setValueForSelectElement(WebElement webElement, chooseTypeOfSelect type, String value){
         Select ddlElement = new Select(waitForElementToBeClickable(webElement));
         switch (type){
             case selectByValue:
