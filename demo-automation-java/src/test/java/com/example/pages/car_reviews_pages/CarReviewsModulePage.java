@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.Color;
 
+import com.example.core.keyword.WebKeyword.chooseTypeOfSelect;
 import com.example.pages.BasePage;
 
 public class CarReviewsModulePage extends BasePage{
@@ -25,6 +26,7 @@ public class CarReviewsModulePage extends BasePage{
     WebElement txtZipcode = keyword.findElement(By.cssSelector("*[class^='zipcode']"));
     WebElement btnGetReviews = keyword.findElement(By.cssSelector("*[class*='WrappedButton']"));
 
+    //Page aciton
     /**
     * Check Select A Vehicle box background color is displayed correct or not
     * 
@@ -53,5 +55,21 @@ public class CarReviewsModulePage extends BasePage{
         return false;
     }
 
+    public void searchForVehicle(String year, String make, String model, String zipCode) throws Exception{
+        keyword.setValueForSelectElement(ddYear, chooseTypeOfSelect.selectByValue, year);
+        keyword.setValueForSelectElement(ddMake, chooseTypeOfSelect.selectByValue, make);
+        keyword.setValueForSelectElement(ddModel, chooseTypeOfSelect.selectByValue, model);
+
+        expectedCarReviewHeaderTitle = year + " " + make +" " + model;
+        expectedCarReviewDetailsPageTitle = expectedCarReviewHeaderTitle + " Values & Cars for Sale | Kelley Blue Book";
+
+        keyword.setText(txtZipcode, zipCode);
+
+        keyword.click(btnGetReviews);
+    }
+
+    //Expected value
     public String expectedSelectAVehicleMessage = "Get the straight story from our experts and real-world feedback from consumers like you.";
+    public String expectedCarReviewHeaderTitle = "";
+    public String expectedCarReviewDetailsPageTitle = "";
 }
