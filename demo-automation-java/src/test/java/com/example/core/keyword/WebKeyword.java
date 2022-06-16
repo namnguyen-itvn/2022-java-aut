@@ -26,8 +26,8 @@ public class WebKeyword {
      * Options for select value
      */
     public enum chooseTypeOfSelect{
-        selectByValue, 
-        selectByVisibleText, 
+        selectByValue,
+        selectByVisibleText,
         selectByIndex
     }
 
@@ -42,7 +42,7 @@ public class WebKeyword {
         Select ddlElement = new Select(webElement);
         switch (type){
             case selectByValue:
-                ddlElement.selectByValue(value);            
+                ddlElement.selectByValue(value);
                 break;
             case selectByVisibleText:
                 ddlElement.selectByVisibleText(value);
@@ -56,7 +56,7 @@ public class WebKeyword {
 
     /**
      * Get all option in drop down list
-     * 
+     *
      * @param element drop down list
      * @return List of options
      */
@@ -69,7 +69,7 @@ public class WebKeyword {
 
     /**
      * Method to check the url then opening the url
-     * 
+     *
      * @param url website to open
      * @throws Exception Exception
      */
@@ -82,7 +82,7 @@ public class WebKeyword {
 
     /**
      * Wait to element visible
-     * 
+     *
      * @param locator: By.xpath or By.cssSelector...
      * @return element to be located
      */
@@ -114,7 +114,7 @@ public class WebKeyword {
      */
     public String getText(WebElement webElement){
         scrollToElement(webElement);
-        return waitForElementVisibilities(webElement).getText();        
+        return waitForElementVisibilities(webElement).getText();
     }
 
     /**
@@ -132,12 +132,12 @@ public class WebKeyword {
      * wait for element visibilities in page
      */
     public WebElement waitForElementVisibilities(WebElement webElement){
-        return wait.until(ExpectedConditions.visibilityOf(webElement));        
+        return wait.until(ExpectedConditions.visibilityOf(webElement));
     }
 
     /**
      * Keyword for scroll to element
-     * @param webElement: element 
+     * @param webElement: element
      * @return: keyword for scroll to element
      */
     public WebKeyword scrollToElement(WebElement webElement){
@@ -145,6 +145,15 @@ public class WebKeyword {
         return new WebKeyword(driver);
     }
 
+    /**
+     *
+     * @param locator
+     * @return list elements to be located
+     */
+    public List<WebElement> findElements(By locator){
+        return wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
+
+    }
 
 
 }

@@ -18,27 +18,18 @@ public class BaseTest {
     public WebDriverWait wait;
 
     @BeforeMethod
-    public void setUp() throws Exception {
-<<<<<<< Updated upstream
-                
-        try {            
+    public void setUp()   {
+
+        try {
             config = new Configuration("src/test/java/com/example/core/configuration/config.properties");
             driver = DriverFactory.getDriver(config.getProperty("browser"));
-            keyword = new WebKeyword(driver);            
+            keyword = new WebKeyword(driver);
             keyword.openUrl(config.getProperty("url"));
             int implicitWait = Integer.parseInt(config.getProperty("implicitWait"));
             this.wait = new WebDriverWait(driver, implicitWait);
         } catch (Exception e) {
             e.printStackTrace();
         }
-=======
-        config = new Configuration("src/test/java/com/example/core/configuration/config.properties");
-        driver = DriverFactory.getDriver(config.getProperty("browser"));
-        keyword = new WebKeyword(driver);
-        driver.manage().window().maximize();
-        keyword.openUrl(config.getProperty("url"));//// day ne
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
->>>>>>> Stashed changes
     }
 
     @AfterMethod
