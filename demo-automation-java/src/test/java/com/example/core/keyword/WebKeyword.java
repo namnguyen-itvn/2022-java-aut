@@ -38,8 +38,8 @@ public class WebKeyword {
      * @param value value of element
      * @return WebKeyword to set value for element
      */
-    public WebKeyword setValueForElement(WebElement webElement, chooseTypeOfSelect type, String value){
-        Select ddlElement = new Select(webElement);
+    public WebKeyword setValueForSelectElement(WebElement webElement, chooseTypeOfSelect type, String value){
+        Select ddlElement = new Select(waitForElementToBeClickable(webElement));
         switch (type){
             case selectByValue:
                 ddlElement.selectByValue(value);            
@@ -124,7 +124,7 @@ public class WebKeyword {
      */
     public WebKeyword click(WebElement webElement){
         scrollToElement(webElement);
-        waitForElementVisibilities(webElement).click();
+        waitForElementToBeClickable(webElement).click();
         return new WebKeyword(driver);
     }
 
@@ -133,6 +133,13 @@ public class WebKeyword {
      */
     public WebElement waitForElementVisibilities(WebElement webElement){
         return wait.until(ExpectedConditions.visibilityOf(webElement));        
+    }
+
+    /**\
+     * wait for element visibilities in page
+     */
+    public WebElement waitForElementToBeClickable(WebElement webElement){
+        return wait.until(ExpectedConditions.elementToBeClickable(webElement));        
     }
 
     /**
@@ -144,7 +151,4 @@ public class WebKeyword {
         ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true)", webElement);
         return new WebKeyword(driver);
     }
-
-
-
 }
