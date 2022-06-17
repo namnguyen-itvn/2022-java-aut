@@ -22,13 +22,17 @@ public class BasePage {
     }
 
     /**
+<<<<<<< HEAD
      * Navigate to page
      * 
+=======
+     *  Navigate to page
+>>>>>>> develop
      * @param menuText
      * @return the page with driver
      */
     public void navigateToPage(String menuText) {
-        switch (menuText) {
+        switch(menuText) {
             case "Sale":
                 WebElement menuCarForSale = keyword.findElement(By.xpath("//div/a[text()='Cars for Sale']"));
                 keyword.click(menuCarForSale);
@@ -67,6 +71,43 @@ public class BasePage {
      */
     public boolean isElementDisplayed(By locator) {
         return keyword.findElement(locator).isDisplayed();
+    }
+
+    /**
+     * Check element is displayed or not
+     * @param element
+     * @return
+     */
+    public boolean isElementDisplayed(WebElement element){
+        return element.isDisplayed();
+    }
+
+    /**
+     * Check element is enabled or not
+     * @param element
+     * @return
+     */
+    public boolean isElementEnabled(WebElement element){
+        return element.isEnabled();
+    }
+
+    /**
+     * Check element text is match expected text or not
+     * 
+     * @param element to get text
+     * @param expectedText expected text
+     * @return True (Match) || False (Not Match)
+     */
+    public boolean isElementTextEqualExpectedText(WebElement element, String expectedText){
+        return keyword.getText(element).equals(expectedText);
+    }
+
+    /**
+     * Get page title
+     * @return
+     */
+    public String pageTitle() {
+        return driver.getTitle();
     }
 
     /**

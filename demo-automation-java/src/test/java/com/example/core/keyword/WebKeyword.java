@@ -42,9 +42,9 @@ public class WebKeyword {
      * @param value      value of element
      * @return WebKeyword to set value for element
      */
-    public WebKeyword setValueForElement(WebElement webElement, chooseTypeOfSelect type, String value) {
-        Select ddlElement = new Select(webElement);
-        switch (type) {
+    public WebKeyword setValueForSelectElement(WebElement webElement, chooseTypeOfSelect type, String value){
+        Select ddlElement = new Select(waitForElementToBeClickable(webElement));
+        switch (type){
             case selectByValue:
                 ddlElement.selectByValue(value);
                 break;
@@ -157,7 +157,7 @@ public class WebKeyword {
      */
     public WebKeyword click(WebElement webElement) {
         scrollToElement(webElement);
-        waitForElementVisibilities(webElement).click();
+        waitForElementToBeClickable(webElement).click();
         return new WebKeyword(driver);
     }
 
@@ -178,6 +178,13 @@ public class WebKeyword {
         return wait.until(ExpectedConditions.elementToBeClickable(webElement));
     }
 
+    /**\
+     * wait for element visibilities in page
+     */
+    public WebElement waitForElementToBeClickable(WebElement webElement){
+        return wait.until(ExpectedConditions.elementToBeClickable(webElement));        
+    }
+
     /**
      * Keyword for scroll to element
      * 
@@ -186,17 +193,6 @@ public class WebKeyword {
      */
     public WebKeyword scrollToElement(WebElement webElement) {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true)", webElement);
-        return new WebKeyword(driver);
-    }
-
-    /**
-     * Click to element
-     * 
-     * @param webElement
-     */
-    public WebKeyword clickOn(WebElement webElement) {
-        Actions actions = new Actions(this.driver);
-        actions.moveToElement(webElement).doubleClick(waitForElementVisibilities(webElement)).build().perform();
         return new WebKeyword(driver);
     }
 }
