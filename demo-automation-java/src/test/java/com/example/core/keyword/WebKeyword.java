@@ -141,7 +141,7 @@ public class WebKeyword {
      * @return: keyword for scroll to element
      */
     public WebKeyword scrollToElement(WebElement webElement){
-        ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true);", webElement);
+        ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true)", webElement);
         return new WebKeyword(driver);
     }
 }

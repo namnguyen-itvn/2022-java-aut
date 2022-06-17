@@ -17,22 +17,6 @@ public class CarsForSaleDetailPage extends BasePage{
     private By lblCarsForSaleDetailPageResult = By.xpath("//div[contains(text(),'Automatic Transmission')]");
 
     /**
-     * @param element
-     * @return
-     */
-    private boolean isElementDisplayed(By element) {
-        return keyword.findElement(element).isDisplayed();
-    }
-
-    /**
-     * 
-     * @param element
-     */
-    private void scrollOnElement(By element) {
-        keyword.scrollToElement(keyword.findElement(element));
-    }
-
-    /**
      * 
      * @return
      */

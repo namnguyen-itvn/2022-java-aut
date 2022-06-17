@@ -30,30 +30,6 @@ public class CarsForSalePage extends BasePage {
     private int afterResults = 0;
 
     /**
-     * @param element
-     * @return
-     */
-    private boolean isElementDisplayed(By element) {
-        return keyword.findElement(element).isDisplayed();
-    }
-
-    /**
-     * 
-     * @param element
-     */
-    private void clickOnElement(By element) {
-        keyword.click(keyword.findElement(element));
-    }
-
-    /**
-     * 
-     * @param element
-     */
-    private void scrollOnElement(By element) {
-        keyword.scrollToElement(keyword.findElement(element));
-    }
-
-    /**
      * 
      * @param element
      * @return
@@ -82,7 +58,7 @@ public class CarsForSalePage extends BasePage {
                 if (isElementDisplayed(tagTransmissionAutomatic) && isElementDisplayed(iconTransmissionAutomaticX)
                         && isElementDisplayed(txlYourSearchClearFilter) && isElementDisplayed(lblYourSearchResults)) {
                     afterResults = convertElementToDouble(lblYourSearchResultsAfterChosenOption);
-                    if (beforeResults != afterResults | beforeResults == afterResults) {
+                    if (beforeResults != afterResults || beforeResults == afterResults) {
                         return true;
                     }
                     return false;
