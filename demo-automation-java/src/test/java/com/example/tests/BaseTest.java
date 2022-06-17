@@ -1,6 +1,5 @@
 package com.example.tests;
 
-
 import com.example.core.configuration.Configuration;
 import com.example.core.configuration.drivers.Chrome;
 import com.example.core.driver.DriverFactory;
@@ -46,5 +45,4 @@ public class BaseTest {
     public void tearDown() {
         driver.quit();
     }
-
 }
