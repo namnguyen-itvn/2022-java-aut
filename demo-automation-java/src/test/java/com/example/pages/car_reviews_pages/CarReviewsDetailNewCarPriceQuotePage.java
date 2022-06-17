@@ -99,11 +99,11 @@ public class CarReviewsDetailNewCarPriceQuotePage extends BasePage {
         actionExitAds();
         keyword.scrollToElement(keyword.findElement(iframeNewCarPriceQuote));
         driver.switchTo().frame(keyword.findElement(iframeNewCarPriceQuote));
-        keyword.setValueForElement(keyword.findElement(selectMake), chooseTypeOfSelect.selectByVisibleText, makeQuote);
-        Thread.sleep(1000);
-        keyword.setValueForElement(keyword.findElement(selectModel), chooseTypeOfSelect.selectByVisibleText, modelQuote);
-        Thread.sleep(1000);
-        keyword.setValueForElement(keyword.findElement(selectStyle), chooseTypeOfSelect.selectByVisibleText, styleQuote);
+        keyword.setValueForSelectElement(keyword.findElement(selectMake), chooseTypeOfSelect.selectByVisibleText, makeQuote);
+        Thread.sleep(2000);
+        keyword.setValueForSelectElement(keyword.findElement(selectModel), chooseTypeOfSelect.selectByVisibleText, modelQuote);
+        Thread.sleep(2000);
+        keyword.setValueForSelectElement(keyword.findElement(selectStyle), chooseTypeOfSelect.selectByVisibleText, styleQuote);
         keyword.setText(keyword.findElement(inputZipcode),zipQuote);
         actionExitAds();
     }
@@ -125,8 +125,6 @@ public class CarReviewsDetailNewCarPriceQuotePage extends BasePage {
      */
     public void clickButtonFindDealers() {
         actionExitAds();
-        //keyword.click(keyword.findElement(btnFindDealers));
-        //keyword.waitForElementIsClickable(keyword.findElement(btnFindDealers)).click();
         WebElement element = keyword.findElement(btnFindDealers);
         JavascriptExecutor executor = (JavascriptExecutor)driver;
         executor.executeScript("arguments[0].click();", element);
@@ -141,8 +139,6 @@ public class CarReviewsDetailNewCarPriceQuotePage extends BasePage {
         keyword.checkDisplay(keyword.findElement(txtDescriptionTitle)) &&  keyword.checkDisplay(keyword.findElement(txtDescriptionSubtitle)) &&
         keyword.checkClickable(keyword.findElement(txtChangZipcode)) &&  keyword.checkDisplay(keyword.findElement(txtYearMakeModel)) && 
         keyword.checkClickable(keyword.findElement(txtChangVehicle)) &&  keyword.checkClickable(keyword.findElement(btnGetMyFreeQuote));
-        //&&  keyword.checkDisplay(keyword.findElement(txtStyle));// && checkSelect(checkboxDealer1) 
-        // && checkSelect(checkboxDealer2) && checkSelect(checkboxDealer3)
     }
 
     /**
@@ -151,7 +147,6 @@ public class CarReviewsDetailNewCarPriceQuotePage extends BasePage {
     public void clickButtonGetMyFreeQuote() {
         actionExitAds();
         keyword.waitForElementIsClickable(keyword.findElement(btnGetMyFreeQuote)).click();
-        //keyword.click(keyword.findElement(btnGetMyFreeQuote));
     }
 
     /**
@@ -193,11 +188,6 @@ public class CarReviewsDetailNewCarPriceQuotePage extends BasePage {
     public void clickCardvihicleESC() throws InterruptedException {
         keyword.scrollToElement(keyword.findElement(txtTitleCarYouMayLike));
         keyword.click(keyword.findElement(txtVihicleCard1));
-        // Actions action = new Actions(driver);
-        // Thread.sleep(2000);
-	    // action.sendKeys(Keys.ESCAPE);
-        // action.sendKeys(Keys.ESCAPE);
-        // Thread.sleep(4000);
     }
 
     /**

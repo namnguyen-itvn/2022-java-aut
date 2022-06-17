@@ -38,9 +38,9 @@ public class CarReviewsNewCarPriceQuotePage extends BasePage {
         
     }
     public void inputDataCar(String year, String make, String model){
-        keyword.setValueForElement(keyword.findElement(selectYear), chooseTypeOfSelect.selectByValue, year);
-        keyword.setValueForElement(keyword.findElement(selectMake), chooseTypeOfSelect.selectByValue, make);
-        keyword.setValueForElement(keyword.findElement(selectModel), chooseTypeOfSelect.selectByValue, model);
+        keyword.setValueForSelectElement(keyword.findElement(selectYear), chooseTypeOfSelect.selectByValue, year);
+        keyword.setValueForSelectElement(keyword.findElement(selectMake), chooseTypeOfSelect.selectByValue, make);
+        keyword.setValueForSelectElement(keyword.findElement(selectModel), chooseTypeOfSelect.selectByValue, model);
         actionExitAds();
         keyword.click(keyword.findElement(btnNext));
     }
