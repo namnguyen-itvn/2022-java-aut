@@ -30,8 +30,8 @@ public class CarsForSaleDriveTypeTests extends BaseTest {
         CarsForSaleDriveType kbbCarsForSaleDriveType = new CarsForSaleDriveType(driver);
         kbbCarsForSaleDriveType.actionSelectOptDriveType(DriveType);
         kbbCarsForSaleDriveType.actionNavToCFSVehicleDetails();
-        CarsForSaleDetailVehicle kbbCarsForSaleDetailVehicle = new CarsForSaleDetailVehicle(driver, "AWD/4WD");
-        Assert.assertTrue(kbbCarsForSaleDetailVehicle.isTypeOfWheelDriveDisplayed());
+        CarsForSaleDetailVehicle kbbCarsForSaleDetailVehicle = new CarsForSaleDetailVehicle(driver);
+        Assert.assertTrue(kbbCarsForSaleDetailVehicle.isTypeOfWheelDriveDisplayed(DriveType));
     }
 
 }

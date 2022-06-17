@@ -94,9 +94,10 @@ public class CarsForSaleDriveType extends BasePage {
 
     //action select opt Drive type and compare result before and after click
     public void actionSelectOptDriveType(String opt){
-        actionExitAds();
-        keyword.scrollToElement(ddlDiveType);
+        
+        waitNoCondition();
         keyword.click(ddlDiveType);
+
         beforeResults = parseStringResultsToNumber(lblResults.getText());
         switch (opt) {
             case "AWD/4WD":
@@ -111,27 +112,18 @@ public class CarsForSaleDriveType extends BasePage {
             default:
                 break;
         }
-
-        actionExitAds();
+        waitNoCondition();    
         WebElement lblResults2 = keyword.findElement(localblResults);
         afterResults = parseStringResultsToNumber(lblResults2.getText());
-
-        actionExitAds();
     }
 
-    //action exit ads: including 2 ads, if showing 2 ads in a row, it will fail
-    public void actionExitAds(){
+    //wait with No Condition
+    public void waitNoCondition(){
         By locabtnExitAds = By.xpath("//button[@id='fsrFocusFirst']");
-        By locabtnExitAds2 = By.cssSelector("button.QSIWebResponsiveDialog-Layout1-SI_5d3NX5IIzg7mUmN_close-btn");
         try {
             WebElement btnExitAds = keyword.findElement(locabtnExitAds);
             keyword.click(btnExitAds);
         } catch (Exception e) {
-            try {
-                WebElement btnExitAds2 = keyword.findElement(locabtnExitAds2);
-                keyword.click(btnExitAds2);
-            } catch (Exception a) {
-            }
         }
     }
 
@@ -189,10 +181,10 @@ public class CarsForSaleDriveType extends BasePage {
      * @throws InterruptedException
      */
     public boolean isCheckBoxNotSelect(){
-        actionExitAds();
+        
         keyword.scrollToElement(ddlDiveType);
         keyword.click(ddlDiveType);
-        actionExitAds();
+        
         WebElement optDiveType1 = keyword.findElement(locaoptDiveType1);
         WebElement optDiveType2 = keyword.findElement(locaoptDiveType2);
         WebElement optDiveType3 = keyword.findElement(locaoptDiveType3);

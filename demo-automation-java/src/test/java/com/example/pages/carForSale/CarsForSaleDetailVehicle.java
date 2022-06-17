@@ -7,17 +7,11 @@ import org.openqa.selenium.WebElement;
 import com.example.pages.BasePage;
 
 public class CarsForSaleDetailVehicle extends BasePage {
-    public CarsForSaleDetailVehicle(WebDriver driver,String DriveTypeData) {
-        super(driver);
-        this.DriveTypeData = DriveTypeData;
-    }
-
     public CarsForSaleDetailVehicle(WebDriver driver) {
         super(driver);
     }
 
     // car4sale detail vehicle element
-    private String DriveTypeData = "";
     private WebElement lblTypeOfWheelDrive = keyword.findElement(By.xpath("//div[@aria-label='DRIVE TYPE']/parent::div/parent::div/child::div[@class='col-xs-10 margin-bottom-0']"));
     private WebElement lblPrice = keyword.findElement(By.xpath("//div[@data-cmp='pricing']/span"));
     private WebElement lblMileage = keyword.findElement(By.xpath("//div[@aria-label='MILEAGE']/parent::div/parent::div/child::div[@class='col-xs-10 margin-bottom-0']"));
@@ -25,20 +19,20 @@ public class CarsForSaleDetailVehicle extends BasePage {
      *  Return TypeOfWheelDriveDisplayed is correct or not
      * @return
      */
-    public boolean isTypeOfWheelDriveDisplayed(){
-        if (DriveTypeData == "AWD/4WD") {
+    public boolean isTypeOfWheelDriveDisplayed(String DriveTypeData){
+        if (DriveTypeData.contains("AWD/4WD") ) {
             if ((lblTypeOfWheelDrive.getText().contains("All wheel drive")) | (lblTypeOfWheelDrive.getText().contains("4 wheel drive"))){
                 return true;
             }
             else return false;
         }
-        else if (DriveTypeData == "Front Wheel Drive") {
+        else if (DriveTypeData.contains("Front Wheel Drive")) {
             if (lblTypeOfWheelDrive.getText().contains("front")) {
                 return true;
             }
             else return false;
         }
-        else if (DriveTypeData == "Rear Wheel Drive") {
+        else if (DriveTypeData.contains("Rear Wheel Drive")) {
             if (lblTypeOfWheelDrive.getText().contains("rear")) {
                 return true;
             }
@@ -47,6 +41,15 @@ public class CarsForSaleDetailVehicle extends BasePage {
         else return false;
     }
     
+    public void waitNoCondition(){
+        By locabtnExitAds = By.xpath("//button[@id='fsrFocusFirst']");
+        try {
+            WebElement btnExitAds = keyword.findElement(locabtnExitAds);
+            keyword.click(btnExitAds);
+        } catch (Exception e) {
+        }
+    }
+
     /**
      *  Return CarPriceCorectWithPricePayment is correct or not
      * @return

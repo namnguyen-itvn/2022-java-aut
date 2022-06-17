@@ -26,7 +26,7 @@ public class CarsForSaleMileage extends BasePage {
     private double afterResults = 0;
     //action ClickBtnMileage
     public void actionClickBtnMileage(){
-        actionExitAds();
+        waitNoCondition();
         keyword.scrollToElement(btnMileage);
         keyword.click(btnMileage);
     }
@@ -88,12 +88,12 @@ public class CarsForSaleMileage extends BasePage {
         beforeResults = parseStringResultsToNumber(lblResults.getText());
 
         WebElement sltMileage = keyword.findElement(locasltMileage);
-        keyword.setValueForElement(sltMileage, chooseTypeOfSelect.selectByValue, value);
-        actionExitAds();
+        keyword.setValueForSelectElement(sltMileage, chooseTypeOfSelect.selectByValue, value);
+        waitNoCondition();
 
         WebElement lblResults2 = keyword.findElement(localblResults);
         afterResults = parseStringResultsToNumber(lblResults2.getText());
-        actionExitAds();
+        waitNoCondition();
     }
 
     //action navigate to cars-for-sale vehicle details page
@@ -101,7 +101,7 @@ public class CarsForSaleMileage extends BasePage {
         WebElement imgFirstResults = keyword.findElement(locaimgFirstResults);
         keyword.scrollToElement(imgFirstResults);
         keyword.click(imgFirstResults);
-        actionExitAds();
+        waitNoCondition();
     }
 
     //func convert string to number Results
@@ -114,19 +114,12 @@ public class CarsForSaleMileage extends BasePage {
         return number;
     }   
 
-    //action exit ads: including 2 ads, if showing 2 ads in a row, it will fail
-    public void actionExitAds(){
+    public void waitNoCondition(){
         By locabtnExitAds = By.xpath("//button[@id='fsrFocusFirst']");
-        By locabtnExitAds2 = By.cssSelector("button.QSIWebResponsiveDialog-Layout1-SI_5d3NX5IIzg7mUmN_close-btn");
         try {
             WebElement btnExitAds = keyword.findElement(locabtnExitAds);
             keyword.click(btnExitAds);
         } catch (Exception e) {
-            try {
-                WebElement btnExitAds2 = keyword.findElement(locabtnExitAds2);
-                keyword.click(btnExitAds2);
-            } catch (Exception a) {
-            }
         }
     }
 
