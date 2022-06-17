@@ -56,4 +56,17 @@ public class CarReviewsRankingsModuleTests extends BaseTest{
         CarReviewsRankingsModulePage carReviewsRankingsModulePage = new CarReviewsRankingsModulePage(driver);
         Assert.assertTrue(carReviewsRankingsModulePage.assertScopeAreDefaultUIOfConsumerRatingsTableDiplayedCorrect());
     }
+
+    @Test(testName = "Verify System Should Navigate To The Review Detail Page Of Selected Vehicle In Ranking Section", dataProviderClass = CarUnderTest.class, dataProvider = "dataForGetCarReviews")
+    public void verifySystemShouldNavigateToTheReviewDetailPageOfSelectedVehicleInRankingSection(String year, String make, String model, String zipCode) throws Exception   
+    {
+        BasePage basePage = new BasePage(driver);
+        basePage.navigateToPage("Reviews");
+        CarReviewsModulePage carReviewsModulePage = new CarReviewsModulePage(driver);
+        carReviewsModulePage.getCarReviews(year, make, model, zipCode);
+        CarReviewsRankingsModulePage carReviewsRankingsModulePage = new CarReviewsRankingsModulePage(driver);
+        carReviewsRankingsModulePage.selectVehicleInRankingsSection();
+        CarReviewsRankingsModulePage reviewsDetailsPageOfSelectedVehicle = new CarReviewsRankingsModulePage(driver);
+        Assert.assertTrue(reviewsDetailsPageOfSelectedVehicle.assertScopeAreUrlAndLblSelectedCarInRankingsSectionCorrect());
+    }
 }

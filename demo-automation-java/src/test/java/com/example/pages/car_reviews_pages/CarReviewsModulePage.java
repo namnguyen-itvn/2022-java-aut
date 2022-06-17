@@ -29,16 +29,16 @@ public class CarReviewsModulePage extends BasePage{
             wait.until((ExpectedCondition<Boolean>) new ExpectedCondition<Boolean>(){
                 public Boolean apply(WebDriver driver)  
                 {
-                    Select select = new Select(keyword.waitForElementToBeClickable(ddlYear));
+                    Select select = new Select(keyword.waitForElementVisibilities(ddlYear));
                     return select.getOptions().size()>1;
                 }
             });
         }catch(Throwable e){
             System.out.println("Error found: "+e.getMessage());
         }
-        keyword.setValueForSelectElement(ddlYear, chooseTypeOfSelect.selectByValue, year);
-        keyword.setValueForSelectElement(ddlMake, chooseTypeOfSelect.selectByValue, make);
-        keyword.setValueForSelectElement(ddlModel, chooseTypeOfSelect.selectByValue, model); 
+        keyword.setValueForSelectElement(ddlYear, chooseTypeOfSelect.selectByVisibleText, year);
+        keyword.setValueForSelectElement(ddlMake, chooseTypeOfSelect.selectByVisibleText, make);
+        keyword.setValueForSelectElement(ddlModel, chooseTypeOfSelect.selectByVisibleText, model); 
         keyword.setText(txtZIPCode, zipCode);
         keyword.click(btnGetReview);
     }

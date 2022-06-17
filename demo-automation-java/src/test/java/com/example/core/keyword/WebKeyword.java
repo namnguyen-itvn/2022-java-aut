@@ -118,12 +118,32 @@ public class WebKeyword {
     }
 
     /**
+     * Keyword for get text of element
+     * @param webElement: element to get text
+     * @return: keyword to get text from element
+     */
+    public String getTextWithOutScroll(WebElement webElement){
+        return waitForElementVisibilities(webElement).getText();        
+    }
+
+    /**
      * Keyword for click on element
      * @param webElement: element to click
      * @return: keyword to click on element
      */
     public WebKeyword click(WebElement webElement){
         scrollToElement(webElement);
+        waitForElementToBeClickable(webElement).click();
+        return new WebKeyword(driver);
+    }
+
+    /**
+     * Keyword for click on element
+     * @param webElement: element to click
+     * @return: keyword to click on element
+     */
+    public WebKeyword clickWithOutScroll(WebElement webElement){
+        waitForElementVisibilities(webElement);
         waitForElementToBeClickable(webElement).click();
         return new WebKeyword(driver);
     }
