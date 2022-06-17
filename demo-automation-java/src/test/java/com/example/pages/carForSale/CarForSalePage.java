@@ -96,11 +96,11 @@ public class CarForSalePage extends BasePage {
      */
     public void isFilterSortValueListDisplayedCorrect() {
         Select select = new Select(keyword.findElement(ddlSort));
-        List actualDropdownValues = new ArrayList();
+        List<String> actualDropdownValues = new ArrayList<String>();
         for (WebElement element : select.getOptions()) {
             actualDropdownValues.add(keyword.getText(element));
         }
-        List expectedDropdownValues = new ArrayList();
+        List<String> expectedDropdownValues = new ArrayList<String>();
         expectedDropdownValues.add("Relevance");
         expectedDropdownValues.add("Price - Lowest");
         expectedDropdownValues.add("Price - Highest");
