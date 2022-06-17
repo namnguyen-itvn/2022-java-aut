@@ -133,6 +133,7 @@ public class WebKeyword {
      */
     public WebKeyword click(WebElement webElement){
         scrollToElement(webElement);
+        waitForElementVisibilities(webElement);
         waitForElementToBeClickable(webElement).click();
         return new WebKeyword(driver);
     }
