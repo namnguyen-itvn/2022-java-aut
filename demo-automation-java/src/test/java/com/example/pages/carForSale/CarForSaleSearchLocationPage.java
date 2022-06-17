@@ -22,7 +22,7 @@ public class CarForSaleSearchLocationPage extends BasePage{
     public boolean isSearchLocationIsDisplayCorrect(){
         keyword.scrollToElement(lblSearchLocation);
         if (isElementDisplayed(ddlDistance) && isElementDisplayed(txtZipcode) && isElementDisplayed(checkboxDelivery) && 
-            isElementCanClicked(ddlDistance) && isElementCanClicked(txtZipcode) && isElementCanClicked(checkboxDelivery)){
+        isElementEnabled(ddlDistance) && isElementEnabled(txtZipcode) && isElementEnabled(checkboxDelivery)){
                 return true;
         }else return false;
     }
