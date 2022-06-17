@@ -38,8 +38,8 @@ public class WebKeyword {
      * @param value value of element
      * @return WebKeyword to set value for element
      */
-    public WebKeyword setValueForElement(WebElement webElement, chooseTypeOfSelect type, String value){
-        Select ddlElement = new Select(webElement);
+    public WebKeyword setValueForSelectElement(WebElement webElement, chooseTypeOfSelect type, String value){
+        Select ddlElement = new Select(waitForElementToBeClickable(webElement));
         switch (type){
             case selectByValue:
                 ddlElement.selectByValue(value);            
@@ -118,13 +118,34 @@ public class WebKeyword {
     }
 
     /**
+     * Keyword for get text of element
+     * @param webElement: element to get text
+     * @return: keyword to get text from element
+     */
+    public String getTextWithOutScroll(WebElement webElement){
+        return waitForElementVisibilities(webElement).getText();        
+    }
+
+    /**
      * Keyword for click on element
      * @param webElement: element to click
      * @return: keyword to click on element
      */
     public WebKeyword click(WebElement webElement){
         scrollToElement(webElement);
-        waitForElementVisibilities(webElement).click();
+        waitForElementVisibilities(webElement);
+        waitForElementToBeClickable(webElement).click();
+        return new WebKeyword(driver);
+    }
+
+    /**
+     * Keyword for click on element
+     * @param webElement: element to click
+     * @return: keyword to click on element
+     */
+    public WebKeyword clickWithOutScroll(WebElement webElement){
+        waitForElementVisibilities(webElement);
+        waitForElementToBeClickable(webElement).click();
         return new WebKeyword(driver);
     }
 
@@ -133,6 +154,13 @@ public class WebKeyword {
      */
     public WebElement waitForElementVisibilities(WebElement webElement){
         return wait.until(ExpectedConditions.visibilityOf(webElement));        
+    }
+
+    /**\
+     * wait for element visibilities in page
+     */
+    public WebElement waitForElementToBeClickable(WebElement webElement){
+        return wait.until(ExpectedConditions.elementToBeClickable(webElement));        
     }
 
     /**
@@ -144,7 +172,4 @@ public class WebKeyword {
         ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true)", webElement);
         return new WebKeyword(driver);
     }
-
-
-
 }
