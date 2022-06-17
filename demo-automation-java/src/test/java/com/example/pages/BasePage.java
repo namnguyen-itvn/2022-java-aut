@@ -1,7 +1,10 @@
 package com.example.pages;
 
 import com.example.core.configuration.Configuration;
+import com.example.core.driver.DriverFactory;
 import com.example.core.keyword.WebKeyword;
+
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -30,11 +33,18 @@ public class BasePage {
      * @return the page with driver
      */
     public void navigateToPage(String menuText) {
-        
+
         switch (menuText) {
             case "Sale":
                 WebElement menuCarForSale = keyword.findElement(By.xpath("//div/a[text()='Cars for Sale']"));
                 keyword.click(menuCarForSale);
+                try {
+                    config = new Configuration("src/test/java/com/example/core/configuration/config.properties");
+                    int implicitWait = Integer.parseInt(config.getProperty("implicitWait"));
+                    driver.manage().timeouts().implicitlyWait(implicitWait, TimeUnit.SECONDS);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 break;
             case "Reviews":
                 WebElement menuCarReview = keyword.findElement(By.xpath("//div/a[text()='Car Reviews']"));
@@ -60,11 +70,12 @@ public class BasePage {
     }
 
     public void clickAction(By locator) {
+        keyword.scrollToElement(keyword.findElement(locator));
         WebElement element = keyword.findElement(locator);
         keyword.click(element);
     }
 
-    public boolean isItemCorrect(String expectedItem, By locator){
+    public boolean isItemCorrect(String expectedItem, By locator) {
         WebElement element = keyword.findElement(locator);
         String item = keyword.getText(element);
         return item.equals(expectedItem);

@@ -27,6 +27,7 @@ public class BaseTest {
             keyword.openUrl(config.getProperty("url"));
             int implicitWait = Integer.parseInt(config.getProperty("implicitWait"));
             this.wait = new WebDriverWait(driver, implicitWait);
+            
         } catch (Exception e) {
             e.printStackTrace();
         }
