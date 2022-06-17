@@ -94,6 +94,16 @@ public class WebKeyword {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
+        /**
+     * Wait to element visible
+     * 
+     * @param locator: By.xpath or By.cssSelector...
+     * @return element to be located
+     */
+    public WebElement findElement(WebElement element) {
+        return wait.until(ExpectedConditions.visibilityOf(element));
+    }
+
     /**
      * Keyword for set text to element
      * 
@@ -136,7 +146,6 @@ public class WebKeyword {
      * @return: keyword to get text from element
      */
     public String getText(WebElement webElement) {
-        scrollToElement(webElement);
         return waitForElementVisibilities(webElement).getText();
     }
 

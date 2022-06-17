@@ -59,4 +59,31 @@ public class BasePage {
             }
         }
     }
+
+    /**
+     * 
+     * @param locator
+     * @return Element displayed or not
+     */
+    public boolean isElementDisplayed(By locator){
+        return keyword.findElement(locator).isDisplayed();
+    }
+
+    /**
+     * 
+     * @param locator
+     * @return Element enabled or not
+     */
+    public boolean isElementEnabled(By locator){
+        return keyword.findElement(locator).isEnabled();
+    } 
+
+    /**
+     * 
+     * @param locator
+     * @return text in element
+     */
+    public String getText(By locator){
+        return keyword.getText(keyword.findElement(locator));
+    }
 }

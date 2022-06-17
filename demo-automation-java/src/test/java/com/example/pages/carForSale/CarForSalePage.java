@@ -21,6 +21,7 @@ public class CarForSalePage extends BasePage {
     }
 
     private By txtSearch = By.xpath("//input[@type='text']");
+    private By btnSearch = By.xpath("//button[@aria-label='search-btn']");
     private By carForSales = By.xpath("//a[@label='Cars for Sale']");
     private By lblTitle = By.xpath("//h1[@data-cmp='heading']");
     private By iconZipcode = By.cssSelector("span[class='glyphicon glyphicon-map-marker']");
@@ -42,33 +43,12 @@ public class CarForSalePage extends BasePage {
     public String expectedSubAlertMessage = "Try changing your search criteria or remove filters.";
 
     /*
-     * Return Search text box displayed or not
-     */
-    public boolean isSearchTextBoxDisplayed() {
-        return keyword.findElement(txtSearch).isDisplayed();
-    }
-
-    /*
      * Return Search Place Holder Displayed correct or not
      */
     public boolean isSearchPlaceHolderDisplayedCorrect() {
         String actualPlaceHolder = keyword.findElement(txtSearch).getAttribute("placeholder");
         String expectedPlaceHolder = "Search by Make, Model, Body Style or Keyword";
         return actualPlaceHolder.equals(expectedPlaceHolder);
-    }
-
-    /*
-     * Return Search Button Displayed correct or not
-     */
-    public boolean isSearchButtonDisplayed() {
-        return keyword.findElement(carForSales).isDisplayed();
-    }
-
-    /*
-     * Return Car For Sales BreadCrums Enabled to click or not
-     */
-    public boolean isCarForSalesBreadcrumbsEnabled() {
-        return keyword.findElement(carForSales).isEnabled();
     }
 
     /*
@@ -81,18 +61,11 @@ public class CarForSalePage extends BasePage {
     }
 
     /*
-     * Return Icon Zipcode Displayed or not
-     */
-    public boolean isIconZipcodeDisplayed() {
-        return keyword.findElement(iconZipcode).isDisplayed();
-    }
-
-    /*
      * Verify the top of the cars for sale section displayed as default
      */
     public boolean isTheTopOfTheCarForSalePageSectionDisplayedAsDefault() {
-        if (isSearchTextBoxDisplayed() & isSearchPlaceHolderDisplayedCorrect() & isSearchButtonDisplayed()
-                & isCarForSalesBreadcrumbsEnabled() & isTitleDisplayedCorrect() & isIconZipcodeDisplayed()) {
+        if (isElementDisplayed(txtSearch) & isSearchPlaceHolderDisplayedCorrect() & isElementDisplayed(btnSearch)
+                & isElementEnabled(carForSales) & isTitleDisplayedCorrect() & isElementDisplayed(iconZipcode)) {
             return true;
         } else
             return false;
@@ -196,49 +169,15 @@ public class CarForSalePage extends BasePage {
 
     /**
      * 
-     * @return Car Image Displayed or not
+     * @return Car Card Itam Display Correct or not
      */
-    public boolean isCarImageDisplayed() {
-        return keyword.findElement(imgCar).isDisplayed();
-    }
-
-    /**
-     * 
-     * @return Car Title Displayed or not
-     */
-    public boolean isCarTitleDisplayed() {
-        return keyword.findElement(lblCarTitle).isDisplayed();
-    }
-
-    /**
-     * 
-     * @return Car Distance Displayed or not
-     */
-    public boolean isCarDistanceDisplayed() {
-        return keyword.findElement(lblCarDistance).isDisplayed();
-    }
-
-    /**
-     * 
-     * @return Car Price Displayed or not
-     */
-    public boolean isCarPriceDisplayed() {
-        return keyword.findElement(lblCarPrice).isDisplayed();
-    }
-
-    /**
-     * 
-     * @return Car Price Displayed or not
-     */
-    public boolean isSeeEstimatedPaymentDisplayed() {
-        return keyword.findElement(lblSeePayMent).isDisplayed();
-    }
-
     public boolean isCarCardItemDisplayCorrect() {
-        if (isCarImageDisplayed() & isCarTitleDisplayed() & isCarPriceDisplayed() & isCarDistanceDisplayed()
-                & isSeeEstimatedPaymentDisplayed()) {
+        if (isElementDisplayed(imgCar) & isElementDisplayed(lblCarTitle) & isElementDisplayed(lblCarDistance)
+                & isElementDisplayed(lblCarPrice)
+                & isElementDisplayed(lblSeePayMent)) {
             return true;
         } else
             return false;
     }
+
 }
