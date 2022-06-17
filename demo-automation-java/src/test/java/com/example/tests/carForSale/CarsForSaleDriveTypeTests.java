@@ -33,4 +33,13 @@ public class CarsForSaleDriveTypeTests extends BaseTest {
         Assert.assertTrue(kbbCarsForSaleDetailVehicle.isTypeOfWheelDriveDisplayed());
     }
 
+    @Test(testName = "Verify selected option in Drive Type should be shown in Vehicle Detail Page when click on return result")
+    public void verifySelectedOptionInDriveTypeShouldBeShownInVehicleDetailPageWhenClickOnReturnResult2 ()
+    {
+        BasePage basePage = new BasePage(driver);
+        basePage.navigateToPage("Sale");
+        
+        CarsForSaleDriveType kbbCarsForSaleDriveType = new CarsForSaleDriveType(driver, "AWD/4WD");
+        kbbCarsForSaleDriveType.isCheckBoxNotSelect();
+    }
 }

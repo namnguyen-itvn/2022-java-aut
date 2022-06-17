@@ -8,14 +8,13 @@ import org.openqa.selenium.WebElement;
 import com.example.pages.BasePage;
 
 public class CarsForSaleDriveType extends BasePage {
+    
     public CarsForSaleDriveType(WebDriver driver,String DiveTypeElement) {
         super(driver);
         this.DiveTypeElement = DiveTypeElement;
     }
-
-    //Cars for sale element
     private String DiveTypeElement = "AWD/4WD";
-    
+    //Cars for sale element
     private WebElement ddlDiveType = keyword.findElement(By.xpath("//span[text()='Drive Type']/parent::span/parent::div"));
     private WebElement lblResults = keyword.findElement(By.cssSelector("div.text-size-md-300"));
 
@@ -28,7 +27,7 @@ public class CarsForSaleDriveType extends BasePage {
     private By localblClearFilters = By.xpath("//span[@class='text-link']");
     private By locaimgFirstResults = By.xpath("(//div[@data-cmp='itemCard'])[1]");
 
-    private By locaoptDiveType1 = By.xpath("//input[@value='AWD4WD']");
+    private By locaoptDiveType1 = By.cssSelector("input[value='AWD4WD']");
     private By locaoptDiveType2 = By.xpath("//input[@value='FWD']");
     private By locaoptDiveType3 = By.xpath("//input[@value='RWD']");
 
@@ -72,7 +71,6 @@ public class CarsForSaleDriveType extends BasePage {
         keyword.click(optDiveType);
 
         actionExitAds();
-
         WebElement lblResults2 = keyword.findElement(localblResults);
         afterResults = parseStringResultsToNumber(lblResults2.getText());
 
@@ -164,12 +162,12 @@ public class CarsForSaleDriveType extends BasePage {
         keyword.click(ddlDiveType);
         actionExitAds();
         WebElement optDiveType1 = keyword.findElement(locaoptDiveType1);
-        WebElement optDiveType2 = keyword.findElement(locaoptDiveType2);
-        WebElement optDiveType3 = keyword.findElement(locaoptDiveType3);
-        
-        if (optDiveType1.isSelected() == false &
-            optDiveType2.isSelected() == false &
-            optDiveType3.isSelected() == false) {
+        // WebElement optDiveType2 = keyword.findElement(locaoptDiveType2);
+        // WebElement optDiveType3 = keyword.findElement(locaoptDiveType3);
+        if (optDiveType1.isEnabled() == true) {
+            System.out.println("true");}
+        if (optDiveType1.isSelected() == false) {
+            System.out.println("true");
             return true;
         }
         else return false;
