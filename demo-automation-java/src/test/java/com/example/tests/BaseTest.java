@@ -1,6 +1,5 @@
 package com.example.tests;
 
-
 import com.example.core.configuration.Configuration;
 import com.example.core.configuration.drivers.Chrome;
 import com.example.core.driver.DriverFactory;
@@ -15,15 +14,6 @@ import org.testng.annotations.BeforeMethod;
 
 public class BaseTest {
 
-    public static WebDriver driver;
-    public WebKeyword keyword;
-    public Configuration config;
-    public WebDriverWait wait;
-
-    /**
-     * Method get driver to use for add screen shot method in ExtentTestManager class
-     * @return: driver
-     */
     public static WebDriver getDriver(){
         if(driver == null){
             driver = new Chrome().createDriver();
@@ -32,8 +22,14 @@ public class BaseTest {
         return driver;
     }
 
+    public static WebDriver driver;
+    public WebKeyword keyword;
+    public Configuration config;
+    public WebDriverWait wait;
+
     @BeforeMethod
     public void setUp() throws Exception {
+
         try {            
             config = new Configuration("src/test/java/com/example/core/configuration/config.properties");
             driver = DriverFactory.getDriver(config.getProperty("browser"));

@@ -11,9 +11,6 @@ public class CarSearchDetailPage extends BasePage {
         super(driver);
     }
 
-    public CarSearchDetailPage() {
-    }
-
     private By lblTitle = By.xpath("//h1[@data-cmp='heading']");
 
     /*

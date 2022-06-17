@@ -1,0 +1,56 @@
+package com.example.pages.carForSale;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
+
+import com.example.core.keyword.WebKeyword.chooseTypeOfSelect;
+import com.example.pages.BasePage;
+
+public class CarForSaleFuelEconomyPage extends BasePage{
+
+    public CarForSaleFuelEconomyPage(WebDriver driver) {
+        super(driver);
+    }
+    //Action
+    
+    /**
+     * Method for verfy that the UI of fuel economy filter display is correctly with requirement
+     * @param expectedFuelEconomy: data to compare with option of fuel economy type
+     * @return: true or false
+     */
+    public boolean isTheFuelEconomyFilterDisplayCorrect(String expectedFuelEconomy){
+        keyword.scrollToElement(lblFuelEconomy);
+        keyword.click(lblFuelEconomy);
+        Select ddlFuelEconomys = new Select(ddlFuelEconomy);
+        boolean check = false;
+        for (WebElement element : ddlFuelEconomys.getOptions()){
+            if (expectedFuelEconomy.contains(keyword.getText(element))){
+                check = true;
+            }else check = false;
+            break;
+        }
+        return check;
+    }
+
+    public boolean isReturnTheResultOfFuelEconomyMatchWithOptionWasSelected(String fuel){
+        keyword.scrollToElement(lblFuelEconomy);
+        keyword.click(lblFuelEconomy);
+        keyword.click(ddlFuelEconomy);
+        keyword.setValueForSelectElement(ddlFuelEconomy, chooseTypeOfSelect.selectByValue, fuel);
+        keyword.scrollToElement(lblYourSearch);
+        WebElement btnCondition = keyword.findElement(By.xpath("//div[contains(@data-cmp, 'chip')]/child::span[contains(text(), '"+fuel+"')]"));
+        WebElement linkClearFilter = keyword.findElement(By.xpath("//span[contains(text(), 'Clear Filters')]"));
+        if (keyword.getText(btnCondition).contains(fuel) && isElementEnabled(btnCondition) && isElementEnabled(linkClearFilter)){
+            return true;
+        }else return false;
+    }
+
+    //declare element
+    private WebElement lblYourSearch = keyword.findElement(By.xpath("//span[contains(text(), 'Your Search')]"));
+    private WebElement lblFuelEconomy = keyword.findElement(By.xpath("//span[contains(text(), 'Fuel Economy')]/parent::span/parent::div"));
+    private WebElement ddlFuelEconomy = keyword.findElement(By.id("10591868"));
+}
