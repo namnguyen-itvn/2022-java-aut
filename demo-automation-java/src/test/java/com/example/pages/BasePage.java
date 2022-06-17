@@ -44,6 +44,15 @@ public class BasePage {
     }
 
     /**
+     * Check element is displayed or not
+     * @param element
+     * @return
+     */
+    public boolean isElementDisplayed(WebElement element){
+        return element.isDisplayed();
+    }
+
+    /**
      * Action to close ad popup
      */
     public void actionExitAds() {
@@ -70,15 +79,6 @@ public class BasePage {
     }
 
     /**
-     * Check element is displayed or not
-     * @param element
-     * @return
-     */
-    public boolean isElementDisplayed(WebElement element){
-        return element.isDisplayed();
-    }
-
-    /**
      * Check element is enabled or not
      * @param element
      * @return
@@ -97,7 +97,7 @@ public class BasePage {
     public boolean isElementTextEqualExpectedText(WebElement element, String expectedText){
         return keyword.getText(element).equals(expectedText);
     }
-
+    
     /**
      * Get page title
      * @return
