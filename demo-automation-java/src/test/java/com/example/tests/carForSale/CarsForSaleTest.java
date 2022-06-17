@@ -17,7 +17,6 @@ public class CarsForSaleTest extends BaseTest{
         Assert.assertTrue(carForSalePage.isTransmissionDisplayed());
     }
 
-    //Verify the results Transmission module returns should be displayed with the selected mode
     @Test(testName = "Verify The Results Transmission Module Returns Should Be Displayed With The Selected Mode")
     public void verifyTheResultsTransmissionModuleReturnsShouldBeDisplayedWithTheSelectedMode() {
         BasePage basePage = new BasePage(driver);

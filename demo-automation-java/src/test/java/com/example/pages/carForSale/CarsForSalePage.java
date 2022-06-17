@@ -24,7 +24,7 @@ public class CarsForSalePage extends BasePage {
     private By lblYourSearchResultsAfterChosenOption = By
             .xpath("(//div[@class='text-size-md-300 text-size-lg-300 text-right'])[1]");
     private By lblYourSearch = By.xpath("//span[@class='text-size-400 text-bold text-gray-base']");
-    private By itemFirstResult = By.xpath("//div[@class='col-xs-4 item-card-side'][1]");
+    private By itemFirstResult = By.xpath("(//div[@data-cmp='inventorySpotlightListing'])[1]");
 
     private int beforeResults = 0;
     private int afterResults = 0;
