@@ -8,12 +8,11 @@ import org.openqa.selenium.WebElement;
 import com.example.pages.BasePage;
 
 public class CarsForSaleDriveType extends BasePage {
-    
-    public CarsForSaleDriveType(WebDriver driver,String DiveTypeElement) {
-        super(driver);
-        this.DiveTypeElement = DiveTypeElement;
-    }
     private String DiveTypeElement = "AWD/4WD";
+    public CarsForSaleDriveType(WebDriver driver) {
+        super(driver);
+    }
+
     //Cars for sale element
     private WebElement ddlDiveType = keyword.findElement(By.xpath("//span[text()='Drive Type']/parent::span/parent::div"));
     private WebElement lblResults = keyword.findElement(By.cssSelector("div.text-size-md-300"));
@@ -22,12 +21,14 @@ public class CarsForSaleDriveType extends BasePage {
     private By locachbDiveType = By.xpath("//span[text()='Drive Type']/parent::span/parent::div/parent::div//div[@data-cmp='checkboxGroup']");
     private By locatagDiveTypeDriveType = By.xpath(String.format("//span[text()='%s']",DiveTypeElement));
     private By locatagDiveTypeDriveTypeXIcon = By.xpath(String.format("//span[text()='%s']/parent::*/span/span",DiveTypeElement));
-    private By locaoptDiveType = By.xpath(String.format("//div[text()='%s']",DiveTypeElement));
+    private By locaoptDiveTypeAWD = By.xpath("//div[text()='AWD/4WD']");
+    private By locaoptDiveTypeFront = By.xpath("//div[text()='Front Wheel Drive']");
+    private By locaoptDiveTypeRear = By.xpath("//div[text()='Rear Wheel Drive']");
 
     private By localblClearFilters = By.xpath("//span[@class='text-link']");
     private By locaimgFirstResults = By.xpath("(//div[@data-cmp='itemCard'])[1]");
 
-    private By locaoptDiveType1 = By.cssSelector("input[value='AWD4WD']");
+    private By locaoptDiveType1 = By.xpath("//input[@value='AWD4WD']");
     private By locaoptDiveType2 = By.xpath("//input[@value='FWD']");
     private By locaoptDiveType3 = By.xpath("//input[@value='RWD']");
 
@@ -62,13 +63,24 @@ public class CarsForSaleDriveType extends BasePage {
     }
 
     //action select opt Drive type and compare result before and after click
-    public void actionSelectOptDriveType(){
+    public void actionSelectOptDriveType(String opt){
         actionExitAds();
         keyword.scrollToElement(ddlDiveType);
         keyword.click(ddlDiveType);
         beforeResults = parseStringResultsToNumber(lblResults.getText());
-        WebElement optDiveType = keyword.findElement(locaoptDiveType);
-        keyword.click(optDiveType);
+        switch (opt) {
+            case "AWD/4WD":
+                keyword.click(keyword.findElement(locaoptDiveTypeAWD));
+                break;
+            case "Front Wheel Drive":
+                keyword.click(keyword.findElement(locaoptDiveTypeFront));
+                break;
+            case "Rear Wheel Drive":
+                keyword.click(keyword.findElement(locaoptDiveTypeRear));
+                break;
+            default:
+                break;
+        }
 
         actionExitAds();
         WebElement lblResults2 = keyword.findElement(localblResults);
@@ -76,6 +88,8 @@ public class CarsForSaleDriveType extends BasePage {
 
         actionExitAds();
     }
+
+
 
     //action exit ads: including 2 ads, if showing 2 ads in a row, it will fail
     public void actionExitAds(){
@@ -162,16 +176,16 @@ public class CarsForSaleDriveType extends BasePage {
         keyword.click(ddlDiveType);
         actionExitAds();
         WebElement optDiveType1 = keyword.findElement(locaoptDiveType1);
-        // WebElement optDiveType2 = keyword.findElement(locaoptDiveType2);
-        // WebElement optDiveType3 = keyword.findElement(locaoptDiveType3);
-        if (optDiveType1.isEnabled() == true) {
-            System.out.println("true");}
-        if (optDiveType1.isSelected() == false) {
-            System.out.println("true");
+        WebElement optDiveType2 = keyword.findElement(locaoptDiveType2);
+        WebElement optDiveType3 = keyword.findElement(locaoptDiveType3);
+        
+        if (optDiveType1.isSelected() == false &
+            optDiveType2.isSelected() == false &
+            optDiveType3.isSelected() == false) {
             return true;
         }
         else return false;
-    }
+    }  
 
     //action navigate to cars-for-sale vehicle details page
     public void actionNavToCFSVehicleDetails(){
