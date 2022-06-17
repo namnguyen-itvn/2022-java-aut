@@ -57,4 +57,5 @@ public class CarForSaleSearchModuleTest extends BaseTest {
         Assert.assertTrue(carForSalePage.isAlertMessageFrameDisplayCorrect(carForSalePage.expectedAlertMessage,
                 carForSalePage.expectedSubAlertMessage));
     }
+
 }

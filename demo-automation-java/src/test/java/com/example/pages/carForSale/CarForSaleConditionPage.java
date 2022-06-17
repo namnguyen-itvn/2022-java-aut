@@ -16,14 +16,18 @@ public class CarForSaleConditionPage extends BasePage {
         super(driver);
     }
 
-    private WebElement optionNew = keyword.findElement(By.xpath("//div[contains(text(),'New')]"));
-    private WebElement optionUsed = keyword.findElement(By.xpath("//div[contains(text(),'Used')]"));
+    private WebElement optionNew = keyword.findElement(By.xpath("(//div[normalize-space()='New'])[1]"));
+    private WebElement optionUsed = keyword.findElement(By.xpath("(//div[normalize-space()='Used'])[1]"));
     private WebElement optionManufacturerCertified = keyword
             .findElement(By.xpath("//div[normalize-space()='Manufacturer Certified']"));
     private WebElement optionThirdPartyCertified = keyword
             .findElement(By.xpath("//div[contains(text(),'Third-Party Certified')]"));
 
+    private WebElement titleModuleYourSearch = keyword.findElement(By.xpath(
+            "//span[@class='text-size-400 text-bold text-gray-base']"));
+
     public void chooseOptionCondition(String optionCondition) {
+        keyword.scrollToElement(optionNew);
         switch (optionCondition) {
             case "New":
                 keyword.click(optionNew);
@@ -41,6 +45,8 @@ public class CarForSaleConditionPage extends BasePage {
                 System.out.println("Invalid page");
                 break;
         }
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        keyword.scrollToElement(titleModuleYourSearch);
     }
 
     // action exit ads
@@ -94,9 +100,7 @@ public class CarForSaleConditionPage extends BasePage {
                 "//div[@class='chip btn input-chip display-inline-flex align-items-center margin-right-2 margin-bottom-2 text-bold']"));
         WebElement clearFilterLink = keyword.findElement(By.xpath(
                 "//span[@class='text-link']"));
-        WebElement titleModuleYourSearch = keyword.findElement(By.xpath(
-                "//span[@class='text-size-400 text-bold text-gray-base']"));
-
+        keyword.waitForElementVisibilities(optionConditionYourSearch);
         if (checkElementDisplayed(optionConditionYourSearch) == true
                 && checkElementDisplayed(clearFilterLink) == true
                 && checkElementDisplayed(titleModuleYourSearch) == true) {
@@ -113,7 +117,5 @@ public class CarForSaleConditionPage extends BasePage {
         WebElement firstProductOfListCar = keyword.findElement(By.xpath(
                 "(//div[@class='col-xs-8 item-card-content display-flex flex-column justify-content-between'])[2]"));
         keyword.click(firstProductOfListCar);
-
     }
-
 }
