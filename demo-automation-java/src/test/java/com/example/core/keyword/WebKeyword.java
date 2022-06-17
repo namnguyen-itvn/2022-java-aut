@@ -42,9 +42,9 @@ public class WebKeyword {
      * @param value      value of element
      * @return WebKeyword to set value for element
      */
-    public WebKeyword setValueForSelectElement(WebElement webElement, chooseTypeOfSelect type, String value){
+    public WebKeyword setValueForSelectElement(WebElement webElement, chooseTypeOfSelect type, String value) {
         Select ddlElement = new Select(waitForElementToBeClickable(webElement));
-        switch (type){
+        switch (type) {
             case selectByValue:
                 ddlElement.selectByValue(value);
                 break;
@@ -146,16 +146,12 @@ public class WebKeyword {
      * @return: keyword to get text from element
      */
     public String getText(WebElement webElement) {
+        scrollToElement(webElement);
         return waitForElementVisibilities(webElement).getText();
     }
 
-    /**
-     * Keyword for get text of element
-     * @param webElement: element to get text
-     * @return: keyword to get text from element
-     */
-    public String getTextWithOutScroll(WebElement webElement){
-        return waitForElementVisibilities(webElement).getText();        
+    public String getTextWithOutScroll(WebElement webElement) {
+        return waitForElementVisibilities(webElement).getText();
     }
 
     /**
@@ -164,6 +160,7 @@ public class WebKeyword {
      * @param webElement: element to click
      * @return: keyword to click on element
      */
+
     public WebKeyword click(WebElement webElement) {
         scrollToElement(webElement);
         waitForElementVisibilities(webElement);
@@ -173,20 +170,26 @@ public class WebKeyword {
 
     /**
      * Keyword for click on element
+     * 
      * @param webElement: element to click
      * @return: keyword to click on element
      */
-    public WebKeyword clickWithOutScroll(WebElement webElement){
+    public WebKeyword clickWithOutScroll(WebElement webElement) {
         waitForElementVisibilities(webElement);
         waitForElementToBeClickable(webElement).click();
         return new WebKeyword(driver);
     }
 
     /**
-     * wait for element visibilities in page
+     * Keyword for click on element but used by JavaScript for some situation that
+     * throw Click Exception
+     * 
+     * @param webElement: element to click
+     * @return: keyword to click on element
      */
-    public WebElement waitForElementVisibilities(WebElement webElement) {
-        return wait.until(ExpectedConditions.visibilityOf(webElement));
+    public WebKeyword clickByJS(WebElement webElement) {
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", webElement);
+        return new WebKeyword(driver);
     }
 
     /**
@@ -199,11 +202,19 @@ public class WebKeyword {
         return wait.until(ExpectedConditions.elementToBeClickable(webElement));
     }
 
-    /**\
+    /*
      * wait for element visibilities in page
      */
-    public WebElement waitForElementToBeClickable(WebElement webElement){
-        return wait.until(ExpectedConditions.elementToBeClickable(webElement));        
+    public WebElement waitForElementVisibilities(WebElement webElement) {
+        return wait.until(ExpectedConditions.visibilityOf(webElement));
+    }
+
+    /**
+     * \
+     * wait for element visibilities in page
+     */
+    public WebElement waitForElementToBeClickable(WebElement webElement) {
+        return wait.until(ExpectedConditions.elementToBeClickable(webElement));
     }
 
     /**
@@ -217,59 +228,63 @@ public class WebKeyword {
         return new WebKeyword(driver);
     }
 
-    //KeyWord from NhatNM19
+    // KeyWord from NhatNM19
     /**
      * wait element display
+     * 
      * @param wElement
      * @return
      */
-    public WebElement waitForElementIsDisplay(WebElement wElement)
-    {
+    public WebElement waitForElementIsDisplay(WebElement wElement) {
         return wait.until(ExpectedConditions.visibilityOf(wElement));
     }
-    
+
     /**
      * wait elemnt able click
+     * 
      * @param mwElement
      * @return
      */
-    public WebElement waitForElementIsClickable(WebElement mwElement)
-    {
+    public WebElement waitForElementIsClickable(WebElement mwElement) {
         return wait.until(ExpectedConditions.elementToBeClickable(mwElement));
     }
 
     /**
      * check element disolay
+     * 
      * @param webElement
      * @return
      */
     public boolean checkDisplay(WebElement webElement) {
         return waitForElementIsDisplay(webElement).isDisplayed();
-        //return waitForElementVisibilities(webElement).isDisplayed();
+        // return waitForElementVisibilities(webElement).isDisplayed();
     }
 
     /**
      * check element able to click
+     * 
      * @param webElement
      * @return
      */
     public boolean checkClickable(WebElement webElement) {
         return waitForElementIsDisplay(webElement).isEnabled();
-        //return waitForElementToBeClickable(webElement).isEnabled();
+        // return waitForElementToBeClickable(webElement).isEnabled();
     }
 
     /**
      * check message correct with message expected
+     * 
      * @param webElement
      * @param expectedMessage
      * @return
      */
     public boolean isMessageCorrect(WebElement webElement, String expectedMessage) {
-        return waitForElementIsDisplay(webElement).getText().equals(expectedMessage);   
+        return waitForElementIsDisplay(webElement).getText().equals(expectedMessage);
     }
 
     /**
      * check option diplay correct with data input
+     * 
      * @param webElement
      * @param expectedMessage
      * @return
@@ -279,9 +294,10 @@ public class WebKeyword {
         System.out.println(select.getFirstSelectedOption().getText());
         return select.getFirstSelectedOption().getText().equals(dataInput);
     }
-    
+
     /**
      * Get text element
+     * 
      * @param webElement
      * @return
      */
