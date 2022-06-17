@@ -41,13 +41,10 @@ public class Chrome implements SeleniumDriver{
     @Override
     public void setDriverOptions(Object options) {
         this.options = (ChromeOptions) options;
-        
     }
 
     @Override
     public void setCapabilities(Object capabilities) {
         this.capabilities = (DesiredCapabilities) capabilities;
-        
-    } 
-  
+    }
 }

@@ -13,33 +13,62 @@ public class BasePage {
     public WebKeyword keyword;
     public WebDriverWait wait;
 
-    public BasePage() {};
+    public BasePage() {
+    }
+
+    ;
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
-        this.keyword = new WebKeyword(driver);        
+        this.keyword = new WebKeyword(driver);
     }
 
-/**
- *  Navigate to page
- * @param menuText
- * @return the page with driver
- */
-public void navigateToPage(String menuText) {
-    switch(menuText) {
-        case "Sale":
-            WebElement menuCarForSale = keyword.findElement(By.xpath("//div/a[text()='Cars for Sale']"));
-            keyword.click(menuCarForSale);
-            break;
-        case "Reviews":
-            WebElement menuCarReview = keyword.findElement(By.xpath("//div/a[text()='Car Reviews']"));
-            keyword.click(menuCarReview);
-            break;
-        default:
-            System.out.println("Invalid page");
-            break;
+    /**
+     * Navigate to page
+     *
+     * @param menuText
+     * @return the page with driver
+     */
+    public void navigateToPage(String menuText) {
+        switch (menuText) {
+            case "Sale":
+                WebElement menuCarForSale = keyword.findElement(By.xpath("//div/a[text()='Cars for Sale']"));
+                keyword.click(menuCarForSale);
+                break;
+            case "Reviews":
+                WebElement menuCarReview = keyword.findElement(By.xpath("//div/a[text()='Car Reviews']"));
+                keyword.click(menuCarReview);
+                break;
+            default:
+                System.out.println("Invalid page");
+                break;
+        }
+
     }
 
-}
+    /**
+     * Method for return element can be clickable or not
+     *
+     * @param webElement
+     * @return true or false
+     */
+    public boolean isElementCanClickable(WebElement webElement) {
+        if (webElement.isEnabled()) {
+            return true;
+        } else return false;
+    }
 
+    /**
+     * Method for verify that element is displayed or not
+     *
+     * @param webElement
+     * @return true or false
+     */
+    public boolean isElementDisplayed(WebElement webElement) {
+        if (webElement.isDisplayed()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

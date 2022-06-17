@@ -19,7 +19,7 @@ public class CarReviewPageConsumerReviewModule extends BasePage {
     private WebElement btnGetReview = keyword.findElement(By.xpath("//span[text()='Get Reviews']/parent::button"));
 
     /**
-     * input input infomation and click get Car Review
+     * input information and click get Car Review
      * @param year
      * @param make
      * @param model
@@ -27,9 +27,9 @@ public class CarReviewPageConsumerReviewModule extends BasePage {
      * @throws Exception
      */
     public void inputAndSubmitGetCarReview(String year, String make, String model, String zipCode) throws Exception {
-        keyword.setValueForElement(ddlYears,selectByValue,year);
-        keyword.setValueForElement(ddlMake,selectByValue,make);
-        keyword.setValueForElement(ddlModel,selectByValue,model);
+        keyword.setValueForSelectElement(ddlYears,selectByValue,year);
+        keyword.setValueForSelectElement(ddlMake,selectByValue,make);
+        keyword.setValueForSelectElement(ddlModel,selectByValue,model);
         keyword.setText(txtZipCode,zipCode);
         keyword.click(btnGetReview);
     }
