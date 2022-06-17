@@ -12,6 +12,7 @@ public class BasePage {
     public WebDriver driver;
     public WebKeyword keyword;
     public WebDriverWait wait;
+    private int timeout = 60;
 
     public BasePage() {
     };
@@ -22,12 +23,7 @@ public class BasePage {
     }
 
     /**
-<<<<<<< HEAD
-     * Navigate to page
-     * 
-=======
      *  Navigate to page
->>>>>>> develop
      * @param menuText
      * @return the page with driver
      */
@@ -45,6 +41,15 @@ public class BasePage {
                 System.out.println("Invalid page");
                 break;
         }
+    }
+
+    /**
+     * Check element is displayed or not
+     * @param element
+     * @return
+     */
+    public boolean isElementDisplayed(WebElement element){
+        return element.isDisplayed();
     }
 
     /**
@@ -74,15 +79,6 @@ public class BasePage {
     }
 
     /**
-     * Check element is displayed or not
-     * @param element
-     * @return
-     */
-    public boolean isElementDisplayed(WebElement element){
-        return element.isDisplayed();
-    }
-
-    /**
      * Check element is enabled or not
      * @param element
      * @return
@@ -101,6 +97,7 @@ public class BasePage {
     public boolean isElementTextEqualExpectedText(WebElement element, String expectedText){
         return keyword.getText(element).equals(expectedText);
     }
+<<<<<<< HEAD
 
     public boolean isTitlePageDisplaysCorrect(String year, String make, String model){
 
@@ -108,6 +105,9 @@ public class BasePage {
         String expectedCarReviewDetailsPageTitle = expectedCarReviewDetailHeaderTitle + " Values & Cars for Sale | Kelley Blue Book";
         return driver.getTitle().trim().equals(expectedCarReviewDetailsPageTitle);
     }
+=======
+    
+>>>>>>> 26397d6f3eb812a690c79a93a0267d21b5798eb3
     /**
      * Get page title
      * @return

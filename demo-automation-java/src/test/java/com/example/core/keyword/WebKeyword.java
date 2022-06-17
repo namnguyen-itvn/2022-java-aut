@@ -150,6 +150,15 @@ public class WebKeyword {
     }
 
     /**
+     * Keyword for get text of element
+     * @param webElement: element to get text
+     * @return: keyword to get text from element
+     */
+    public String getTextWithOutScroll(WebElement webElement){
+        return waitForElementVisibilities(webElement).getText();        
+    }
+
+    /**
      * Keyword for click on element
      * 
      * @param webElement: element to click
@@ -157,6 +166,18 @@ public class WebKeyword {
      */
     public WebKeyword click(WebElement webElement) {
         scrollToElement(webElement);
+        waitForElementVisibilities(webElement);
+        waitForElementToBeClickable(webElement).click();
+        return new WebKeyword(driver);
+    }
+
+    /**
+     * Keyword for click on element
+     * @param webElement: element to click
+     * @return: keyword to click on element
+     */
+    public WebKeyword clickWithOutScroll(WebElement webElement){
+        waitForElementVisibilities(webElement);
         waitForElementToBeClickable(webElement).click();
         return new WebKeyword(driver);
     }
@@ -194,5 +215,77 @@ public class WebKeyword {
     public WebKeyword scrollToElement(WebElement webElement) {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true)", webElement);
         return new WebKeyword(driver);
+    }
+
+    //KeyWord from NhatNM19
+    /**
+     * wait element display
+     * @param wElement
+     * @return
+     */
+    public WebElement waitForElementIsDisplay(WebElement wElement)
+    {
+        return wait.until(ExpectedConditions.visibilityOf(wElement));
+    }
+    
+    /**
+     * wait elemnt able click
+     * @param mwElement
+     * @return
+     */
+    public WebElement waitForElementIsClickable(WebElement mwElement)
+    {
+        return wait.until(ExpectedConditions.elementToBeClickable(mwElement));
+    }
+
+    /**
+     * check element disolay
+     * @param webElement
+     * @return
+     */
+    public boolean checkDisplay(WebElement webElement) {
+        return waitForElementIsDisplay(webElement).isDisplayed();
+        //return waitForElementVisibilities(webElement).isDisplayed();
+    }
+
+    /**
+     * check element able to click
+     * @param webElement
+     * @return
+     */
+    public boolean checkClickable(WebElement webElement) {
+        return waitForElementIsDisplay(webElement).isEnabled();
+        //return waitForElementToBeClickable(webElement).isEnabled();
+    }
+
+    /**
+     * check message correct with message expected
+     * @param webElement
+     * @param expectedMessage
+     * @return
+     */
+    public boolean isMessageCorrect(WebElement webElement, String expectedMessage) {
+        return waitForElementIsDisplay(webElement).getText().equals(expectedMessage);   
+    }
+
+    /**
+     * check option diplay correct with data input
+     * @param webElement
+     * @param expectedMessage
+     * @return
+     */
+    public boolean isOptionSelectedIsCorrect(WebElement webElement, String dataInput) {
+        Select select = new Select(waitForElementIsDisplay(webElement));
+        System.out.println(select.getFirstSelectedOption().getText());
+        return select.getFirstSelectedOption().getText().equals(dataInput);
+    }
+    
+    /**
+     * Get text element
+     * @param webElement
+     * @return
+     */
+    public String getTextElenment(WebElement webElement) {
+        return waitForElementIsDisplay(webElement).getText();
     }
 }
