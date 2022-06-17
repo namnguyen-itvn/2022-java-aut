@@ -1,13 +1,17 @@
 package com.example.core.datadriven;
 
-import com.example.core.helper.JsonHelper;
-
 import org.testng.annotations.DataProvider;
 
+import com.example.core.helper.JsonHelper;
+
 public class CarUnderTest {
-    // * DataProvider 
+    @DataProvider(name = "CarUnderTest")
+    public static Object[][] dataTest() {
+        return JsonHelper.ReadJsonFromFile("src/test/java/com/example/core/resources/carreviewdata.json");
+    }
+
     @DataProvider(name = "dataForGetCarReviews")
     public static Object carData() {
         return JsonHelper.ReadJsonFromFile("src\\test\\java\\com\\example\\core\\resources\\cardata.json");
-    } 
+    }
 }
