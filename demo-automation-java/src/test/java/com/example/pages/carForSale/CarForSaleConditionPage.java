@@ -27,6 +27,7 @@ public class CarForSaleConditionPage extends BasePage {
             "//span[@class='text-size-400 text-bold text-gray-base']"));
 
     public void chooseOptionCondition(String optionCondition) {
+        actionExitAds();
         keyword.scrollToElement(optionNew);
         switch (optionCondition) {
             case "New":
@@ -45,7 +46,7 @@ public class CarForSaleConditionPage extends BasePage {
                 System.out.println("Invalid page");
                 break;
         }
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        actionExitAds();
         keyword.scrollToElement(titleModuleYourSearch);
     }
 
@@ -117,5 +118,41 @@ public class CarForSaleConditionPage extends BasePage {
         WebElement firstProductOfListCar = keyword.findElement(By.xpath(
                 "(//div[@class='col-xs-8 item-card-content display-flex flex-column justify-content-between'])[2]"));
         keyword.click(firstProductOfListCar);
+    }
+
+    private WebElement moduleAtHomeServices = keyword
+            .findElement(By.xpath("//span[contains(text(),'At Home Services')]"));
+    private By videoWalkaround = By.xpath("//div[normalize-space()='Video Walkaround']");
+    private By testDrive = By.xpath("//div[normalize-space()='Test Drive']");
+    private By onlinePaperwork = By.xpath("//div[contains(text(),'Online Paperwork')]");
+    private By delivery = By.xpath("//div[normalize-space()='Delivery']");
+    private By buyOnline = By.xpath("//div[normalize-space()='Buy Online']");
+
+    public void chooseOptionAtHomeSerVices(String optionAtHomeServices) {
+        actionExitAds();
+        keyword.scrollToElement(moduleAtHomeServices);
+        keyword.click(moduleAtHomeServices);
+        switch (optionAtHomeServices) {
+            case "videoWalkaround":
+                keyword.click(keyword.findElement(videoWalkaround));
+                break;
+            case "testDrive":
+                keyword.click(keyword.findElement(testDrive));
+                break;
+            case "onlinePaperwork":
+                keyword.click(keyword.findElement(onlinePaperwork));
+                break;
+            case "delivery":
+                keyword.click(keyword.findElement(delivery));
+                break;
+            case "buyOnline":
+                keyword.click(keyword.findElement(buyOnline));
+                break;
+            default:
+                System.out.println("Invalid page");
+                break;
+        }
+        actionExitAds();
+        keyword.scrollToElement(titleModuleYourSearch);
     }
 }

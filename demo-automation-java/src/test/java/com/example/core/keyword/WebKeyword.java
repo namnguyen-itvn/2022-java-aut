@@ -15,7 +15,7 @@ public class WebKeyword {
 
     private WebDriver driver;
     private WebDriverWait wait;
-    private int timeout = 0;
+    private int timeout = 20;
 
     public WebKeyword(WebDriver driver) {
         this.driver = driver;
@@ -89,7 +89,8 @@ public class WebKeyword {
      * @return element to be located
      */
     public WebElement findElement(By locator) {
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+        // return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+        return driver.findElement(locator);
     }
 
     /**
