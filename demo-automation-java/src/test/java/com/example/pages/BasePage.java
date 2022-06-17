@@ -12,6 +12,7 @@ public class BasePage {
     public WebDriver driver;
     public WebKeyword keyword;
     public WebDriverWait wait;
+    private int timeout = 60;
 
     public BasePage() {
     };
@@ -22,12 +23,7 @@ public class BasePage {
     }
 
     /**
-<<<<<<< HEAD
-     * Navigate to page
-     * 
-=======
      *  Navigate to page
->>>>>>> develop
      * @param menuText
      * @return the page with driver
      */
