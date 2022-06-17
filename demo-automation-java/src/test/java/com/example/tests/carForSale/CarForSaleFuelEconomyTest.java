@@ -22,6 +22,6 @@ public class CarForSaleFuelEconomyTest extends BaseTest{
         BasePage basePage = new BasePage(driver);
         basePage.navigateToPage("Sale");
         CarForSaleFuelEconomyPage carForSaleFuelEconomyPage = new CarForSaleFuelEconomyPage(driver);
-        carForSaleFuelEconomyPage.isReturnTheResultOfFuelEconomyMatchWithOptionWasSelected(fuel);
+        Assert.assertTrue(carForSaleFuelEconomyPage.isReturnTheResultOfFuelEconomyMatchWithOptionWasSelected(fuel));
     }
 }
