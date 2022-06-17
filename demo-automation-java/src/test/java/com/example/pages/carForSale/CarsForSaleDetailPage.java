@@ -21,7 +21,7 @@ public class CarsForSaleDetailPage extends BasePage{
      * @return
      */
     public boolean isTransmissionResult(){
-        scrollOnElement(lblCarsForSaleDetailPageResult);
+        keyword.scrollToElement(keyword.findElement(lblCarsForSaleDetailPageResult));
         if(isElementDisplayed(lblCarsForSaleDetailPageResult))
             return true;
         return false;

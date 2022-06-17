@@ -49,12 +49,12 @@ public class CarsForSalePage extends BasePage {
      */
     public boolean isTransmissionDisplayed() {
         beforeResults = convertElementToDouble(lblYourSearchResults);
-        scrollOnElement(lblTransmission);
-        clickOnElement(lblTransmission);
+        keyword.scrollToElement(keyword.findElement(lblTransmission));
+        keyword.click(keyword.findElement(lblTransmission));
         if (isElementDisplayed(lblTransmission)) {
             if (isElementDisplayed(chkTransmissionAutomatic) && isElementDisplayed(chkTransmissionManual)) {
-                clickOnElement(chkTransmissionAutomatic);
-                scrollOnElement(lblYourSearch);
+                keyword.click(keyword.findElement(chkTransmissionAutomatic));
+                keyword.scrollToElement(keyword.findElement(lblYourSearch));
                 if (isElementDisplayed(tagTransmissionAutomatic) && isElementDisplayed(iconTransmissionAutomaticX)
                         && isElementDisplayed(txlYourSearchClearFilter) && isElementDisplayed(lblYourSearchResults)) {
                     afterResults = convertElementToDouble(lblYourSearchResultsAfterChosenOption);
@@ -74,11 +74,11 @@ public class CarsForSalePage extends BasePage {
      * 
      */
     public void isTransmissionNavigation() {
-        scrollOnElement(lblTransmission);
-        clickOnElement(lblTransmission);
-        clickOnElement(chkTransmissionAutomatic);
-        scrollOnElement(lblYourSearch);
-        clickOnElement(itemFirstResult);
+        keyword.scrollToElement(keyword.findElement(lblTransmission));
+        keyword.click(keyword.findElement(lblTransmission));
+        keyword.click(keyword.findElement(chkTransmissionAutomatic));
+        keyword.scrollToElement(keyword.findElement(lblYourSearch));
+        keyword.click(keyword.findElement(itemFirstResult));
     }
 
 }
