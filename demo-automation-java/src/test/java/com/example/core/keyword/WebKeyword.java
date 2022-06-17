@@ -94,7 +94,7 @@ public class WebKeyword {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
-        /**
+    /**
      * Wait to element visible
      * 
      * @param locator: By.xpath or By.cssSelector...

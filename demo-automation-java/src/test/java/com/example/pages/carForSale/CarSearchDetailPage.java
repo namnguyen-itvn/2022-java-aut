@@ -27,9 +27,7 @@ public class CarSearchDetailPage extends BasePage {
             .xpath("//div[@id='pricing-tabs-pane-2']/descendant::div[@data-cmp='heading']");
     private By lblMessageTabPrice = By.xpath("//div[@id='pricing-tabs-pane-2']/descendant::div[@class='text-left']");
     private By lblListing = By.xpath("//div[@data-cmp='pricingBreakdown']/descendant::div[contains(text(),'Listing')]");
-    private By lblPriceListing = By.xpath(
-            "//div[@data-cmp='pricingBreakdown']/descendant::div[contains(text(),'Listing')]/following-sibling::div");
-    
+    private By lblPriceListing = By.xpath("//div[@data-cmp='pricingBreakdown']/descendant::div[contains(text(),'Listing')]/following-sibling::div");
 
     /*
      * Return the title of car
@@ -55,17 +53,17 @@ public class CarSearchDetailPage extends BasePage {
      * 
      * @return
      */
-    public boolean isTabPriceBreakdownDisplayedAsDefault(){
-        if(getText(lblTitleTabFair).equals(expTitleTabFair)&getText(lblMessageTabFair).equals(expMessageTabFair)){
+    public boolean isTabPriceBreakdownDisplayedAsDefault() {
+        if (getText(lblTitleTabFair).equals(expTitleTabFair) & getText(lblMessageTabFair).equals(expMessageTabFair)) {
             return true;
-        }
-        else return false;
+        } else
+            return false;
     }
 
     /**
      * Action to scroll to price section
      */
-    public void scrollToPriceSection(){
+    public void scrollToPriceSection() {
         keyword.scrollToElement(keyword.findElement(lblVehicleSection));
     }
 

@@ -65,7 +65,7 @@ public class BasePage {
      * @param locator
      * @return Element displayed or not
      */
-    public boolean isElementDisplayed(By locator){
+    public boolean isElementDisplayed(By locator) {
         return keyword.findElement(locator).isDisplayed();
     }
 
@@ -74,16 +74,16 @@ public class BasePage {
      * @param locator
      * @return Element enabled or not
      */
-    public boolean isElementEnabled(By locator){
+    public boolean isElementEnabled(By locator) {
         return keyword.findElement(locator).isEnabled();
-    } 
+    }
 
     /**
      * 
      * @param locator
      * @return text in element
      */
-    public String getText(By locator){
+    public String getText(By locator) {
         return keyword.getText(keyword.findElement(locator));
     }
 }
