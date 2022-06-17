@@ -20,6 +20,7 @@ public class BaseTest {
     public WebDriverWait wait;
 
     public static WebDriver getDriver() {
+<<<<<<< HEAD
         if (driver == null) {
             driver = new ChromeDriver();
             return driver;
@@ -29,6 +30,27 @@ public class BaseTest {
 
     @BeforeMethod
     public void setUp() throws Exception {      
+=======
+
+        if (driver == null) {
+
+            driver = new ChromeDriver();
+
+            return driver;
+
+        }
+
+        return driver;
+
+    }
+
+    @BeforeMethod
+<<<<<<< HEAD
+    public void setUp() throws Exception {
+=======
+    public void setUp() throws Exception {      
+>>>>>>> develop
+>>>>>>> develop
         config = new Configuration("src/test/java/com/example/core/configuration/config.properties");
         driver = DriverFactory.getDriver(config.getProperty("browser"));
         keyword = new WebKeyword(driver);

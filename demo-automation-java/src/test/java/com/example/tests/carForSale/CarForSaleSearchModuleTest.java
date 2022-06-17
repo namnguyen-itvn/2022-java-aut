@@ -62,6 +62,11 @@ public class CarForSaleSearchModuleTest extends BaseTest {
                 carForSalePage.expectedSubAlertMessage));
     }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> develop
     @Test(testName = "Verify That Image, Vehicle Name, Distance, Price And See Estimated Payment Should Be Displayed")
     public void verifyThatImageVehicleNameDistancePriceAndSeeEstimatedPaymentShouldBeDisplayed() {
         BasePage basePage = new BasePage(driver);
@@ -70,4 +75,8 @@ public class CarForSaleSearchModuleTest extends BaseTest {
         CarForSalePage carForSalePage = new CarForSalePage(driver);
         Assert.assertTrue(carForSalePage.isCarCardItemDisplayCorrect());
     }
+<<<<<<< HEAD
+=======
+>>>>>>> develop
+>>>>>>> develop
 }
