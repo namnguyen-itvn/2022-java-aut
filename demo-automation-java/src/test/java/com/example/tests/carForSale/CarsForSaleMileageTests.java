@@ -21,6 +21,18 @@ public class CarsForSaleMileageTests extends BaseTest{
         Assert.assertTrue(carsForSaleMileage.isSelectOptAnyCorrect());
     }
 
+    @Test(testName = "Verify Mileage section UI and Result Number should display correct when select option in Mileage")
+    public void verifyMileageSectionUIAndResultNumberShouldDisplayCorrectWhenSelectOptionInMileage ()
+    {
+        BasePage basePage = new BasePage(driver);
+        basePage.navigateToPage("Sale");
+        
+        CarsForSaleMileage carsForSaleMileage = new CarsForSaleMileage(driver);
+        carsForSaleMileage.actionClickBtnMileage();
+        carsForSaleMileage.actionSelectOptMileage("30000");
+        Assert.assertTrue(carsForSaleMileage.isAllMileageAfterClick("30000"));
+    }
+
     @Test(testName = "Verify selected option in Mileage should be shown in Vehicle Detail Page when click on return result",dataProvider = "MileageUnderTest", dataProviderClass = MileageUnderTest.class)
     public void verifySelectedOptionInMileageShouldBeShownInVehicleDetailPageWhenClickOnReturnResult (String value)
     {

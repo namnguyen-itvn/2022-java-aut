@@ -8,7 +8,6 @@ import org.openqa.selenium.WebElement;
 import com.example.pages.BasePage;
 
 public class CarsForSaleDriveType extends BasePage {
-    private String DiveTypeElement = "AWD/4WD";
     public CarsForSaleDriveType(WebDriver driver) {
         super(driver);
     }
@@ -19,8 +18,14 @@ public class CarsForSaleDriveType extends BasePage {
 
     private By localblResults = By.cssSelector("div.text-size-md-300");
     private By locachbDiveType = By.xpath("//span[text()='Drive Type']/parent::span/parent::div/parent::div//div[@data-cmp='checkboxGroup']");
-    private By locatagDiveTypeDriveType = By.xpath(String.format("//span[text()='%s']",DiveTypeElement));
-    private By locatagDiveTypeDriveTypeXIcon = By.xpath(String.format("//span[text()='%s']/parent::*/span/span",DiveTypeElement));
+
+    private By locatagDiveTypeAWD = By.xpath("//span[text()='AWD/4WD']");
+    private By locatagDiveTypeAWDXIcon = By.xpath("//span[text()='AWD/4WD']/parent::*/span/span");
+    private By locatagDiveTypeFront = By.xpath("//span[text()='Front Wheel Drive']");
+    private By locatagDiveTypeFrontXIcon = By.xpath("//span[text()='Front Wheel Drive']/parent::*/span/span");
+    private By locatagDiveTypeRear = By.xpath("//span[text()='Rear Wheel Drive']");
+    private By locatagDiveTypeRearXIcon = By.xpath("//span[text()='Rear Wheel Drive']/parent::*/span/span");
+
     private By locaoptDiveTypeAWD = By.xpath("//div[text()='AWD/4WD']");
     private By locaoptDiveTypeFront = By.xpath("//div[text()='Front Wheel Drive']");
     private By locaoptDiveTypeRear = By.xpath("//div[text()='Rear Wheel Drive']");
@@ -49,14 +54,39 @@ public class CarsForSaleDriveType extends BasePage {
     }
 
     /**
+     *  Return tagDiveType is correct or not and select opt drive type
+     * @return
+     */
+    public boolean isTagDiveTypeDisplayedAndSelectOtp(String opt){
+        WebElement tagDiveTypeDriveType ;
+        WebElement tagDiveTypeDiveTypeXIcon ;
+        switch (opt) {
+            case "AWD/4WD":
+                tagDiveTypeDriveType = keyword.findElement(locatagDiveTypeAWD);
+                tagDiveTypeDiveTypeXIcon = keyword.findElement(locatagDiveTypeAWDXIcon);
+                return isTagDiveTypeDisplayed("AWD/4WD",tagDiveTypeDriveType, tagDiveTypeDiveTypeXIcon);
+                
+            case "Front Wheel Drive":
+                tagDiveTypeDriveType = keyword.findElement(locatagDiveTypeFront);
+                tagDiveTypeDiveTypeXIcon = keyword.findElement(locatagDiveTypeFrontXIcon);
+                return isTagDiveTypeDisplayed("Front Wheel Drive",tagDiveTypeDriveType, tagDiveTypeDiveTypeXIcon);
+                
+            case "Rear Wheel Drive":
+                tagDiveTypeDriveType = keyword.findElement(locatagDiveTypeRear);
+                tagDiveTypeDiveTypeXIcon = keyword.findElement(locatagDiveTypeRearXIcon);
+                return isTagDiveTypeDisplayed("Rear Wheel Drive",tagDiveTypeDriveType, tagDiveTypeDiveTypeXIcon);
+                
+            default:
+                return false;
+        }
+    }
+    
+    /**
      *  Return tagDiveTypeAWD is correct or not
      * @return
      */
-    public boolean isTagDiveTypeDisplayed(){
-        //after click
-        WebElement tagDiveTypeDriveType = keyword.findElement(locatagDiveTypeDriveType);
-        WebElement tagDiveTypeDiveTypeXIcon = keyword.findElement(locatagDiveTypeDriveTypeXIcon);
-        if(tagDiveTypeDriveType.isDisplayed()==true & tagDiveTypeDiveTypeXIcon.isDisplayed()==true){
+    public boolean isTagDiveTypeDisplayed(String text,WebElement tagDiveTypeDriveType, WebElement tagDiveTypeDiveTypeXIcon){
+        if(tagDiveTypeDriveType.getText().contains(text) & tagDiveTypeDiveTypeXIcon.isDisplayed()==true){
             return true;
         }
         else return false;
@@ -89,8 +119,6 @@ public class CarsForSaleDriveType extends BasePage {
         actionExitAds();
     }
 
-
-
     //action exit ads: including 2 ads, if showing 2 ads in a row, it will fail
     public void actionExitAds(){
         By locabtnExitAds = By.xpath("//button[@id='fsrFocusFirst']");
@@ -104,15 +132,6 @@ public class CarsForSaleDriveType extends BasePage {
                 keyword.click(btnExitAds2);
             } catch (Exception a) {
             }
-        }
-    }
-    
-    public void actionExitAds1(){
-        By locabtnExitAds = By.xpath("//button[@id='fsrFocusFirst']");
-        try {
-            WebElement btnExitAds = keyword.findElement(locabtnExitAds);
-            keyword.click(btnExitAds);
-        } catch (Exception e) {
         }
     }
 
@@ -133,7 +152,6 @@ public class CarsForSaleDriveType extends BasePage {
         String removeResults = input.replace(" Results","");
         String removeComma = removeResults.replace(",","");
         String removeClear = removeComma.replace("|Clear Filters","");
-        System.out.println(removeClear);
         double number=Float.parseFloat(removeClear);
         
         return number;
@@ -155,10 +173,10 @@ public class CarsForSaleDriveType extends BasePage {
      *  Return AllDriveTypeAfterClick is correct or not
      * @return
      */
-    public boolean isAllDriveTypeAfterClick(){
+    public boolean isAllDriveTypeAfterClick(String otp){
         if (isDiveTypeCheckboxDisplayed()==true &
             isNumberOfResultsChange()==true &
-            isTagDiveTypeDisplayed()==true &
+            isTagDiveTypeDisplayedAndSelectOtp(otp)==true &
             islblClearFiltersDisplayed()==true) {
             return true;
         }
@@ -193,6 +211,4 @@ public class CarsForSaleDriveType extends BasePage {
         keyword.scrollToElement(imgFirstResults);
         keyword.click(imgFirstResults);
     }
-
-    
 }

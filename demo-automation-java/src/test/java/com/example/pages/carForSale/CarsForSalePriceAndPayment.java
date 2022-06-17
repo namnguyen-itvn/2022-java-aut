@@ -108,12 +108,4 @@ public class CarsForSalePriceAndPayment extends BasePage {
             }
         }
     }
-    public void actionExitAds1(){
-        By locabtnExitAds = By.xpath("//button[@id='fsrFocusFirst']");
-        try {
-            WebElement btnExitAds = keyword.findElement(locabtnExitAds);
-            keyword.click(btnExitAds);
-        } catch (Exception e) {
-        }
-    }
 }

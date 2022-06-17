@@ -18,7 +18,7 @@ public class CarsForSaleDriveTypeTests extends BaseTest {
 
         CarsForSaleDriveType kbbCarsForSaleDriveType = new CarsForSaleDriveType(driver);
         kbbCarsForSaleDriveType.actionSelectOptDriveType(DriveType);
-        Assert.assertTrue(kbbCarsForSaleDriveType.isAllDriveTypeAfterClick());
+        Assert.assertTrue(kbbCarsForSaleDriveType.isAllDriveTypeAfterClick(DriveType));
     }
 
     @Test(testName = "Verify selected option in Drive Type should be shown in Vehicle Detail Page when click on return result",dataProvider = "DriveTypeUnderTest", dataProviderClass = DriveTypeUnderTest.class)

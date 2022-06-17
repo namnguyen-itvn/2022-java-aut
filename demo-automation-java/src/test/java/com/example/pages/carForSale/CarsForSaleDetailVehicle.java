@@ -53,11 +53,8 @@ public class CarsForSaleDetailVehicle extends BasePage {
      */
     public boolean isCarPriceCorectWithPricePayment(String min, String max){
         double Min = Float.parseFloat(min);
-        System.out.println(Min);
         double Max = Float.parseFloat(max);
-        System.out.println(Max);
         Double Price = parseStringPriceToNumber(lblPrice.getText());
-        System.out.println(Price);
         if (Price>=Min && Price <=Max) {
             return true;
         }
@@ -70,9 +67,7 @@ public class CarsForSaleDetailVehicle extends BasePage {
      */
     public boolean isCarPriceCorectWithMileage(String value){
         double Value = Float.parseFloat(value);
-        System.out.println(Value);
         Double Mile = parseStringMileToNumber(lblMileage.getText());
-        System.out.println(Mile);
         if (Mile<=Value && Value!=200000) {
             return true;
         }
