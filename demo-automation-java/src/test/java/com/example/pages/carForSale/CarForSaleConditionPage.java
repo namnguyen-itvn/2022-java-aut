@@ -78,20 +78,6 @@ public class CarForSaleConditionPage extends BasePage {
     }
 
     /**
-     * Check element is Displayed
-     * 
-     * @param element
-     * @return
-     */
-    public boolean checkElementDisplayed(WebElement element) {
-        if (element.isDisplayed()) {
-
-            return true;
-        } else
-            return false;
-    }
-
-    /**
      * Check Three element is Displayed
      * 
      * @return
@@ -102,9 +88,9 @@ public class CarForSaleConditionPage extends BasePage {
         WebElement clearFilterLink = keyword.findElement(By.xpath(
                 "//span[@class='text-link']"));
         keyword.waitForElementVisibilities(optionConditionYourSearch);
-        if (checkElementDisplayed(optionConditionYourSearch) == true
-                && checkElementDisplayed(clearFilterLink) == true
-                && checkElementDisplayed(titleModuleYourSearch) == true) {
+        if (isElementDisplayed(optionConditionYourSearch) == true
+                && isElementDisplayed(clearFilterLink) == true
+                && isElementDisplayed(titleModuleYourSearch) == true) {
 
             return true;
         } else

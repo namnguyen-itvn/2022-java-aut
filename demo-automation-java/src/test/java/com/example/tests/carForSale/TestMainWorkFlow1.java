@@ -11,12 +11,18 @@ import org.testng.annotations.Test;
 
 @Listeners(ReportListener.class)
 public class TestMainWorkFlow1 extends BaseTest {
+<<<<<<< HEAD
 
     @Test(testName = "Demo Navigate To The Page")
 
     public void demoNavigateToThePage() {
+=======
+    
+    @Test(testName = "Verify that content 'About the Kelley Blue Book New Car Reviews' should be displayed with the short description about it")
+    public void verifyThatContentAboutTheKelleyBlueBookNewCarReviewsShouldBeDisplayedWithTheShortDescriptionAboutIt() {
+>>>>>>> develop
         BasePage basePage = new BasePage(driver);
-        basePage.navigateToPage("Sale");
+        basePage.navigateToPage("Reviews");
     }
 
 }

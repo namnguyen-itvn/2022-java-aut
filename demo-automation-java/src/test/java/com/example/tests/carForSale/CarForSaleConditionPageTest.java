@@ -11,18 +11,26 @@ import com.example.tests.BaseTest;
 
 public class CarForSaleConditionPageTest extends BaseTest {
     @Test(testName = "Verify Results Displayed When User Choose One Option", dataProvider = "optionCondition", dataProviderClass = ConditionUnderTest.class)
-
     public void VerifyResultsDisplayedWhenUserChooseOneOption(String optionCondition) throws InterruptedException {
         BasePage basePage = new BasePage(driver);
         basePage.navigateToPage("Sale");
         CarForSaleConditionPage conditionPage = new CarForSaleConditionPage(driver);
-        // conditionPage.actionExitAds();
         conditionPage.chooseOptionCondition(optionCondition);
         Assert.assertTrue(conditionPage.checkOptionCorrectDisplayed(), "false");
     }
 
-    @Test(testName = "Verify MyWallet Have Three OpTion When User Choose New And CLick First Car")
+    @Test(testName = "Verify MyWallet Is Displayed When User Choose ManufacturerCertified And CLick First Car")
+    public void VerifyMyWalletHaveIsDisplayedWhenUserChooseManufacturerCertifiedAndCLickFirstCar() {
+        BasePage basePage = new BasePage(driver);
+        basePage.navigateToPage("Sale");
+        CarForSaleConditionPage conditionPage = new CarForSaleConditionPage(driver);
+        conditionPage.chooseOptionCondition("ManufacturerCertified");
+        conditionPage.chooseCar();
+        CarForSaleCarOptionPage carOptionPage = new CarForSaleCarOptionPage(driver);
+        Assert.assertTrue(carOptionPage.checkDisplayMyWallet(), "false");
+    }
 
+    @Test(testName = "Verify MyWallet Have Three OpTion When User Choose New And CLick First Car")
     public void VerifyMyWalletHaveThreeOpTionWhenUserChooseNewAndCLickFirstCar() {
         BasePage basePage = new BasePage(driver);
         basePage.navigateToPage("Sale");
@@ -30,20 +38,6 @@ public class CarForSaleConditionPageTest extends BaseTest {
         conditionPage.chooseOptionCondition("New");
         conditionPage.chooseCar();
         CarForSaleCarOptionPage carOptionPage = new CarForSaleCarOptionPage(driver);
-        Assert.assertTrue(carOptionPage.checkDisplayMyWallet());
         Assert.assertEquals(carOptionPage.getQuantityOfMyWallet(), 3);
-    }
-
-    @Test(testName = "Verify MyWallet Have Two OpTion When User Choose ManufacturerCertified And CLick First Car")
-
-    public void VerifyMyWalletHaveTwoOpTionWhenUserChooseManufacturerCertifiedAndCLickFirstCar() {
-        BasePage basePage = new BasePage(driver);
-        basePage.navigateToPage("Sale");
-        CarForSaleConditionPage conditionPage = new CarForSaleConditionPage(driver);
-        conditionPage.chooseOptionCondition("ManufacturerCertified");
-        conditionPage.chooseCar();
-        CarForSaleCarOptionPage carOptionPage = new CarForSaleCarOptionPage(driver);
-        Assert.assertTrue(carOptionPage.checkDisplayMyWallet());
-        Assert.assertEquals(carOptionPage.getQuantityOfMyWallet(), 2);
     }
 }

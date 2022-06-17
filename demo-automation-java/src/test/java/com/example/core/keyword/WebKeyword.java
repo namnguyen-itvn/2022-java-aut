@@ -6,16 +6,22 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 
 public class WebKeyword {
 
     private WebDriver driver;
     private WebDriverWait wait;
+<<<<<<< HEAD
     private int timeout = 20;
+=======
+    private int timeout = 30;
+>>>>>>> develop
 
     public WebKeyword(WebDriver driver) {
         this.driver = driver;
@@ -40,9 +46,15 @@ public class WebKeyword {
      * @param value      value of element
      * @return WebKeyword to set value for element
      */
+<<<<<<< HEAD
     public WebKeyword setValueForElement(WebElement webElement, chooseTypeOfSelect type, String value) {
         Select ddlElement = new Select(webElement);
         switch (type) {
+=======
+    public WebKeyword setValueForSelectElement(WebElement webElement, chooseTypeOfSelect type, String value){
+        Select ddlElement = new Select(waitForElementToBeClickable(webElement));
+        switch (type){
+>>>>>>> develop
             case selectByValue:
                 ddlElement.selectByValue(value);
                 break;
@@ -94,6 +106,16 @@ public class WebKeyword {
     }
 
     /**
+     * Wait to element visible
+     * 
+     * @param locator: By.xpath or By.cssSelector...
+     * @return element to be located
+     */
+    public WebElement findElement(WebElement element) {
+        return wait.until(ExpectedConditions.visibilityOf(element));
+    }
+
+    /**
      * Keyword for set text to element
      * 
      * @param webElement: element to set text
@@ -112,13 +134,33 @@ public class WebKeyword {
     }
 
     /**
+     * Keyword for set text to element
+     * 
+     * @param webElement: element to set text
+     * @param text:       text
+     * @return: keyword to set text for element
+     * @throws Exception: exception
+     */
+    public WebKeyword pressEnter(WebElement webElement) throws Exception {
+        try {
+            waitForElementVisibilities(webElement).sendKeys(Keys.ENTER);
+        } catch (Exception e) {
+            throw new Exception("Element is not enable to send key");
+        }
+        return new WebKeyword(driver);
+    }
+
+    /**
      * Keyword for get text of element
      * 
      * @param webElement: element to get text
      * @return: keyword to get text from element
      */
     public String getText(WebElement webElement) {
+<<<<<<< HEAD
         scrollToElement(webElement);
+=======
+>>>>>>> develop
         return waitForElementVisibilities(webElement).getText();
     }
 
@@ -130,16 +172,40 @@ public class WebKeyword {
      */
     public WebKeyword click(WebElement webElement) {
         scrollToElement(webElement);
-        waitForElementVisibilities(webElement).click();
+        waitForElementToBeClickable(webElement).click();
         return new WebKeyword(driver);
     }
 
     /**
+<<<<<<< HEAD
      * \
      * wait for element visibilities in page
      */
     public WebElement waitForElementVisibilities(WebElement webElement) {
         return wait.until(ExpectedConditions.visibilityOf(webElement));
+=======
+     * wait for element visibilities in page
+     */
+    public WebElement waitForElementVisibilities(WebElement webElement) {
+        return wait.until(ExpectedConditions.visibilityOf(webElement));
+    }
+
+    /**
+     * Wait for element clickable
+     * 
+     * @param webElement
+     * @return
+     */
+    public WebElement waitForElementClickable(WebElement webElement) {
+        return wait.until(ExpectedConditions.elementToBeClickable(webElement));
+    }
+
+    /**\
+     * wait for element visibilities in page
+     */
+    public WebElement waitForElementToBeClickable(WebElement webElement){
+        return wait.until(ExpectedConditions.elementToBeClickable(webElement));        
+>>>>>>> develop
     }
 
     /**
@@ -152,5 +218,8 @@ public class WebKeyword {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true)", webElement);
         return new WebKeyword(driver);
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> develop
 }
