@@ -22,7 +22,6 @@ public class Chrome implements SeleniumDriver{
             options.addArguments("--start-maximized");
             options.addExtensions(new File("src\\test\\java\\com\\example\\core\\utils\\extension_1_42_4_0.crx"));
             options.merge(capabilities);
-		return options;
         }
         return options;
     }
