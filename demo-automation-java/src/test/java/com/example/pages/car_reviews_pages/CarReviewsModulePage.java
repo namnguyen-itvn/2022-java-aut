@@ -3,6 +3,8 @@ package com.example.pages.car_reviews_pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.Color;
 
 import com.example.core.keyword.WebKeyword.chooseTypeOfSelect;
@@ -16,6 +18,25 @@ public class CarReviewsModulePage extends BasePage{
         super(driver);
     }
 
+    public void getCarReviews(String year, String make, String model, String zipCode) throws Exception {
+        try{
+            // Wait until expected condition size of the dropdown increases and becomes more than 1
+            wait.until((ExpectedCondition<Boolean>) new ExpectedCondition<Boolean>(){
+                public Boolean apply(WebDriver driver)  
+                {
+                    Select select = new Select(keyword.waitForElementVisibilities(ddYear));
+                    return select.getOptions().size()>1;
+                }
+            });
+        }catch(Throwable e){
+            System.out.println("Error found: "+e.getMessage());
+        }
+        keyword.setValueForSelectElement(ddYear, chooseTypeOfSelect.selectByVisibleText, year);
+        keyword.setValueForSelectElement(ddMake, chooseTypeOfSelect.selectByVisibleText, make);
+        keyword.setValueForSelectElement(ddModel, chooseTypeOfSelect.selectByVisibleText, model); 
+        keyword.setText(txtZipcode, zipCode);
+        keyword.click(btnGetReviews);
+    }
     //Declare object
     WebElement boxSelectAVehicle = keyword.findElement(By.cssSelector("div[class*='StyledBox-airforceblue'"));
     WebElement headingSelectAVehicle = keyword.findElement(By.cssSelector("*[class*='StyledBox-airforceblue'] p[class*='StyledHeading']"));
