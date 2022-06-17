@@ -34,11 +34,7 @@ public class BaseTest {
     }
 
     @BeforeMethod
-<<<<<<< HEAD
-    public void setUp() throws Exception {
-=======
     public void setUp() throws Exception {      
->>>>>>> develop
         config = new Configuration("src/test/java/com/example/core/configuration/config.properties");
         driver = DriverFactory.getDriver(config.getProperty("browser"));
         keyword = new WebKeyword(driver);
@@ -49,6 +45,6 @@ public class BaseTest {
 
     @AfterMethod
     public void tearDown() {
-        // driver.quit();
+        driver.quit();
     }
 }
