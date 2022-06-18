@@ -8,11 +8,17 @@ import com.example.core.keyword.WebKeyword;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
-public class BaseTest {
+public class BaseTest {   
+
+    public static WebDriver driver;
+    public WebKeyword keyword;
+    public Configuration config;
+    public WebDriverWait wait;
 
     public static WebDriver getDriver(){
         if(driver == null){
@@ -22,14 +28,8 @@ public class BaseTest {
         return driver;
     }
 
-    public static WebDriver driver;
-    public WebKeyword keyword;
-    public Configuration config;
-    public WebDriverWait wait;
-
     @BeforeMethod
     public void setUp() throws Exception {
-
         try {            
             config = new Configuration("src/test/java/com/example/core/configuration/config.properties");
             driver = DriverFactory.getDriver(config.getProperty("browser"));
@@ -46,5 +46,4 @@ public class BaseTest {
     public void tearDown() {
         driver.quit();
     }
-
 }

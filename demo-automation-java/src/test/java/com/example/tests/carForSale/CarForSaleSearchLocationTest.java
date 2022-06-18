@@ -12,7 +12,7 @@ import com.example.tests.BaseTest;
 
 @Listeners(ReportListener.class)
 public class CarForSaleSearchLocationTest extends BaseTest{
-    @Test(testName = "Verify Search Location Filter Should Be Displayed Correct When User Scroll To It", priority = 1)
+    @Test(testName = "Verify Search Location Filter Should Be Displayed Correct When User Scroll To It")
     public void verifySearchLocationFilterShouldBeDisplayedCorrectWhenUserScrollToIt(){
         BasePage basePage = new BasePage(driver);
         basePage.navigateToPage("Sale");
@@ -20,15 +20,15 @@ public class CarForSaleSearchLocationTest extends BaseTest{
         Assert.assertTrue(carForSaleSearchLocationPage.isSearchLocationIsDisplayCorrect());
     }
 
-    @Test(testName = "Verify That The List Distance Should Be Displayed When User Click On Distance Combobox.", priority = 2)
-    public void verifyThatTheListDistanceShouldBeDisplayedWhenUserClickOnDistanceCombobox(){
+    @Test(testName = "Verify That The List Distance Should Be Displayed When User Click On Distance Combobox", dataProvider = "expectedDistanceData", dataProviderClass = CarForSaleTestData.class)
+    public void verifyThatTheListDistanceShouldBeDisplayedWhenUserClickOnDistanceCombobox(String expectedDistance){
         BasePage basePage = new BasePage(driver);
         basePage.navigateToPage("Sale");
         CarForSaleSearchLocationPage carForSaleSearchLocationPage = new CarForSaleSearchLocationPage(driver);
-        Assert.assertTrue(carForSaleSearchLocationPage.isDistanceListShowedWhenUserClickOnDistanceCombobox());
+        Assert.assertTrue(carForSaleSearchLocationPage.isDistanceListShowedWhenUserClickOnDistanceCombobox(expectedDistance));
     }
 
-    @Test(testName = "verify That Return The Result Of Destance Should Be Matched With Option Was Selected", dataProvider = "distanceData", dataProviderClass = CarForSaleTestData.class, priority = 3)
+    @Test(testName = "verify That Return The Result Of Destance Should Be Matched With Option Was Selected", dataProvider = "distanceDataForTest", dataProviderClass = CarForSaleTestData.class)
     public void verifyThatReturnTheResultOfDestanceShouldBeMatchedWithOptionWasSelected(String distance_Miles){
         BasePage basePage = new BasePage(driver);
         basePage.navigateToPage("Sale");
@@ -36,7 +36,7 @@ public class CarForSaleSearchLocationTest extends BaseTest{
         Assert.assertTrue(carForSaleSearchLocationPage.isReturnTheResultOfDestanceMatchWithOptionWasSelected(distance_Miles));
     }
 
-    @Test(testName = "verify That Return The Result Of Zip Code Should Be Matched With Option Was Selected", dataProvider = "zipCodeData", dataProviderClass = CarForSaleTestData.class, priority = 4)
+    @Test(testName = "verify That Return The Result Of Zip Code Should Be Matched With Option Was Selected", dataProvider = "zipCodeDataForTest", dataProviderClass = CarForSaleTestData.class)
     public void verifyThatReturnTheResultOfZipCodeShouldBeMatchedWithOptionWasSelected(String zipCode) throws Exception{
         BasePage basePage = new BasePage(driver);
         basePage.navigateToPage("Sale");

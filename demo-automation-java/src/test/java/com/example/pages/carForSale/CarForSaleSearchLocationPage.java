@@ -1,14 +1,14 @@
 package com.example.pages.carForSale;
 
-import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
+
 import com.example.core.keyword.WebKeyword.chooseTypeOfSelect;
 import com.example.pages.BasePage;
 
 public class CarForSaleSearchLocationPage extends BasePage{
-
     public CarForSaleSearchLocationPage(WebDriver driver) {
         super(driver);
     }
@@ -31,14 +31,18 @@ public class CarForSaleSearchLocationPage extends BasePage{
      * Method verify that the list should be showed when user click on Distance combobox in search location module
      * @return true or false
      */
-    public boolean isDistanceListShowedWhenUserClickOnDistanceCombobox(){
+    public boolean isDistanceListShowedWhenUserClickOnDistanceCombobox(String ecpectedDistance){
+        keyword.scrollToElement(ddlDistance);
         keyword.click(ddlDistance);
-        List<WebElement> ddlDistances = driver.findElements(By.id("2281868035"));
-        
-        if (ddlDistances.size() >0){
-            return true;
+        WebElement ddlDistance = keyword.findElement(By.id("2281868035"));
+        Select ddlDistances = new Select(ddlDistance);
+        boolean check = false;
+        for (WebElement distance : ddlDistances.getOptions()){
+            if (ecpectedDistance.contains(keyword.getText(distance))){
+                check = true;
+            }else check = false;
         }
-        return false;        
+        return check;         
     }
 
     /**
@@ -47,9 +51,10 @@ public class CarForSaleSearchLocationPage extends BasePage{
      * @return true or false
      */
     public boolean isReturnTheResultOfDestanceMatchWithOptionWasSelected(String distance){
+        keyword.scrollToElement(lblSearchLocation);
         keyword.click(ddlDistance);
         keyword.setValueForSelectElement(ddlDistance, chooseTypeOfSelect.selectByValue, distance);
-        WebElement sliderDitanceResult = keyword.findElement(By.xpath("//div[@class = 'flickity-slider']"));
+        WebElement sliderDitanceResult = keyword.findElementByLocator(By.xpath("//div[@class = 'flickity-slider']"));
         keyword.scrollToElement(lblYourSearch);
         if (isElementDisplayed(sliderDitanceResult)){
             return true;
@@ -64,11 +69,10 @@ public class CarForSaleSearchLocationPage extends BasePage{
      */
     public boolean isReturnTheResultOfZipCodeMatchWithOptionWasSelected(String zipcode) throws Exception{
         boolean check = false;
+        keyword.scrollToElement(lblSearchLocation);
         keyword.setText(txtZipcode, zipcode);
-        Thread.sleep(5000);
-        WebElement linkZipCode = keyword.findElement(By.xpath("//span[contains(text(),'90089')]"));        
-        WebElement lblHeading = keyword.findElement(By.xpath("//h1[@data-cmp='heading']"));
-        System.err.println(keyword.getText(lblHeading));
+        WebElement linkZipCode = keyword.waiForLocatorOfElementVisiable(By.xpath("//span[contains(text(),'90089')]"));        
+        WebElement lblHeading = keyword.waiForLocatorOfElementVisiable(By.xpath("//h1[contains(text(), 'in')]"));
         if (keyword.getText(lblHeading).contains("in") && isElementDisplayed(linkZipCode)){
             check =  true;
         }else check = false;
@@ -76,9 +80,9 @@ public class CarForSaleSearchLocationPage extends BasePage{
     }
 
     //Declare element
-    private WebElement lblYourSearch = keyword.findElement(By.xpath("//span[contains(text(), 'Your Search')]"));
-    private WebElement lblSearchLocation = keyword.findElement(By.xpath("//div[@data-cmp = 'filterLocation']"));
-    private WebElement ddlDistance = keyword.findElement(By.id("2281868035"));
-    private WebElement txtZipcode = keyword.findElement(By.id("2225141853"));
-    private WebElement checkboxDelivery = keyword.findElement(By.xpath("//div[contains(text(), 'Include Extended Home Delivery')]"));    
+    private WebElement lblYourSearch = keyword.findElementByLocator(By.xpath("//span[contains(text(), 'Your Search')]"));
+    private WebElement lblSearchLocation = keyword.findElementByLocator(By.xpath("//div[@data-cmp = 'filterLocation']"));
+    private WebElement ddlDistance = keyword.findElementByLocator(By.id("2281868035"));
+    private WebElement txtZipcode = keyword.findElementByLocator(By.id("2225141853"));
+    private WebElement checkboxDelivery = keyword.findElementByLocator(By.xpath("//div[contains(text(), 'Include Extended Home Delivery')]"));    
 }
