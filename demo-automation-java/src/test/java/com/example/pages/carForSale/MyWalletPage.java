@@ -105,8 +105,8 @@ public class MyWalletPage extends BasePage {
         WebElement ddlCredit = keyword.findElement(ddlCreditRange);
         WebElement ddlTerm = keyword.findElement(ddlTermLength);
         WebElement rdoCustom = keyword.findElement(By.xpath(rdoCustomRateLocator));
-        keyword.setValueForElement(ddlCredit, chooseTypeOfSelect.selectByValue, creditRange);
-        keyword.setValueForElement(ddlTerm, chooseTypeOfSelect.selectByValue, termLength);
+        keyword.setValueForSelectElement(ddlCredit, chooseTypeOfSelect.selectByValue, creditRange);
+        keyword.setValueForSelectElement(ddlTerm, chooseTypeOfSelect.selectByValue, termLength);
         keyword.click(rdoCustom);
     }
 
