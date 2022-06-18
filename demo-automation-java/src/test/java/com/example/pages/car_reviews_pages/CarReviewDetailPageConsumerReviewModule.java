@@ -58,15 +58,15 @@ public class CarReviewDetailPageConsumerReviewModule extends BasePage {
 
     public void clickToSeeFullReview() {
 
-        keyword.clickUsingJS(btnReadFullReview);
+        keyword.clickByJS(btnReadFullReview);
     }
 
     public void clickWriteAReviewButton() {
-        keyword.clickUsingJS(btnWriteAReview);
+        keyword.clickByJS(btnWriteAReview);
     }
 
     public void clickBtnBaseOnConsumerReview() {
-        keyword.clickUsingJS(btnBaseOnReview);
+        keyword.clickByJS(btnBaseOnReview);
     }
 
     /**
@@ -96,16 +96,15 @@ public class CarReviewDetailPageConsumerReviewModule extends BasePage {
     public boolean isLikeIconClickable(int index) {
         clickToScrollToConsumerReviewSection();
         clickToSeeFullReview();
-        return isElementCanClickable(btnLikeIconOfReview().get(index));
+        return isElementEnabled(btnLikeIconOfReview().get(index));
     }
 
     /**
      * return is Like Icon Clickable or not
      */
     public boolean isDislikeIconClickable(int index) {
-        return isElementCanClickable(btnDislikeIconOfReview().get(index));
+        return isElementEnabled(btnDislikeIconOfReview().get(index));
     }
-
 
     Integer EXPECTED_REVIEW_PER_PAGE = 6;
     String EXPECTED_LBL_CONSUMER_RATING = "Consumer Rating";

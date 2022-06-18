@@ -97,7 +97,7 @@ public class WebKeyword {
     /**
      * Wait to element visible
      *
-     * @param locator: By.xpath or By.cssSelector...
+     * @param element: By.xpath or By.cssSelector...
      * @return element to be located
      */
     public WebElement findElement(WebElement element) {
@@ -126,7 +126,6 @@ public class WebKeyword {
      * Keyword for set text to element
      *
      * @param webElement: element to set text
-     * @param text:       text
      * @return: keyword to set text for element
      * @throws Exception: exception
      */
@@ -286,7 +285,7 @@ public class WebKeyword {
      * check option diplay correct with data input
      *
      * @param webElement
-     * @param expectedMessage
+     * @param dataInput
      * @return
      */
     public boolean isOptionSelectedIsCorrect(WebElement webElement, String dataInput) {

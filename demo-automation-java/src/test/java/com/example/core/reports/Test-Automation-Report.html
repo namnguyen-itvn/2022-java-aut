@@ -35,7 +35,7 @@
 <a href="#"><span class="badge badge-primary">Test-Automation-Report.html</span></a>
 </li>
 <li class="m-r-10">
-<a href="#"><span class="badge badge-primary">Thứ bảy, tháng sáu 18, 2022, 12:18 CH (ICT)</span></a>
+<a href="#"><span class="badge badge-primary">Saturday, June 18, 2022, 02:16 PM (ICT)</span></a>
 </li>
 </ul>
 </div>
@@ -71,7 +71,7 @@
 <li class="dropdown">
 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-exclamation-circle"></i></a>
 <ul id="status-toggle" class="dropdown-menu dropdown-md p-v-0">
-<a class="dropdown-item" status="pass" href="#"><span>Pass</span><span class="status success"></span></a>
+<a class="dropdown-item" status="fail" href="#"><span>Fail</span><span class="status danger"></span></a>
 <div class="dropdown-divider"></div>
 <a status="clear" class="dropdown-item" href="#"><span>Clear</span><span class="pull-right"><i class="fa fa-close"></i></span></a>
 </ul>
@@ -79,46 +79,53 @@
 <li class="dropdown">
 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-tag"></i></a>
 <ul id="tag-toggle" class="dropdown-menu dropdown-md p-v-0">
-<a class="dropdown-item" href="#">CarsForSaleDriveTypeTests</a>
+<a class="dropdown-item" href="#">CarForSaleAtHomeServicesTest</a>
 </ul>
 </li>
 </ul>
 </div>    <div class="test-list-wrapper scrollable">
       <ul class="test-list-item">
-        <li class="test-item"  status="pass" test-id="1"
+        <li class="test-item"  status="fail" test-id="1"
           author=""
-          tag="CarsForSaleDriveTypeTests"
+          tag="CarForSaleAtHomeServicesTest"
           device="">
           <div class="test-detail">
-            <p class="name">verifyDriveTypeSectionUIAndResultNumberShouldDisplayCorrectWhenSelectOptionInDrivetype</p>
+            <p class="name">VerifyResultsDisplayedWhenUserChooseOneOption</p>
             <p class="text-sm">
-              <span>12:18:07</span> / <span>00:00:14:754</span>
-              <span class="badge pass-bg log float-right">Pass</span>
+              <span>2:16:42 PM</span> / <span>00:01:00:141</span>
+              <span class="badge fail-bg log float-right">Fail</span>
             </p>
           </div>
           <div class="test-contents d-none">
 <div class="detail-head">
 <div class="p-v-10">
 <div class="info">
-<h5 class="test-status text-pass">verifyDriveTypeSectionUIAndResultNumberShouldDisplayCorrectWhenSelectOptionInDrivetype</h5>
-<span class='badge badge-success'>06.18.2022 12:18:07</span>
-<span class='badge badge-danger'>06.18.2022 12:18:22</span>
-<span class='badge badge-default'>00:00:14:754</span>
+<h5 class="test-status text-fail">VerifyResultsDisplayedWhenUserChooseOneOption</h5>
+<span class='badge badge-success'>06.18.2022 2:16:42 PM</span>
+<span class='badge badge-danger'>06.18.2022 2:17:42 PM</span>
+<span class='badge badge-default'>00:01:00:141</span>
 &middot; <span class='uri-anchor badge badge-default'>#test-id=1</span>
 <span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
 <span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
 </div>
-<div class="m-t-15"><span class="badge badge-pill badge-default">CarsForSaleDriveTypeTests</span></div>
+<div class="m-t-15"><span class="badge badge-pill badge-default">CarForSaleAtHomeServicesTest</span></div>
 </div>
 </div><div class="detail-body mt-4">
 <table class="table table-sm">
   <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
   <tbody>
       <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>12:18:22</td>
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>2:17:42 PM</td>
         <td>
-          <span class='badge white-text green'>Test Passed</span>
+          VerifyResultsDisplayedWhenUserChooseOneOption Test is failedorg.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.xpath: //div/a[text()='Cars for Sale'] (tried for 60 second(s) with 500 milliseconds interval)
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>2:17:42 PM</td>
+        <td>
+          <span class='badge white-text red'>Test Failed</span>
         </td>
       </tr>
   </tbody>
@@ -146,15 +153,15 @@
 <li class="test-item">
 <div class="test-detail">
 <span class="meta">
-<span class='badge log pass-bg'>1</span>
+<span class='badge log badge-danger'>1</span>
 </span>
-<p class="name">CarsForSaleDriveTypeTests</p>
+<p class="name">CarForSaleAtHomeServicesTest</p>
 <p class="duration text-sm">1 tests</p>
 </div>
 <div class="test-contents d-none">
 <div class="info">
-<h4>CarsForSaleDriveTypeTests</h4>
-<span status="pass" class='badge log pass-bg'>1 passed</span>
+<h4>CarForSaleAtHomeServicesTest</h4>
+<span status="fail" class='badge log badge-danger'>1 failed</span>
 </div>
 <table class='table table-sm mt-4'>
 <thead>
@@ -165,11 +172,11 @@
 </tr>
 </thead>
 <tbody>
-<tr class="tag-test-status" status="pass">
-<td><span class="badge log pass-bg">Pass</span></td>
-<td>12:18:07 CH</td>
+<tr class="tag-test-status" status="fail">
+<td><span class="badge log fail-bg">Fail</span></td>
+<td>14:16:42 PM</td>
 <td>
-<a href="#" class="linked" test-id='1' id='1'>verifyDriveTypeSectionUIAndResultNumberShouldDisplayCorrectWhenSelectOptionInDrivetype</a>
+<a href="#" class="linked" test-id='1' id='1'>VerifyResultsDisplayedWhenUserChooseOneOption</a>
 </td>
 </tr>
 </tbody>
@@ -189,25 +196,25 @@
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0">Started</p>
-<h3>Thứ bảy, tháng sáu 18, 2022, 12:18 CH (ICT)</h3>
+<h3>Saturday, June 18, 2022, 02:16 PM (ICT)</h3>
 </div></div>
 </div>
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0">Ended</p>
-<h3>Thứ bảy, tháng sáu 18, 2022, 12:18 CH (ICT)</h3>
+<h3>Saturday, June 18, 2022, 02:17 PM (ICT)</h3>
 </div></div>
 </div>
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0 text-pass">Tests Passed</p>
-<h3>1</h3>
+<h3>0</h3>
 </div></div>
 </div>
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0 text-fail">Tests Failed</p>
-<h3>0</h3>
+<h3>1</h3>
 </div></div>
 </div>
 </div>
@@ -223,12 +230,12 @@
 </div>
 </div>
 <div class="card-footer">
-<div><small data-tooltip='100%'>
-<b>1</b> tests passed
+<div><small data-tooltip='0%'>
+<b>0</b> tests passed
 </small>
 </div>
 <div>
-<small data-tooltip='0%'><b>0</b> tests failed,
+<small data-tooltip='100%'><b>1</b> tests failed,
 <b>0</b> skipped, <b data-tooltip='0%'>0</b> others
 </small>
 </div>
@@ -246,9 +253,9 @@
 </div>
 </div>
 <div class="card-footer">
-<div><small data-tooltip='100%'><b>1</b> events passed</small></div>
+<div><small data-tooltip='0%'><b>0</b> events passed</small></div>
 <div>
-<small data-tooltip='0%'><b>0</b> events failed,
+<small data-tooltip='100%'><b>2</b> events failed,
 <b data-tooltip='%'>0</b> others
 </small>
 </div>
@@ -265,7 +272,7 @@
 </div></div>
 <script>
 var timeline = {
-"verifyDriveTypeSectionUIAndResultNumberShouldDisplayCorrectWhenSelectOptionInDrivetype":14.754
+"VerifyResultsDisplayedWhenUserChooseOneOption":60.141
 };
 </script>
 <div class="row">
@@ -275,12 +282,12 @@ var timeline = {
 <div class="card-body pb-0 pt-0"><table class="table table-sm table-bordered">
 <thead><tr class="bg-gray"><th>Name</th><th>Passed</th><th>Failed</th><th>Skipped</th><th>Others</th><th>Passed %</th></tr></thead><tbody>
 <tr>
-<td>CarsForSaleDriveTypeTests</td>
+<td>CarForSaleAtHomeServicesTest</td>
+<td>0</td>
 <td>1</td>
 <td>0</td>
 <td>0</td>
-<td>0</td>
-<td>100%</td>
+<td>0%</td>
 </tr>
 </tbody>
 </table></div>
@@ -302,7 +309,7 @@ var timeline = {
 </tr>
 <tr>
 <td>User</td>
-<td>Admin</td>
+<td>daoth</td>
 </tr>
 <tr>
 <td>Framework Name</td>
@@ -321,8 +328,8 @@ var timeline = {
 <script>
 var statusGroup = {
 parentCount: 5,
-passParent: 1,
-failParent: 0,
+passParent: 0,
+failParent: 1,
 warningParent: 0,
 skipParent: 0,
 childCount: 5,
@@ -338,8 +345,8 @@ warningGrandChild: 0,
 skipGrandChild: 0,
 infoGrandChild: 0,
 eventsCount: 5,
-passEvents: 1,
-failEvents: 0,
+passEvents: 0,
+failEvents: 2,
 warningEvents: 0,
 skipEvents: 0,
 infoEvents: 0
