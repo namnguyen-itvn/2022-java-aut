@@ -20,13 +20,9 @@ public class BaseTest {
     public WebDriverWait wait;
 
     public static WebDriver getDriver() {
-
         if (driver == null) {
-
             driver = new ChromeDriver();
-
             return driver;
-
         }
 
         return driver;

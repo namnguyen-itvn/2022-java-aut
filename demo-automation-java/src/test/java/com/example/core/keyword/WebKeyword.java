@@ -17,7 +17,7 @@ public class WebKeyword {
 
     private WebDriver driver;
     private WebDriverWait wait;
-    private int timeout = 30;
+    private int timeout = 60;
 
     public WebKeyword(WebDriver driver) {
         this.driver = driver;
@@ -223,8 +223,8 @@ public class WebKeyword {
      * @param webElement: element
      * @return: keyword for scroll to element
      */
-    public WebKeyword scrollToElement(WebElement webElement) {
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true)", webElement);
+    public WebKeyword scrollToElement(WebElement webElement){
+        ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true);", webElement);
         return new WebKeyword(driver);
     }
 
