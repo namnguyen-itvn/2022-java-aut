@@ -20,6 +20,7 @@ public class CarForSaleSearchLocationPage extends BasePage{
      * @return true or false
      */
     public boolean isSearchLocationIsDisplayCorrect(){
+        keyword.click(linkNotNow);
         keyword.scrollToElement(lblSearchLocation);
         if (isElementDisplayed(ddlDistance) && isElementDisplayed(txtZipcode) && isElementDisplayed(checkboxDelivery) && 
         isElementEnabled(ddlDistance) && isElementEnabled(txtZipcode) && isElementEnabled(checkboxDelivery)){
@@ -32,6 +33,7 @@ public class CarForSaleSearchLocationPage extends BasePage{
      * @return true or false
      */
     public boolean isDistanceListShowedWhenUserClickOnDistanceCombobox(String ecpectedDistance){
+        keyword.click(linkNotNow);
         keyword.scrollToElement(ddlDistance);
         keyword.click(ddlDistance);
         WebElement ddlDistance = keyword.findElement(By.id("2281868035"));
@@ -50,12 +52,12 @@ public class CarForSaleSearchLocationPage extends BasePage{
      * @param distance option to chose of Distance combobox
      * @return true or false
      */
-    public boolean isReturnTheResultOfDestanceMatchWithOptionWasSelected(String distance){
+    public boolean isReturnTheResultOfDistanceMatchWithOptionWasSelected(String distance){
+        keyword.click(linkNotNow);
         keyword.scrollToElement(lblSearchLocation);
         keyword.click(ddlDistance);
         keyword.setValueForSelectElement(ddlDistance, chooseTypeOfSelect.selectByValue, distance);
-        WebElement sliderDitanceResult = keyword.findElementByLocator(By.xpath("//div[@class = 'flickity-slider']"));
-        keyword.scrollToElement(lblYourSearch);
+        WebElement sliderDitanceResult = keyword.waiForLocatorOfElementVisiable(By.xpath("//div[@class = 'flickity-slider']"));
         if (isElementDisplayed(sliderDitanceResult)){
             return true;
         }else return false;
@@ -69,6 +71,7 @@ public class CarForSaleSearchLocationPage extends BasePage{
      */
     public boolean isReturnTheResultOfZipCodeMatchWithOptionWasSelected(String zipcode) throws Exception{
         boolean check = false;
+        keyword.click(linkNotNow);
         keyword.scrollToElement(lblSearchLocation);
         keyword.setText(txtZipcode, zipcode);
         WebElement linkZipCode = keyword.waiForLocatorOfElementVisiable(By.xpath("//span[contains(text(),'90089')]"));        
@@ -80,9 +83,9 @@ public class CarForSaleSearchLocationPage extends BasePage{
     }
 
     //Declare element
-    private WebElement lblYourSearch = keyword.findElementByLocator(By.xpath("//span[contains(text(), 'Your Search')]"));
+    private WebElement linkNotNow = keyword.findElement(By.xpath("//div[@class='popover-content']//div//button[@class='btn btn-link']"));
     private WebElement lblSearchLocation = keyword.findElementByLocator(By.xpath("//div[@data-cmp = 'filterLocation']"));
     private WebElement ddlDistance = keyword.findElementByLocator(By.id("2281868035"));
     private WebElement txtZipcode = keyword.findElementByLocator(By.id("2225141853"));
-    private WebElement checkboxDelivery = keyword.findElementByLocator(By.xpath("//div[contains(text(), 'Include Extended Home Delivery')]"));    
+    private WebElement checkboxDelivery = keyword.findElement(By.xpath("//div[contains(text(), 'Include Extended Home Delivery')]"));    
 }

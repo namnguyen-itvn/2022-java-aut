@@ -28,12 +28,12 @@ public class CarForSaleSearchLocationTest extends BaseTest{
         Assert.assertTrue(carForSaleSearchLocationPage.isDistanceListShowedWhenUserClickOnDistanceCombobox(expectedDistance));
     }
 
-    @Test(testName = "verify That Return The Result Of Destance Should Be Matched With Option Was Selected", dataProvider = "distanceDataForTest", dataProviderClass = CarForSaleTestData.class)
-    public void verifyThatReturnTheResultOfDestanceShouldBeMatchedWithOptionWasSelected(String distance_Miles){
+    @Test(testName = "verify That Return The Result Of Distance Should Be Matched With Option Was Selected", dataProvider = "distanceDataForTest", dataProviderClass = CarForSaleTestData.class)
+    public void verifyThatReturnTheResultOfDistanceShouldBeMatchedWithOptionWasSelected(String distance_Miles){
         BasePage basePage = new BasePage(driver);
         basePage.navigateToPage("Sale");
         CarForSaleSearchLocationPage carForSaleSearchLocationPage = new CarForSaleSearchLocationPage(driver);
-        Assert.assertTrue(carForSaleSearchLocationPage.isReturnTheResultOfDestanceMatchWithOptionWasSelected(distance_Miles));
+        Assert.assertTrue(carForSaleSearchLocationPage.isReturnTheResultOfDistanceMatchWithOptionWasSelected(distance_Miles));
     }
 
     @Test(testName = "verify That Return The Result Of Zip Code Should Be Matched With Option Was Selected", dataProvider = "zipCodeDataForTest", dataProviderClass = CarForSaleTestData.class)

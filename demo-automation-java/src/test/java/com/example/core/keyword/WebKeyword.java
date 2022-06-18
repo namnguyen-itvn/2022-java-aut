@@ -313,11 +313,17 @@ public class WebKeyword {
 
     /**
      * Wait to locator of element visible
+     /**KeyWord from ChauTA1
+     * Keyword to find list element 
      * 
      * @param locator: By.xpath or By.cssSelector...
      * @return element to be located
      */
     public WebElement findElementByLocator(By locator) {
         return driver.findElement(locator);
+    }
+    public List<WebElement> findElements(By locator)
+    {
+        return wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
     }
 }

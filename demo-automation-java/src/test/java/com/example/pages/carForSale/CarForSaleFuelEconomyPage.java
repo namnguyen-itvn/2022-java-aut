@@ -21,6 +21,7 @@ public class CarForSaleFuelEconomyPage extends BasePage{
      * @return: true or false
      */
     public boolean isTheFuelEconomyFilterDisplayCorrect(String expectedFuelEconomy){
+        keyword.click(linkNotNow);
         keyword.scrollToElement(lblFuelEconomy);
         keyword.click(lblFuelEconomy);
         Select ddlFuelEconomys = new Select(ddlFuelEconomy);
@@ -40,6 +41,7 @@ public class CarForSaleFuelEconomyPage extends BasePage{
      * @return true or false
      */
     public boolean isReturnTheResultOfFuelEconomyMatchWithOptionWasSelected(String fuel){
+        keyword.click(linkNotNow);
         keyword.scrollToElement(lblFuelEconomy);
         keyword.click(lblFuelEconomy);
         keyword.click(ddlFuelEconomy);
@@ -53,6 +55,7 @@ public class CarForSaleFuelEconomyPage extends BasePage{
     }
 
     //declare element
+    private WebElement linkNotNow = keyword.findElement(By.xpath("//div[@class='popover-content']//div//button[@class='btn btn-link']"));
     private WebElement lblYourSearch = keyword.findElementByLocator(By.xpath("//span[contains(text(), 'Your Search')]"));
     private WebElement lblFuelEconomy = keyword.findElementByLocator(By.xpath("//span[contains(text(), 'Fuel Economy')]/parent::span/parent::div"));
     private WebElement ddlFuelEconomy = keyword.findElementByLocator(By.id("10591868"));

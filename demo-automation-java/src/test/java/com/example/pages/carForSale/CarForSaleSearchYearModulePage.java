@@ -21,6 +21,7 @@ public class CarForSaleSearchYearModulePage extends BasePage{
      * @return true or false
      */
     public boolean isTheYearFilterShouldBeDisplayedCorrectWhenUserScrollToIt(){
+        keyword.click(linkNotNow);
         keyword.scrollToElement(lblYear);
         if (isElementDisplayed(lblYear) && isElementDisplayed(ddlMinimumYear) && isElementDisplayed(ddlMaximumYear)){
             return true;
@@ -32,6 +33,7 @@ public class CarForSaleSearchYearModulePage extends BasePage{
      * @return true or false
      */
     public boolean isMiniMumYearListShowedWhenUserClickOnMiniMumYearCombobox(String years){
+        keyword.click(linkNotNow);
         keyword.scrollToElement(lblYear);
         keyword.click(ddlMinimumYear);
         Select ddlMinimumYears = new Select(ddlMinimumYear);
@@ -49,6 +51,7 @@ public class CarForSaleSearchYearModulePage extends BasePage{
      * @return true or false
      */
     public boolean isMaximumYearListShowedWhenUserClickOnMaximumYearCombobox(String years){
+        keyword.click(linkNotNow);
         keyword.scrollToElement(lblYear);
         keyword.click(ddlMaximumYear);
         Select ddlMaximunYears = new Select(ddlMaximumYear);
@@ -67,6 +70,7 @@ public class CarForSaleSearchYearModulePage extends BasePage{
      * @return
      */
     public boolean isTheYearFilterShouldBeDisplayedCorrectWhenUserScrollToIt(String year){
+        keyword.click(linkNotNow);
         keyword.scrollToElement(lblYear);
         keyword.click(ddlMinimumYear);
         keyword.setValueForSelectElement(ddlMinimumYear, chooseTypeOfSelect.selectByValue, year);
@@ -84,7 +88,6 @@ public class CarForSaleSearchYearModulePage extends BasePage{
      * @return
      */
     public boolean isYearSelectedDisplayInTheMessageOnVehicleDetailsPage(String year){
-        WebElement linkNotNow = keyword.findElement(By.xpath("//div[@class='popover-content']//div//button[@class='btn btn-link']"));
         keyword.click(linkNotNow);
         keyword.scrollToElement(lblYear);
         keyword.click(ddlMinimumYear);
@@ -102,6 +105,7 @@ public class CarForSaleSearchYearModulePage extends BasePage{
     }
 
     //Declare element
+    private WebElement linkNotNow = keyword.findElement(By.xpath("//div[@class='popover-content']//div//button[@class='btn btn-link']"));
     private WebElement lblYourSearch = keyword.findElementByLocator(By.xpath("//span[contains(text(), 'Your Search')]"));
     private WebElement lblYear = keyword.findElementByLocator(By.xpath("//span[contains(text(), 'Year')]"));
     private WebElement ddlMinimumYear = keyword.findElementByLocator(By.id("614960940"));
