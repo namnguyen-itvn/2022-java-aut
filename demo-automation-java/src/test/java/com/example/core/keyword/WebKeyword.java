@@ -160,10 +160,7 @@ public class WebKeyword {
      * @param webElement: element to click
      * @return: keyword to click on element
      */
-
     public WebKeyword click(WebElement webElement) {
-        scrollToElement(webElement);
-        waitForElementVisibilities(webElement);
         waitForElementToBeClickable(webElement).click();
         return new WebKeyword(driver);
     }
@@ -211,7 +208,7 @@ public class WebKeyword {
 
     /**
      * \
-     * wait for element visibilities in page
+     * wait for element enable
      */
     public WebElement waitForElementToBeClickable(WebElement webElement) {
         return wait.until(ExpectedConditions.elementToBeClickable(webElement));
@@ -305,12 +302,26 @@ public class WebKeyword {
         return waitForElementIsDisplay(webElement).getText();
     }
 
+    /**
+     * Method for wait locator of element visiable in page of website
+     * @param locator: like "By.xpath(""), By.cssSelector("")..."
+     * @return: element
+     */
+    public WebElement waiForLocatorOfElementVisiable(By locator){
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+    }
+
+    /**
+     * Wait to locator of element visible
      /**KeyWord from ChauTA1
      * Keyword to find list element 
      * 
      * @param locator: By.xpath or By.cssSelector...
      * @return element to be located
      */
+    public WebElement findElementByLocator(By locator) {
+        return driver.findElement(locator);
+    }
     public List<WebElement> findElements(By locator)
     {
         return wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));

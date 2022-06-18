@@ -24,13 +24,11 @@ public class BaseTest {
             driver = new ChromeDriver();
             return driver;
         }
-
         return driver;
-
     }
 
     @BeforeMethod
-    public void setUp() throws Exception {      
+    public void setUp() throws Exception {
         config = new Configuration("src/test/java/com/example/core/configuration/config.properties");
         driver = DriverFactory.getDriver(config.getProperty("browser"));
         keyword = new WebKeyword(driver);

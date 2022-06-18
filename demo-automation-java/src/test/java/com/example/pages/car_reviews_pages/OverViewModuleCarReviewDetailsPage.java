@@ -8,8 +8,6 @@ import org.openqa.selenium.support.Color;
 import com.example.pages.BasePage;
 
 public class OverViewModuleCarReviewDetailsPage extends BasePage{
-    public OverViewModuleCarReviewDetailsPage() {
-    }
 
     public OverViewModuleCarReviewDetailsPage(WebDriver driver) {
         super(driver);
