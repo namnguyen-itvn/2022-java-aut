@@ -4,6 +4,8 @@ package com.example.pages.carForSale;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.example.core.keyword.WebKeyword.chooseTypeOfSelect;
 import com.example.pages.BasePage;
@@ -24,6 +26,7 @@ public class CarsForSaleMileage extends BasePage {
 
     private double beforeResults = 0;
     private double afterResults = 0;
+
     //action ClickBtnMileage
     public void actionClickBtnMileage(){
         waitNoCondition();
@@ -114,14 +117,13 @@ public class CarsForSaleMileage extends BasePage {
         return number;
     }   
 
+    //wait with No Condition
     public void waitNoCondition(){
         By locabtnExitAds = By.xpath("//button[@id='fsrFocusFirst']");
+        WebDriverWait wait1 = new WebDriverWait(driver, 3);
         try {
-            WebElement btnExitAds = keyword.findElement(locabtnExitAds);
-            keyword.click(btnExitAds);
+            WebElement btnExitAds = wait1.until(ExpectedConditions.visibilityOfElementLocated(locabtnExitAds));
         } catch (Exception e) {
         }
     }
-
-
 }

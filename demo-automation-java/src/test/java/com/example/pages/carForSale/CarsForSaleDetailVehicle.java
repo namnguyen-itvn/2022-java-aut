@@ -3,6 +3,8 @@ package com.example.pages.carForSale;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.example.pages.BasePage;
 
@@ -15,7 +17,8 @@ public class CarsForSaleDetailVehicle extends BasePage {
     private WebElement lblTypeOfWheelDrive = keyword.findElement(By.xpath("//div[@aria-label='DRIVE TYPE']/parent::div/parent::div/child::div[@class='col-xs-10 margin-bottom-0']"));
     private WebElement lblPrice = keyword.findElement(By.xpath("//div[@data-cmp='pricing']/span"));
     private WebElement lblMileage = keyword.findElement(By.xpath("//div[@aria-label='MILEAGE']/parent::div/parent::div/child::div[@class='col-xs-10 margin-bottom-0']"));
-        /**
+        
+    /**
      *  Return TypeOfWheelDriveDisplayed is correct or not
      * @return
      */
@@ -41,11 +44,12 @@ public class CarsForSaleDetailVehicle extends BasePage {
         else return false;
     }
     
+    //wait with No Condition
     public void waitNoCondition(){
         By locabtnExitAds = By.xpath("//button[@id='fsrFocusFirst']");
+        WebDriverWait wait1 = new WebDriverWait(driver, 3);
         try {
-            WebElement btnExitAds = keyword.findElement(locabtnExitAds);
-            keyword.click(btnExitAds);
+            WebElement btnExitAds = wait1.until(ExpectedConditions.visibilityOfElementLocated(locabtnExitAds));
         } catch (Exception e) {
         }
     }

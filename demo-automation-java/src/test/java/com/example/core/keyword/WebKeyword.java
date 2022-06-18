@@ -17,7 +17,7 @@ public class WebKeyword {
 
     private WebDriver driver;
     private WebDriverWait wait;
-    private int timeout = 3;
+    private int timeout = 30;
 
     public WebKeyword(WebDriver driver) {
         this.driver = driver;
