@@ -74,7 +74,7 @@ public class CarsForSalePriceAndPayment extends BasePage {
      */
     //action setValue for maxmin price 
     public void actionSetPrice(String min, String max){
-        actionExitAds();
+        waitNoCondition();
         keyword.scrollToElement(txbMaxPrice);
         try {
             keyword.setText(txbMinPrice, min);
@@ -82,7 +82,7 @@ public class CarsForSalePriceAndPayment extends BasePage {
         } catch (Exception e) {
         }
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        actionExitAds();
+        waitNoCondition();
     }
     
     //action navigate to detail vehicle [effect with ads]
@@ -90,22 +90,16 @@ public class CarsForSalePriceAndPayment extends BasePage {
         WebElement imgFirstResults = keyword.findElement(locaimgFirstResults);
         keyword.scrollToElement(imgFirstResults);
         keyword.click(imgFirstResults);
-        actionExitAds(); 
+        waitNoCondition(); 
     }
 
-    //action exit ads: including 2 ads, if showing 2 ads in a row, it will fail
-    public void actionExitAds(){
+    //wait with No Condition
+    public void waitNoCondition(){
         By locabtnExitAds = By.xpath("//button[@id='fsrFocusFirst']");
-        By locabtnExitAds2 = By.cssSelector("button.QSIWebResponsiveDialog-Layout1-SI_5d3NX5IIzg7mUmN_close-btn");
+        WebDriverWait wait1 = new WebDriverWait(driver, 3);
         try {
-            WebElement btnExitAds = keyword.findElement(locabtnExitAds);
-            keyword.click(btnExitAds);
+            WebElement btnExitAds = wait1.until(ExpectedConditions.visibilityOfElementLocated(locabtnExitAds));
         } catch (Exception e) {
-            try {
-                WebElement btnExitAds2 = keyword.findElement(locabtnExitAds2);
-                keyword.click(btnExitAds2);
-            } catch (Exception a) {
-            }
         }
     }
 }
