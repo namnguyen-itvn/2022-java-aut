@@ -11,9 +11,6 @@ public class CarSearchDetailPage extends BasePage {
         super(driver);
     }
 
-    public CarSearchDetailPage() {
-    }
-
     private By lblTitle = By.xpath("//h1[@data-cmp='heading']");
     private By lblFirstPrice = By.xpath("//div[@class='panel-body']/descendant::span[@class='first-price']");
     private By lblVehicleSection = By.xpath("//div[@id='vehicleFeatures']//div[@data-cmp='heading']");

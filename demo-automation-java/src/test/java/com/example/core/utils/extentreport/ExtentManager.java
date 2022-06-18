@@ -38,7 +38,7 @@ public class ExtentManager {
         extent.setSystemInfo("Java",  System.getProperty("java.specification.version"));
         extent.setSystemInfo("User",  System.getProperty("user.name"));
 		extent.setSystemInfo("Framework Name", "Selenium Java Framework");
-		extent.setSystemInfo("Author", "TunD20");
+		extent.setSystemInfo("Author", "AUT-01");
  
         return extent;
     }
