@@ -9,8 +9,7 @@ import org.openqa.selenium.WebElement;
 import com.example.pages.BasePage;
 
 public class CarReviewsDetailModulePage1 extends BasePage {
-    public CarReviewsDetailModulePage1() {
-    }
+
 
     public CarReviewsDetailModulePage1(WebDriver driver) {
         super(driver);

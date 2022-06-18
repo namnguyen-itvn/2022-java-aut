@@ -9,8 +9,6 @@ import com.example.pages.BasePage;
 
 public class CarReviewsRankingsModulePage extends BasePage {
 
-    public CarReviewsRankingsModulePage() {
-    }
     
     public CarReviewsRankingsModulePage(WebDriver driver) {
         super(driver);
