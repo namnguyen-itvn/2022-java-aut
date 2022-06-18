@@ -104,7 +104,7 @@ public class CarSearchDetailPage extends BasePage {
 
     /**
      * 
-     * @return first price value
+     * @return First Price Value
      */
     public String getFirstPriceValue() {
         return getText(lblFirstPrice);
