@@ -40,7 +40,7 @@ public class CarForSaleDetailTest extends BaseTest {
     }
 
     @Test(testName = "Verify That Tab Price Breakdown And Offers Should Be Displayed As Default")
-    public void verifyThatTabPriceBreakdownAndOffersShouldBeDisplayedAsDefault(){
+    public void verifyThatTabPriceBreakdownAndOffersShouldBeDisplayedAsDefault() {
         BasePage basePage = new BasePage(driver);
         basePage.navigateToPage("Sale");
         basePage.actionExitAds();
@@ -56,7 +56,7 @@ public class CarForSaleDetailTest extends BaseTest {
     }
 
     @Test(testName = "Verify That Listing Price Should Be Equal With First Price")
-    public void verifyThatListingPriceShouldBeEqualWithFirstPrice(){
+    public void verifyThatListingPriceShouldBeEqualWithFirstPrice() {
         BasePage basePage = new BasePage(driver);
         basePage.navigateToPage("Sale");
         basePage.actionExitAds();

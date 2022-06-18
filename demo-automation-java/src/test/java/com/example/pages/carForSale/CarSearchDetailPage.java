@@ -16,7 +16,6 @@ public class CarSearchDetailPage extends BasePage {
 
     private By lblTitle = By.xpath("//h1[@data-cmp='heading']");
     private By lblFirstPrice = By.xpath("//div[@class='panel-body']/descendant::span[@class='first-price']");
-    private By priceSection = By.xpath("//div[id='pricingDetailsSection']");
     private By lblVehicleSection = By.xpath("//div[@id='vehicleFeatures']//div[@data-cmp='heading']");
     private By lblPriceSection = By.xpath("//div[@id='pricingSection']/div[@data-cmp='heading']");
     private By tabFairMarket = By.xpath("//a[@id='pricing-tabs-tab-1']");
@@ -27,7 +26,8 @@ public class CarSearchDetailPage extends BasePage {
             .xpath("//div[@id='pricing-tabs-pane-2']/descendant::div[@data-cmp='heading']");
     private By lblMessageTabPrice = By.xpath("//div[@id='pricing-tabs-pane-2']/descendant::div[@class='text-left']/p");
     private By lblListing = By.xpath("//div[@data-cmp='pricingBreakdown']/descendant::div[contains(text(),'Listing')]");
-    private By lblPriceListing = By.xpath("//div[@data-cmp='pricingBreakdown']/descendant::div[contains(text(),'Listing')]/following-sibling::div");
+    private By lblPriceListing = By.xpath(
+            "//div[@data-cmp='pricingBreakdown']/descendant::div[contains(text(),'Listing')]/following-sibling::div");
 
     /*
      * Return the title of car
@@ -54,7 +54,8 @@ public class CarSearchDetailPage extends BasePage {
      * @return Tab Fair Market Displayed As Default
      */
     public boolean isTabFairMarketDisplayedAsDefault() {
-        if (getText(lblTitleTabFair).equals(expectedTitleTabFair) & getText(lblMessageTabFair).equals(expectedMessageTabFair)) {
+        if (getText(lblTitleTabFair).equals(expectedTitleTabFair)
+                & getText(lblMessageTabFair).equals(expectedMessageTabFair)) {
             return true;
         } else
             return false;
@@ -70,7 +71,7 @@ public class CarSearchDetailPage extends BasePage {
     /**
      * Action to click tab price break down
      */
-    public void clickTabPriceBreakDown(){
+    public void clickTabPriceBreakDown() {
         keyword.clickWithOutScroll(keyword.findElement(tabPriceBreakdown));
     }
 
@@ -78,32 +79,34 @@ public class CarSearchDetailPage extends BasePage {
      * 
      * @return Tab Price Breakdown Displayed As Default
      */
-    public boolean isTabPriceBreakdownDisplayedAsDefault(){
+    public boolean isTabPriceBreakdownDisplayedAsDefault() {
         System.out.println(getText(lblMessageTabPrice));
-        if(getText(lblTitleTabPriceBreakdown).equals(expectedTitleTabPriceBreakDown) & getText(lblMessageTabPrice).equals(expectedMessageTabPriceBreakDown)){
+        if (getText(lblTitleTabPriceBreakdown).equals(expectedTitleTabPriceBreakDown)
+                & getText(lblMessageTabPrice).equals(expectedMessageTabPriceBreakDown)
+                & getText(lblListing).equals(expectedLabelListing)) {
             return true;
-        }
-        else return false;
+        } else
+            return false;
     }
- 
+
     /**
      * 
      * @return Listing price is equal with first price or not
      */
-    public boolean isListingPriceEqualWithFirstPrice(String firstPrice){
-        String priceListingValue = getText(lblPriceListing).substring(getText(lblPriceListing).lastIndexOf("$")+1);
+    public boolean isListingPriceEqualWithFirstPrice(String firstPrice) {
+        String priceListingValue = getText(lblPriceListing).substring(getText(lblPriceListing).lastIndexOf("$") + 1);
         System.out.println(priceListingValue);
-        if(priceListingValue.equals(firstPrice)){
+        if (priceListingValue.equals(firstPrice)) {
             return true;
-        }
-        else return false;
+        } else
+            return false;
     }
 
     /**
      * 
      * @return first price value
      */
-    public String getFirstPriceValue(){
+    public String getFirstPriceValue() {
         return getText(lblFirstPrice);
     }
 
@@ -114,4 +117,5 @@ public class CarSearchDetailPage extends BasePage {
     String expectedLabelTabPriceBreakDown = "Price Breakdown and Offers";
     String expectedTitleTabPriceBreakDown = "Price Breakdown";
     String expectedMessageTabPriceBreakDown = "Contact the dealer for further pricing details.";
+    String expectedLabelListing = "Listing Price";
 }
