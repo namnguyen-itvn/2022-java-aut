@@ -1,14 +1,17 @@
 package com.example.tests.carForSale;
 
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.example.core.datadriven.MileageUnderTest;
+import com.example.core.utils.listener.ReportListener;
 import com.example.pages.BasePage;
 import com.example.tests.BaseTest;
 import com.example.pages.carForSale.CarsForSaleDetailVehicle;
 import com.example.pages.carForSale.CarsForSaleMileage;
 
+@Listeners(ReportListener.class)
 public class CarsForSaleMileageTests extends BaseTest{
     @Test(testName = "Verify default data of Mileage's dropdownlist is Any")
     public void verifyDefaultDataOfMileageDropdownlistIsAny ()
