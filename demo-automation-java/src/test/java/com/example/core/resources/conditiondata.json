@@ -1,0 +1,15 @@
+[
+    
+    {
+        "optionCondition": "ManufacturerCertified"
+    },
+    {
+        "optionCondition": "ThirdPartyCertified"
+    },
+    {
+        "optionCondition": "New"
+    },
+    {
+        "optionCondition": "Used"
+    }
+]
