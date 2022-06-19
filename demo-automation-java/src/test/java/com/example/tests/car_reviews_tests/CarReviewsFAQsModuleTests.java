@@ -9,7 +9,6 @@ import com.example.core.utils.listener.ReportListener;
 import com.example.pages.BasePage;
 import com.example.pages.car_reviews_pages.CarReviewsFAQsModulePage;
 import com.example.pages.car_reviews_pages.CarReviewsModulePage;
-import com.example.pages.car_reviews_pages.CarReviewsRankingsModulePage;
 import com.example.tests.BaseTest;
 
 @Listeners(ReportListener.class)
