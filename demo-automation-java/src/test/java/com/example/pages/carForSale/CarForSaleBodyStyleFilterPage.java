@@ -29,6 +29,7 @@ public class CarForSaleBodyStyleFilterPage extends BasePage {
     }
 
     /**
+<<<<<<< Updated upstream
      * check Body Style Options On Filter Should Be Filtered After Chose
      * @return boolean check
      */
@@ -43,11 +44,73 @@ public class CarForSaleBodyStyleFilterPage extends BasePage {
         WebElement linkClearFilters = keyword.findElement(By.xpath("//span[text()='Clear Filters']"));
         keyword.scrollToElement(linkClearFilters);
         if (linkBodyStyle.isDisplayed() && txtYourSearchBodyStyle.isDisplayed() && linkClearFilters.isDisplayed()) {
+=======
+     * choose option in Body Style
+     * @param option
+     */
+    public void chooseOptionInBodyStyle(String option) {
+        WebElement elementToSeeAllBodyStyle = keyword.findElement(By.xpath("//div[text()='Alternative']"));
+        keyword.scrollToElement(elementToSeeAllBodyStyle);
+        switch(option) {
+            case "Convertible": 
+                WebElement convertibleOptions = keyword.findElement(By.xpath("//div[text()='Convertible']/preceding-sibling::div"));
+                keyword.click(convertibleOptions);
+                break;
+            case "Coupe":
+                WebElement coupeOptions = keyword.findElement(By.xpath("//div[text()='Coupe']/preceding-sibling::div"));
+                keyword.click(coupeOptions);
+                break;
+            case "Hatchback":
+                WebElement hatchbackOptions = keyword.findElement(By.xpath("//div[text()='Hatchback']/preceding-sibling::div"));
+                keyword.click(hatchbackOptions);
+                break;
+            case "Sedan":
+                WebElement sedanOptions = keyword.findElement(By.xpath("//div[text()='Sedan']/preceding-sibling::div"));
+                keyword.click(sedanOptions);
+                break;
+            case "SUV / Crossover":
+                WebElement suvOptions = keyword.findElement(By.xpath("//div[text()='SUV / Crossover']/preceding-sibling::div"));
+                keyword.click(suvOptions);
+                break;
+            case "Truck":
+                WebElement truckOptions = keyword.findElement(By.xpath("//div[text()='Truck']/preceding-sibling::div"));
+                keyword.click(truckOptions);
+                break;
+            case "Van / Minivan":
+                WebElement vanOptions = keyword.findElement(By.xpath("//div[text()='Van / Minivan']/preceding-sibling::div"));
+                keyword.click(vanOptions);
+                break;
+            case "Wagon":
+                WebElement wagonOptions = keyword.findElement(By.xpath("//div[text()='Wagon']/preceding-sibling::div"));
+                keyword.click(wagonOptions);
+                break;
+        }        
+    }
+
+    /**
+     * check body style opton on filter should be filtered after chose
+     * @return boolean check
+     */
+    public boolean checkBodyStyleOptionsOnFilterShouldBeFilteredAfterChose(String option) {
+        boolean check = false;
+        WebElement linkOption = keyword.findElement(By.cssSelector("a[label ='"+option+"']"));
+        keyword.scrollToElement(linkOption);
+        WebElement txtYourSearchBodyStyle = keyword.findElement(By.xpath("//span[text()='"+option+"']"));
+        keyword.scrollToElement(txtYourSearchBodyStyle);
+        WebElement linkClearFilters = keyword.findElement(By.xpath("//span[text()='Clear Filters']"));
+        keyword.scrollToElement(linkClearFilters);
+        if (linkOption.isDisplayed() && txtYourSearchBodyStyle.isDisplayed() && linkClearFilters.isDisplayed()) {
+>>>>>>> Stashed changes
             check = true;
         } else {
             check = false;
         }
+<<<<<<< Updated upstream
         return check;
     }
 
+=======
+        return check; 
+    }   
+>>>>>>> Stashed changes
 }

@@ -1,7 +1,14 @@
 package com.example.pages;
 
+<<<<<<< Updated upstream
 import com.example.core.keyword.WebKeyword;
 
+=======
+import com.example.core.configuration.Configuration;
+import com.example.core.keyword.WebKeyword;
+
+
+>>>>>>> Stashed changes
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
