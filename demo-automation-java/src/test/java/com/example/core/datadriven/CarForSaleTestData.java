@@ -1,6 +1,5 @@
 package com.example.core.datadriven;
 
-import org.openqa.selenium.json.Json;
 import org.testng.annotations.DataProvider;
 
 import com.example.core.helper.JsonHelper;
@@ -39,10 +38,5 @@ public class CarForSaleTestData {
     @DataProvider(name="expectedDistanceData")
     public static Object[][] expectedDistanceData() {
         return JsonHelper.ReadJsonFromFile("src/test/java/com/example/core/resources/expecteddistancedata.json");
-    }
-
-    @DataProvider(name="fuelTypeData")
-    public static Object[][] fuelTypeData(){
-        return JsonHelper.ReadJsonFromFile("src/test/java/com/example/core/resources/fueltypedata.json");
     }
 }
