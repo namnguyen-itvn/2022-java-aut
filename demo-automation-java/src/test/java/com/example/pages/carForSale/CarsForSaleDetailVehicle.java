@@ -17,10 +17,8 @@ public class CarsForSaleDetailVehicle extends BasePage {
     private WebElement lblTypeOfWheelDrive = keyword.findElement(By.xpath("//div[@aria-label='DRIVE TYPE']/parent::div/parent::div/child::div[@class='col-xs-10 margin-bottom-0']"));
     private WebElement lblPrice = keyword.findElement(By.xpath("//div[@data-cmp='pricing']/span"));
     private WebElement lblMileage = keyword.findElement(By.xpath("//div[@aria-label='MILEAGE']/parent::div/parent::div/child::div[@class='col-xs-10 margin-bottom-0']"));
-        
     
-    private WebElement lblOptPriceRating = keyword.findElement(By.cssSelector("div.ribbon-content-left"));
-    
+    private By lblOptPriceRating = By.xpath("div.ribbon-content-left");
 
     /**
      *  Return TypeOfWheelDriveDisplayed is correct or not
@@ -50,11 +48,11 @@ public class CarsForSaleDetailVehicle extends BasePage {
     
     //wait with No Condition
     public void waitNoCondition(){
-        By locabtnExitAds = By.xpath("//button[@id='fsrFocusFirst']");
-        WebDriverWait wait1 = new WebDriverWait(driver, 3);
         try {
-            WebElement btnExitAds = wait1.until(ExpectedConditions.visibilityOfElementLocated(locabtnExitAds));
-        } catch (Exception e) {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
     }
 
@@ -110,8 +108,9 @@ public class CarsForSaleDetailVehicle extends BasePage {
      * @return
      */
     public boolean isLblPriceRating(String value){
+        WebElement lblOptPriceRating1 = keyword.findElement(lblOptPriceRating);
         value = value.toLowerCase();
-        if (lblOptPriceRating.getText().toLowerCase().equals(value)) {
+        if (lblOptPriceRating1.getText().toLowerCase().equals(value)) {
             return true;
         }
         else return false;
