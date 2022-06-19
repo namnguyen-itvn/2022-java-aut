@@ -31,7 +31,7 @@ public class CarsForSaleTransmissionPage extends BasePage {
     private int afterResults = 0;
 
     /**
-     * 
+     * Convert element text to double
      * @param element
      * @return
      */
