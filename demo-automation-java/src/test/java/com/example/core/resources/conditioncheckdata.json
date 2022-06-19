@@ -1,0 +1,18 @@
+[
+    {
+        "optionCondition": "New",
+        "numberChoose": "3"
+    },
+    {
+        "optionCondition": "Used",
+        "numberChoose": "2"
+    },
+    {
+        "optionCondition": "ManufacturerCertified",
+        "numberChoose": "2"
+    },
+    {
+        "optionCondition": "ThirdPartyCertified",
+        "numberChoose": "2"
+    }
+]

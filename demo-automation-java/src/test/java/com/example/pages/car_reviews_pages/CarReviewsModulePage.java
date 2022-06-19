@@ -11,8 +11,6 @@ import com.example.core.keyword.WebKeyword.chooseTypeOfSelect;
 import com.example.pages.BasePage;
 
 public class CarReviewsModulePage extends BasePage{
-    public CarReviewsModulePage() {
-    }
 
     public CarReviewsModulePage(WebDriver driver) {
         super(driver);

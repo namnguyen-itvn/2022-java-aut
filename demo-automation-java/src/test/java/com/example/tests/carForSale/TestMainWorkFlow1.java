@@ -2,8 +2,10 @@ package com.example.tests.carForSale;
 
 import com.example.core.utils.listener.ReportListener;
 import com.example.pages.*;
+import com.example.pages.carForSale.CarForSaleConditionPage;
 import com.example.tests.BaseTest;
 
+import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
@@ -15,4 +17,5 @@ public class TestMainWorkFlow1 extends BaseTest {
         BasePage basePage = new BasePage(driver);
         basePage.navigateToPage("Reviews");
     }
+
 }
