@@ -97,17 +97,20 @@ public class BasePage {
     public boolean isElementTextEqualExpectedText(WebElement element, String expectedText){
         return keyword.getText(element).equals(expectedText);
     }
-<<<<<<< HEAD
 
+    /**
+     * return title page  with format
+     * @param year
+     * @param make
+     * @param model
+     * @return
+    */
     public boolean isTitlePageDisplaysCorrect(String year, String make, String model){
 
         String expectedCarReviewDetailHeaderTitle = "Used " + year + " " + make +" " + model;
         String expectedCarReviewDetailsPageTitle = expectedCarReviewDetailHeaderTitle + " Values & Cars for Sale | Kelley Blue Book";
         return driver.getTitle().trim().equals(expectedCarReviewDetailsPageTitle);
     }
-=======
-    
->>>>>>> 26397d6f3eb812a690c79a93a0267d21b5798eb3
     /**
      * Get page title
      * @return
