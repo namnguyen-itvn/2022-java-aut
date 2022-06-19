@@ -18,21 +18,13 @@ public class CarReviewPage extends BasePage {
 	private By ddlModel = (By.cssSelector("[aria-label='Model']"));
     private WebElement txtZipCode=driver.findElement(By.cssSelector("[class*='text-input']"));
 	private By btnSubmit = (By.cssSelector("[class*='WrappedButton']"));
-	
 
-
-	public void fillInformation()
+	public void fillInformation(String year,String make,String model,String zipcode)
 	{
-		keyword.setValueForSelectElement(keyword.findElement(ddlYear), chooseTypeOfSelect.selectByValue, yearString);
-		keyword.setValueForSelectElement(keyword.findElement(ddlMake), chooseTypeOfSelect.selectByValue, makeString);
-		keyword.setValueForSelectElement(keyword.findElement(ddlModel), chooseTypeOfSelect.selectByValue, modelString);
-		// keyword.setText(keyword.findElement(txtZipCode), zipcodeString);
-        txtZipCode.sendKeys(zipcodeString);
+		keyword.setValueForSelectElement(keyword.findElement(ddlYear), chooseTypeOfSelect.selectByValue, year);
+		keyword.setValueForSelectElement(keyword.findElement(ddlMake), chooseTypeOfSelect.selectByValue, make);
+		keyword.setValueForSelectElement(keyword.findElement(ddlModel), chooseTypeOfSelect.selectByValue, model);
+        txtZipCode.sendKeys(zipcode);
 		keyword.click(keyword.findElement(btnSubmit));
 	}
-
-	public static String yearString = "2019";
-	public static String makeString = "Honda";
-	public static String modelString = "Civic";
-	public static String zipcodeString = "12345";
 }

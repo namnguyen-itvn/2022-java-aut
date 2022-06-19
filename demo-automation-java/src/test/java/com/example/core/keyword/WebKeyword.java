@@ -6,7 +6,6 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -43,7 +42,7 @@ public class WebKeyword {
      * @return WebKeyword to set value for element
      */
     public WebKeyword setValueForSelectElement(WebElement webElement, chooseTypeOfSelect type, String value) {
-        Select ddlElement = new Select(waitForElementToBeClickable(webElement));
+        Select ddlElement = new Select(waitForElementClickable(webElement));
         switch (type) {
             case selectByValue:
                 ddlElement.selectByValue(value);
@@ -164,7 +163,7 @@ public class WebKeyword {
     public WebKeyword click(WebElement webElement) {
         scrollToElement(webElement);
         waitForElementVisibilities(webElement);
-        waitForElementToBeClickable(webElement).click();
+        waitForElementClickable(webElement).click();
         return new WebKeyword(driver);
     }
 
@@ -176,7 +175,7 @@ public class WebKeyword {
      */
     public WebKeyword clickWithOutScroll(WebElement webElement) {
         waitForElementVisibilities(webElement);
-        waitForElementToBeClickable(webElement).click();
+        waitForElementClickable(webElement).click();
         return new WebKeyword(driver);
     }
 
@@ -188,6 +187,7 @@ public class WebKeyword {
      * @return: keyword to click on element
      */
     public WebKeyword clickByJS(WebElement webElement) {
+        scrollToElement(webElement);
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", webElement);
         return new WebKeyword(driver);
     }
