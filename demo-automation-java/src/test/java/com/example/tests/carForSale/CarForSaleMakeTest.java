@@ -28,14 +28,7 @@ public class CarForSaleMakeTest extends BaseTest {
         Assert.assertTrue(carForSaleMake. isCheckBoxNotSelect());
     }
 
-    @Test(testName = "Verify all element in Make filter should be displayed correct when first time navigate")
-    public void verifyAllElementInMakeFilterShouldBeDisplayedCorrectWhenFirstTimeNavigate1() throws InterruptedException  
-    {
-        BasePage basePage = new BasePage(driver);
-        basePage.navigateToPage("Sale");
-        CarForSaleMake carForSaleMake = new CarForSaleMake(driver, "BMW");
-        Assert.assertTrue(carForSaleMake. isCheckBoxNotSelect());
-    }
+   
 }
  
  		

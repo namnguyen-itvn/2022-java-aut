@@ -29,22 +29,7 @@ public class CarForSaleBodyStyleFilterPage extends BasePage {
     }
 
     /**
-<<<<<<< Updated upstream
-     * check Body Style Options On Filter Should Be Filtered After Chose
-     * @return boolean check
-     */
-    public boolean checkBodyStyleOptionsOnFilterShouldBeFilteredAfterChose() {
-        boolean check = false;
-        WebElement bodyStyleOptions = keyword.findElement(By.xpath("//div[text()='Convertible']"));
-        keyword.click(bodyStyleOptions);
-        WebElement linkBodyStyle = keyword.findElement(By.cssSelector("a[label ='Convertible']"));
-        keyword.scrollToElement(linkBodyStyle);
-        WebElement txtYourSearchBodyStyle = keyword.findElement(By.xpath("//span[text()='Convertible']"));
-        keyword.scrollToElement(txtYourSearchBodyStyle);
-        WebElement linkClearFilters = keyword.findElement(By.xpath("//span[text()='Clear Filters']"));
-        keyword.scrollToElement(linkClearFilters);
-        if (linkBodyStyle.isDisplayed() && txtYourSearchBodyStyle.isDisplayed() && linkClearFilters.isDisplayed()) {
-=======
+
      * choose option in Body Style
      * @param option
      */
@@ -100,17 +85,13 @@ public class CarForSaleBodyStyleFilterPage extends BasePage {
         WebElement linkClearFilters = keyword.findElement(By.xpath("//span[text()='Clear Filters']"));
         keyword.scrollToElement(linkClearFilters);
         if (linkOption.isDisplayed() && txtYourSearchBodyStyle.isDisplayed() && linkClearFilters.isDisplayed()) {
->>>>>>> Stashed changes
+
             check = true;
         } else {
             check = false;
         }
-<<<<<<< Updated upstream
-        return check;
-    }
 
-=======
         return check; 
     }   
->>>>>>> Stashed changes
+
 }

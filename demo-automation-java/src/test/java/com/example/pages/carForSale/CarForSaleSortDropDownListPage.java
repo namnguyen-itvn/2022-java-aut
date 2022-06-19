@@ -42,17 +42,7 @@ public class CarForSaleSortDropDownListPage extends BasePage {
      * @throws IOException
      * @throws NumberFormatException
      */
-<<<<<<< Updated upstream
-    public boolean checkSortDropdownListIsSortedByChosenSortOptionExpectSponsoredCars() throws NumberFormatException, IOException {
-        boolean check = false;     
-        System.out.println(selectSort.getOptions().get(1).getText());
-        keyword.click(selectSort.getOptions().get(1));
-        
-        WebElement listPrice = keyword.findElement(By.xpath("//div[@data-qaid='cntnr-listings-tier-listings']/div[@data-cmp='delayedImpressionWaypoint']//span[@class='first-price']"));
-        System.out.println(listPrice.getText());
-        return check;
-    } 
-=======
+
     // ********************** Issue ********************************
 
     // public boolean checkSortDropdownListIsSortedByChosenSortOptionExpectSponsoredCars() throws NumberFormatException, IOException {
@@ -64,6 +54,6 @@ public class CarForSaleSortDropDownListPage extends BasePage {
     //     System.out.println(listPrice.getText());
     //     return check;
     // } 
->>>>>>> Stashed changes
+
     
 }
