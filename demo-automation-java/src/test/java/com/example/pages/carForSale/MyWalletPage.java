@@ -227,4 +227,5 @@ public class MyWalletPage extends BasePage {
     public String[] arrCreditRange = { "Excellent (740-900)", "Very Good (700-739)", "Good (670-699)", "Fair (630-669)",
             "Rebuilding (580-629)" };
 
+
 }
