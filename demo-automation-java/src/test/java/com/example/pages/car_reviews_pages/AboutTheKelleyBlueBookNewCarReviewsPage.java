@@ -13,13 +13,6 @@ public class AboutTheKelleyBlueBookNewCarReviewsPage extends BasePage {
 
     public AboutTheKelleyBlueBookNewCarReviewsPage() {
     }
-    
-    //
-    // private By Content = By.xpath("//div[@id='app']/descendant::h2[contains(text(),'About')]");
-    // //
-    // public boolean isDisplayedContent(){
-    //     return keyword.findElement(Content).isDisplayed();
-    // }
     private By Content = By.xpath("//div[@id='app']/descendant::h2[contains(text(),'About')]/following::p/parent::div");
 
     public boolean isDisplayedContent(){

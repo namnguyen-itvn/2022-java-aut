@@ -12,15 +12,6 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class CarReviewsLatestCarNewTest extends BaseTest {
-    
-    // @Test(testName = "Demo Navigate To The Page")
-    // public void demoNavigateToThePage() {
-
-    //     BasePage basePage = new BasePage(driver);
-    //     basePage.navigateToPage("Reviews");
-    // }
-
-
     @Test(testName = "Verify that module LatestCarNews displayed list six article and link")
     public void verifThatModuleLatestCarNewsDisplayedListSixArticleAndLink() {
         BasePage basePage = new BasePage(driver);
