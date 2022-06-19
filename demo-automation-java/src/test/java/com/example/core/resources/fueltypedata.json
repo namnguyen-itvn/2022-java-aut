@@ -1,0 +1,11 @@
+[
+    {
+        "fuel_type": "Diesel"
+    },
+    {
+        "fuel_type": "Gasoline"
+    },
+    {
+        "fuel_type": "Hydrogen"
+    }
+]

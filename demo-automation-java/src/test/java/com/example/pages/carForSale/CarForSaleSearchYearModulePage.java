@@ -20,10 +20,12 @@ public class CarForSaleSearchYearModulePage extends BasePage{
      * Method verify that search year module should be displayed is correct
      * @return true or false
      */
-    public boolean isTheYearFilterShouldBeDisplayedCorrectWhenUserScrollToIt(){
+    public boolean isTheYearFilterShouldBeDisplayedCorrectAsReqirementWhenUserScrollToIt(){
         keyword.click(linkNotNow);
         keyword.scrollToElement(lblYear);
-        if (isElementDisplayed(lblYear) && isElementDisplayed(ddlMinimumYear) && isElementDisplayed(ddlMaximumYear)){
+        if (isElementDisplayed(lblYear) == true && 
+            isElementDisplayed(ddlMinimumYear) == true && 
+            isElementDisplayed(ddlMaximumYear) == true){
             return true;
         }else return false;
     }
@@ -77,7 +79,8 @@ public class CarForSaleSearchYearModulePage extends BasePage{
         WebElement btnCondition = keyword.findElementByLocator(By.xpath("//div[contains(@data-cmp, 'chip')]/child::span[contains(text(), '"+year+"')]"));
         WebElement linkClearFilter = keyword.findElementByLocator(By.xpath("//span[contains(text(), 'Clear Filters')]"));
         keyword.scrollToElement(lblYourSearch);
-        if (isElementEnabled(btnCondition) && isElementEnabled(linkClearFilter)){
+        if (isElementEnabled(btnCondition) == true && 
+            isElementEnabled(linkClearFilter) == true){
             return true;
         }else return false;
     }
@@ -87,19 +90,18 @@ public class CarForSaleSearchYearModulePage extends BasePage{
      * @param year
      * @return
      */
-    public boolean isYearSelectedDisplayInTheMessageOnVehicleDetailsPage(String year){
+    public boolean isYearSelectedDisplayInTheTitleOfCarOnVehicleDetailsPage(String year){
         keyword.click(linkNotNow);
         keyword.scrollToElement(lblYear);
         keyword.click(ddlMinimumYear);
         keyword.setValueForSelectElement(ddlMinimumYear, chooseTypeOfSelect.selectByValue, year);
         keyword.click(ddlMaximumYear);
         keyword.setValueForSelectElement(ddlMaximumYear, chooseTypeOfSelect.selectByValue, year);
-        WebElement itemCar = keyword.waiForLocatorOfElementVisiable(By.xpath("(//div[@data-cmp='inventorySpotlightListing'])[1]/descendant::h2[contains(text(), '"+year+"')]/ancestor::div[@data-cmp = 'delayedImpressionWaypoint']"));
+        WebElement itemCar = keyword.waiForLocatorOfElementVisiable(By.xpath("(//div[@data-cmp='inventorySpotlightListing'])[last()]/descendant::h2[contains(text(), '"+year+"')]/ancestor::div[@data-cmp = 'delayedImpressionWaypoint']"));
         keyword.scrollToElement(itemCar);        
         keyword.click(itemCar);
-        WebElement txtMessage = keyword.waiForLocatorOfElementVisiable(By.xpath("//label[contains(text(), 'Message')]/ancestor::label/following-sibling::textarea[contains(text(), '"+year+"')]"));
-        System.out.println(keyword.getText(txtMessage));
-        if (keyword.getTextElenment(txtMessage).contains(year)){
+        WebElement lblHeadingOfCar = keyword.waiForLocatorOfElementVisiable(By.xpath("//h1[@data-cmp='heading' and contains(text(), '"+year+"')]"));
+        if (keyword.getTextElenment(lblHeadingOfCar).contains(year)){
             return true;
         }else return false;
     }
