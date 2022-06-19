@@ -17,7 +17,7 @@ public class CarForSaleFuelEconomyTest extends BaseTest{
         BasePage basePage = new BasePage(driver);
         basePage.navigateToPage("Sale");
         CarForSaleFuelEconomyPage carForSaleFuelEconomyPage = new CarForSaleFuelEconomyPage(driver);
-        Assert.assertTrue(carForSaleFuelEconomyPage.isTheFuelEconomyFilterDisplayCorrectAsReqirement(fuel_Economy));
+        Assert.assertTrue(carForSaleFuelEconomyPage.isTheFuelEconomyFilterDisplayCorrect(fuel_Economy));
     }
 
     @Test(testName = "Verify That The Results Should Be Match With Chosen Fuel Economy Option", dataProvider = "fuelEconomyDataForTest", dataProviderClass = CarForSaleTestData.class)

@@ -22,12 +22,8 @@ public class CarForSaleSearchLocationPage extends BasePage{
     public boolean isSearchLocationIsDisplayCorrect(){
         keyword.click(linkNotNow);
         keyword.scrollToElement(lblSearchLocation);
-        if (isElementDisplayed(ddlDistance) == true && 
-            isElementDisplayed(txtZipcode) == true && 
-            isElementDisplayed(checkboxDelivery) == true && 
-            isElementEnabled(ddlDistance) == true && 
-            isElementEnabled(txtZipcode) == true && 
-            isElementEnabled(checkboxDelivery) == true){
+        if (isElementDisplayed(ddlDistance) && isElementDisplayed(txtZipcode) && isElementDisplayed(checkboxDelivery) && 
+        isElementEnabled(ddlDistance) && isElementEnabled(txtZipcode) && isElementEnabled(checkboxDelivery)){
                 return true;
         }else return false;
     }
@@ -61,9 +57,8 @@ public class CarForSaleSearchLocationPage extends BasePage{
         keyword.scrollToElement(lblSearchLocation);
         keyword.click(ddlDistance);
         keyword.setValueForSelectElement(ddlDistance, chooseTypeOfSelect.selectByValue, distance);
-        keyword.scrollToElement(linkCarsForSaleHeading);
         WebElement sliderDitanceResult = keyword.waiForLocatorOfElementVisiable(By.xpath("//div[@class = 'flickity-slider']"));
-        if (isElementDisplayed(sliderDitanceResult) == true){
+        if (isElementDisplayed(sliderDitanceResult)){
             return true;
         }else return false;
     }
@@ -81,15 +76,13 @@ public class CarForSaleSearchLocationPage extends BasePage{
         keyword.setText(txtZipcode, zipcode);
         WebElement linkZipCode = keyword.waiForLocatorOfElementVisiable(By.xpath("//span[contains(text(),'90089')]"));        
         WebElement lblHeading = keyword.waiForLocatorOfElementVisiable(By.xpath("//h1[contains(text(), 'in')]"));
-        if (keyword.getText(lblHeading).contains("in") && 
-            isElementDisplayed(linkZipCode) == true){
+        if (keyword.getText(lblHeading).contains("in") && isElementDisplayed(linkZipCode)){
             check =  true;
         }else check = false;
         return check;        
     }
 
     //Declare element
-    private WebElement linkCarsForSaleHeading = keyword.findElement(By.xpath("//div[@id='breadcrumbs-container']"));
     private WebElement linkNotNow = keyword.findElement(By.xpath("//div[@class='popover-content']//div//button[@class='btn btn-link']"));
     private WebElement lblSearchLocation = keyword.findElementByLocator(By.xpath("//div[@data-cmp = 'filterLocation']"));
     private WebElement ddlDistance = keyword.findElementByLocator(By.id("2281868035"));
