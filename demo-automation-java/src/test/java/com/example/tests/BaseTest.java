@@ -29,10 +29,10 @@ public class BaseTest {
 
     @BeforeMethod
     public void setUp() throws Exception {
-        try {            
+        try {
             config = new Configuration("src/test/java/com/example/core/configuration/config.properties");
             driver = DriverFactory.getDriver(config.getProperty("browser"));
-            keyword = new WebKeyword(driver);            
+            keyword = new WebKeyword(driver);
             keyword.openUrl(config.getProperty("url"));
             int implicitWait = Integer.parseInt(config.getProperty("implicitWait"));
             driver.manage().timeouts().implicitlyWait(implicitWait, TimeUnit.SECONDS);
@@ -43,6 +43,6 @@ public class BaseTest {
 
     @AfterMethod
     public void tearDown() {
-        driver.quit();
+        // driver.quit();
     }
 }

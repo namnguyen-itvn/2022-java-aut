@@ -10,6 +10,9 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import javafx.scene.control.ScrollPane.ScrollBarPolicy;
+
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 
@@ -17,7 +20,7 @@ public class WebKeyword {
 
     private WebDriver driver;
     private WebDriverWait wait;
-    private int timeout = 60;
+    private int timeout = 6;
 
     public WebKeyword(WebDriver driver) {
         this.driver = driver;
@@ -220,8 +223,8 @@ public class WebKeyword {
      * @param webElement: element
      * @return: keyword for scroll to element
      */
-    public WebKeyword scrollToElement(WebElement webElement){
-        ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true);", webElement);
+    public WebKeyword scrollToElement(WebElement webElement) {
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", webElement);
         return new WebKeyword(driver);
     }
 
@@ -304,16 +307,17 @@ public class WebKeyword {
 
     /**
      * Method for wait locator of element visiable in page of website
+     * 
      * @param locator: like "By.xpath(""), By.cssSelector("")..."
      * @return: element
      */
-    public WebElement waiForLocatorOfElementVisiable(By locator){
+    public WebElement waiForLocatorOfElementVisiable(By locator) {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
     /**
      * Wait to locator of element visible
-     /**KeyWord from ChauTA1
+     * /**KeyWord from ChauTA1
      * Keyword to find list element 
      * 
      * @param locator: By.xpath or By.cssSelector...
@@ -325,5 +329,11 @@ public class WebKeyword {
     public List<WebElement> findElements(By locator)
     {
         return wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
+    }
+
+    public WebKeyword scrollAndClick(WebElement webElement) {
+        scrollToElement(webElement);
+        waitForElementToBeClickable(webElement).click();
+        return new WebKeyword(driver);
     }
 }
