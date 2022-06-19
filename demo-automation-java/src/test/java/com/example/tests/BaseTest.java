@@ -24,19 +24,21 @@ public class BaseTest {
             driver = new ChromeDriver();
             return driver;
         }
-
         return driver;
-
     }
 
     @BeforeMethod
     public void setUp() throws Exception {
-        config = new Configuration("src/test/java/com/example/core/configuration/config.properties");
-        driver = DriverFactory.getDriver(config.getProperty("browser"));
-        keyword = new WebKeyword(driver);
-        driver.manage().window().maximize();
-        keyword.openUrl(config.getProperty("url"));
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        try {
+            config = new Configuration("src/test/java/com/example/core/configuration/config.properties");
+            driver = DriverFactory.getDriver(config.getProperty("browser"));
+            keyword = new WebKeyword(driver);
+            keyword.openUrl(config.getProperty("url"));
+            int implicitWait = Integer.parseInt(config.getProperty("implicitWait"));
+            driver.manage().timeouts().implicitlyWait(implicitWait, TimeUnit.SECONDS);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @AfterMethod

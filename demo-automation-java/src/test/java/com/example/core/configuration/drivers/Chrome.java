@@ -20,7 +20,7 @@ public class Chrome implements SeleniumDriver{
         if(options == null){
             options = new ChromeOptions();
             options.addArguments("--start-maximized");
-            options.addExtensions(new File("src\\test\\java\\com\\example\\core\\utils\\extension_1_42_4_0.crx"));
+            options.addExtensions(new File("src/test/java/com/example/core/configuration/browser/adblock_1_42_4_0_chrome.crx"));
             options.merge(capabilities);
         }
         return options;
