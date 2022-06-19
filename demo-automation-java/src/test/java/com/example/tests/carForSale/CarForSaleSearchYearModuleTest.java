@@ -17,7 +17,7 @@ public class CarForSaleSearchYearModuleTest extends BaseTest{
         BasePage basePage = new BasePage(driver);
         basePage.navigateToPage("Sale");
         CarForSaleSearchYearModulePage carForSaleSearchYearModulePage = new CarForSaleSearchYearModulePage(driver);
-        Assert.assertTrue(carForSaleSearchYearModulePage.isTheYearFilterShouldBeDisplayedCorrectAsReqirementWhenUserScrollToIt());
+        Assert.assertTrue(carForSaleSearchYearModulePage.isTheYearFilterShouldBeDisplayedCorrectWhenUserScrollToIt());
     }
 
     @Test(testName = "Verify That The List Minimum Year Should Be Displayed When User Click On MiniMum Year Combobox", dataProvider = "expectedYearData", dataProviderClass = CarForSaleTestData.class)
@@ -44,11 +44,11 @@ public class CarForSaleSearchYearModuleTest extends BaseTest{
         Assert.assertTrue(carForSaleSearchYearModulePage.isTheYearFilterShouldBeDisplayedCorrectWhenUserScrollToIt(year));
     }
 
-    @Test(testName = "Verify That The Year Selected Should Be Displayed In The Message On Vehicle Details Page When User Click On Car Item", dataProvider = "yearDataForTest", dataProviderClass = CarForSaleTestData.class)
+    @Test(testName = "verify That Return The Result The Year Of Car Should Be Matched With Option Was Selected", dataProvider = "yearDataForTest", dataProviderClass = CarForSaleTestData.class)
     public void verifyThatTheYearSelectedShouldBeDisplayedInTheMessageOnVehicleDetailsPageWhenUserClickOnCarItem(String year){
         BasePage basePage = new BasePage(driver);
         basePage.navigateToPage("Sale");
         CarForSaleSearchYearModulePage carForSaleSearchYearModulePage = new CarForSaleSearchYearModulePage(driver);
-        Assert.assertTrue(carForSaleSearchYearModulePage.isYearSelectedDisplayInTheTitleOfCarOnVehicleDetailsPage(year));
+        Assert.assertTrue(carForSaleSearchYearModulePage.isYearSelectedDisplayInTheMessageOnVehicleDetailsPage(year));
     }
 }
