@@ -14,9 +14,11 @@ public class CarForSaleDetailTest extends BaseTest {
         BasePage basePage = new BasePage(driver);
         basePage.navigateToPage("Sale");
         basePage.actionExitAds();
+
         CarForSalePage carForSalePage = new CarForSalePage(driver);
         carForSalePage.clickCarItem();
         basePage.actionExitAds();
+
         CarSearchDetailPage carSearchDetailPage = new CarSearchDetailPage(driver);
         carSearchDetailPage.scrollToPriceSection();
         Assert.assertTrue(carSearchDetailPage.isPriceDetailSectionDisplayedAsDefault());
@@ -27,11 +29,47 @@ public class CarForSaleDetailTest extends BaseTest {
         BasePage basePage = new BasePage(driver);
         basePage.navigateToPage("Sale");
         basePage.actionExitAds();
+
         CarForSalePage carForSalePage = new CarForSalePage(driver);
         carForSalePage.clickCarItem();
         basePage.actionExitAds();
+
         CarSearchDetailPage carSearchDetailPage = new CarSearchDetailPage(driver);
         carSearchDetailPage.scrollToPriceSection();
+        Assert.assertTrue(carSearchDetailPage.isTabFairMarketDisplayedAsDefault());
+    }
+
+    @Test(testName = "Verify That Tab Price Breakdown And Offers Should Be Displayed As Default")
+    public void verifyThatTabPriceBreakdownAndOffersShouldBeDisplayedAsDefault() {
+        BasePage basePage = new BasePage(driver);
+        basePage.navigateToPage("Sale");
+        basePage.actionExitAds();
+
+        CarForSalePage carForSalePage = new CarForSalePage(driver);
+        carForSalePage.clickCarItem();
+        basePage.actionExitAds();
+
+        CarSearchDetailPage carSearchDetailPage = new CarSearchDetailPage(driver);
+        carSearchDetailPage.scrollToPriceSection();
+        carSearchDetailPage.clickTabPriceBreakDown();
         Assert.assertTrue(carSearchDetailPage.isTabPriceBreakdownDisplayedAsDefault());
+    }
+
+    @Test(testName = "Verify That Listing Price Should Be Equal With First Price")
+    public void verifyThatListingPriceShouldBeEqualWithFirstPrice() {
+        BasePage basePage = new BasePage(driver);
+        basePage.navigateToPage("Sale");
+        basePage.actionExitAds();
+
+        CarForSalePage carForSalePage = new CarForSalePage(driver);
+        carForSalePage.clickCarItem();
+        basePage.actionExitAds();
+
+        CarSearchDetailPage carSearchDetailPage = new CarSearchDetailPage(driver);
+        String firstPriceValue = carSearchDetailPage.getFirstPriceValue();
+        carSearchDetailPage.scrollToPriceSection();
+        carSearchDetailPage.clickTabPriceBreakDown();
+        System.out.println(firstPriceValue);
+        Assert.assertTrue(carSearchDetailPage.isListingPriceEqualWithFirstPrice(firstPriceValue));
     }
 }

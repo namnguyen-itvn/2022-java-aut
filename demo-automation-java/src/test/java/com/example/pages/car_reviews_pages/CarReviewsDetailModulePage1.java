@@ -84,6 +84,7 @@ public class CarReviewsDetailModulePage1 extends BasePage {
     private By txtEngine;
     private By btnSelectStyles;
 
+
     /**
      * Declare element of BestCar
      */
@@ -114,6 +115,9 @@ public class CarReviewsDetailModulePage1 extends BasePage {
     private By expertReview= By.cssSelector("div[data-analytics*='readmore_ucymm_expert_review_btn']"); 
     private By btnSeeMoreReview = By.cssSelector("button[class*='css-92974k-FocusWrapper e1july549']");
     private By messageNoHasExpertReview = By.xpath("//div[@class='css-de22qy-ColBase e1l0ytpk0']//p[@class='css-113e3v-StyledParagraph emgezi80']");
+    private By codeInvalidMessage = By.xpath("//span[@class='css-tiv2r2-StyledError e2plhlo1']");
+    private By btnGetReviews = By.xpath("//button[@class='css-1hn5qfm-transitionRules-default-WrappedButton']");
+
     /**
      * funtion Click to Tab
      */
@@ -252,8 +256,6 @@ public class CarReviewsDetailModulePage1 extends BasePage {
         return false;
     }
 
-   
-
     /**
      * check elemnt in container of tab Styles displayed correct or not
      * 
@@ -380,9 +382,23 @@ public class CarReviewsDetailModulePage1 extends BasePage {
         return false;
     }
 
+    /**
+     * return the message no has expert Review display or not
+     * @return
+    */
     public boolean isMessageNoHasExpertReviewDisplay(){
         if(isElementDisplayed(keyword.findElement(messageNoHasExpertReview)))
             return true;
+        return false;
+    }
+
+    /**
+     * 
+     * @return
+    */
+    public boolean isInValueMessageDisplayCorrect(){
+        String expcetedMessage = "ZIP Code is invalid.";
+        if(isElementDisplayed(keyword.findElement(codeInvalidMessage))&&isElementTextEqualExpectedText(keyword.findElement(codeInvalidMessage),expcetedMessage )&&isElementEnabled(keyword.findElement(btnGetReviews))==false)return true;
         return false;
     }
 }

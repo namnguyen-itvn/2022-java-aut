@@ -12,8 +12,12 @@ public class DataCarSearch {
     @DataProvider(name = "DataNotHasExpertReview")
     public static Object[][] dataEagle() {
         return JsonHelper.ReadJsonFromFile("src/test/java/com/example/core/resources/DataHasNotExpertReview.json");
-
-
     }
+
+    @DataProvider(name = "DataInvalidZipcode")
+    public static Object[][] dataInvalidZipcode() {
+        return JsonHelper.ReadJsonFromFile("src/test/java/com/example/core/resources/InvalidZipcode.json");
+    }
+    
 }
 

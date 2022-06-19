@@ -215,4 +215,16 @@ public class CarReviewsModuleTests1 extends BaseTest {
         Assert.assertTrue(carreviewsDetailPage.isMessageNoHasExpertReviewDisplay()); 
     }
 
+    @Test(testName = "Verify that Zipcode label should be display Error Message when input invalid value", dataProvider = "DataInvalidZipcode", dataProviderClass = DataCarSearch.class)
+    public void VerifyThatZipCodeLabelShouldBeDisplayErrorMessageWhenInputInvalidValue(String year, String make, String model,String zipCode) throws Exception{
+        BasePage basePage = new BasePage(driver);
+        basePage.navigateToPage("Reviews");
+
+        CarReviewPageConsumerReviewModule carReviewPageConsumerReviewModule = new CarReviewPageConsumerReviewModule(driver);
+        carReviewPageConsumerReviewModule.inputAndSubmitGetCarReview(year, make, model, zipCode);
+
+        CarReviewsDetailModulePage1 carReviewsDetailPage= new CarReviewsDetailModulePage1(driver);
+        Assert.assertTrue(carReviewsDetailPage.isInValueMessageDisplayCorrect()); 
+    }
+
 }
