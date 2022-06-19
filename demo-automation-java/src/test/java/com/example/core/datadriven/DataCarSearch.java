@@ -5,7 +5,7 @@ import org.testng.annotations.DataProvider;
 import com.example.core.helper.JsonHelper;
 
 public class DataCarSearch {
-    @DataProvider(name = "DataCarSearch")
+    @DataProvider(name = "DataCarSearch1")
     public static Object[][] dataHonda() {
         return JsonHelper.ReadJsonFromFile("src/test/java/com/example/core/resources/DataCar.json");    
     }

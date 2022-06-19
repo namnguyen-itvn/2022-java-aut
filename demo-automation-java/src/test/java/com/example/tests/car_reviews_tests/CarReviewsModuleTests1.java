@@ -160,7 +160,7 @@ public class CarReviewsModuleTests1 extends BaseTest {
         Assert.assertTrue(carReviewsDetailModulePage.isContentOtherYearDisplayCorrectly(make, model));
     }
     @Test(testName = "Verify User can navigate to Build & Price page", dataProvider = "DataCarSearch", dataProviderClass = DataCarSearch.class)
-    public void verifyUserCanNavigateToBuildAndPricePage(String year, String make, String model,String zipCode) throws Exception{
+    public void verifyUserCanNavigateToBuildPricePage(String year, String make, String model, String zipCode) throws Exception{
         BasePage basePage = new BasePage(driver);
         basePage.navigateToPage("Reviews");
 
@@ -176,7 +176,7 @@ public class CarReviewsModuleTests1 extends BaseTest {
     }
 
     @Test(testName = "Verify User can navigate to See Car For Sale page", dataProvider = "DataCarSearch", dataProviderClass = DataCarSearch.class)
-    public void verifyUserCanNavigateToSeeCarForSalePage(String year, String make, String model,String zipCode) throws Exception{
+    public void verifyUserCanNavigateToSeeCarForSale(String year, String make, String model,String zipCode) throws Exception{
         BasePage basePage = new BasePage(driver);
         basePage.navigateToPage("Reviews");
 
@@ -192,7 +192,7 @@ public class CarReviewsModuleTests1 extends BaseTest {
     }
 
     @Test(testName = "Verify that Expert Reviews should be displayed as required when it has expert's review", dataProvider = "DataCarSearch", dataProviderClass = DataCarSearch.class)
-    public void VerifyThatExpertReviewsShouldbeDisplayedWhenHasExpertReview(String year, String make, String model,String zipCode) throws Exception{
+    public void VerifyThatExpertReviewsShouldDisplayedWhenHasExpertReview(String year, String make, String model,String zipCode) throws Exception{
         BasePage basePage = new BasePage(driver);
         basePage.navigateToPage("Reviews");
 
@@ -204,7 +204,7 @@ public class CarReviewsModuleTests1 extends BaseTest {
     }
 
     @Test(testName = "Verify that Expert Reviews should be displayed as required when it hasn't expert's review", dataProvider = "DataNotHasExpertReview", dataProviderClass = DataCarSearch.class)
-    public void VerifyThatExpertReviewsShouldbeDisplayedWhenHasNotExpertReview(String year, String make, String model,String zipCode) throws Exception{
+    public void VerifyThatExpertReviewsShouldDisplayedWhenHasNotExpertReview(String year, String make, String model,String zipCode) throws Exception{
         BasePage basePage = new BasePage(driver);
         basePage.navigateToPage("Reviews");
 
@@ -216,7 +216,7 @@ public class CarReviewsModuleTests1 extends BaseTest {
     }
 
     @Test(testName = "Verify that Zipcode label should be display Error Message when input invalid value", dataProvider = "DataInvalidZipcode", dataProviderClass = DataCarSearch.class)
-    public void VerifyThatZipCodeLabelShouldBeDisplayErrorMessageWhenInputInvalidValue(String year, String make, String model,String zipCode) throws Exception{
+    public void VerifyThatZipCodeLabelShouldDisplayErrorMessageWhenInputInvalidValue(String year, String make, String model,String zipCode) throws Exception{
         BasePage basePage = new BasePage(driver);
         basePage.navigateToPage("Reviews");
 
