@@ -99,7 +99,7 @@ public class BasePage {
     }
 
     /**
-     * 
+     *
      * @param locator
      * @return Element displayed or not
      */
@@ -118,7 +118,7 @@ public class BasePage {
 
     /**
      * Check element text is match expected text or not
-     * 
+     *
      * @param element to get text
      * @param expectedText expected text
      * @return True (Match) || False (Not Match)
@@ -126,7 +126,7 @@ public class BasePage {
     public boolean isElementTextEqualExpectedText(WebElement element, String expectedText){
         return keyword.getText(element).equals(expectedText);
     }
-    
+
     /**
      * Get page title
      * @return
@@ -136,7 +136,7 @@ public class BasePage {
     }
 
     /**
-     * 
+     *
      * @param locator
      * @return Element enabled or not
      */
@@ -145,7 +145,7 @@ public class BasePage {
     }
 
     /**
-     * 
+     *
      * @param locator
      * @return text in element
      */
