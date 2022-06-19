@@ -9,7 +9,6 @@ import com.example.pages.car_reviews_pages.BuildAndPricePage;
 import com.example.pages.car_reviews_pages.CarReviewsCarYouMayLike;
 import com.example.pages.car_reviews_pages.CarReviewsDetailNewCarPriceQuotePage;
 import com.example.pages.car_reviews_pages.CarReviewsNewCarPriceQuotePage;
-import com.example.pages.car_reviews_pages.CarreviewsDetailPage;
 import com.example.tests.BaseTest;
 
 public class CarReviewsDetailNewCarPriceQuoteTest extends BaseTest {
@@ -150,19 +149,5 @@ public class CarReviewsDetailNewCarPriceQuoteTest extends BaseTest {
         "UI Of Car You May Like Not Correct When Car No Longer Avaiable");
     }
 
-    @Test(testName = "Verify User can navigate to Build & Price page", dataProvider = "DataHonda", dataProviderClass = DataCarSearch.class)
-    public void verifyUserCanNavigateToBuildAndPricePage(String year, String make, String model,String zipQuote){
-        BasePage basePage = new BasePage(driver);
-        basePage.navigateToPage("Reviews");
-
-        CarReviewsNewCarPriceQuotePage CarReviewsNewCarPriceQuotePage = new CarReviewsNewCarPriceQuotePage(driver);
-        CarReviewsNewCarPriceQuotePage.inputDataCar(year, make, model);
-
-        CarreviewsDetailPage carreviewsDetailPage= new CarreviewsDetailPage(driver);
-        carreviewsDetailPage.clickOnBuildAndPriceButton(year, make, model);
-
-        BuildAndPricePage buildAndPricePage = new BuildAndPricePage(driver);
-        Assert.assertTrue(buildAndPricePage.isTitlePageBuildAndPriceDisplaysCorrect(year, make, model));
-    }
     
 }

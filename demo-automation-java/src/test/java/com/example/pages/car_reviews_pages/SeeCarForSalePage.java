@@ -14,8 +14,8 @@ public class SeeCarForSalePage extends BasePage {
  * 
  * @return
 */
-public boolean isTitlePageBuildAndPriceDisplaysCorrect(String year, String make, String model) {
+public boolean isTitlePageSeeCarForSaleDisplaysCorrect(String year, String make, String model) {
    String expcetedTitleSeeForSale = "Used "+year+" "+make+" "+model+" for Sale (Test Drive at Home) - Kelley Blue Book";
-    return driver.getTitle().trim().equals(expcetedTitleSeeForSale);
+    return pageTitle().equals(expcetedTitleSeeForSale);
 }
 }
