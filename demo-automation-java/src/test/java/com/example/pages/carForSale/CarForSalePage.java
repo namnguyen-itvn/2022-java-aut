@@ -13,33 +13,31 @@ import com.example.pages.BasePage;
 
 public class CarForSalePage extends BasePage {
 
-    public CarForSalePage() {
-    }
-
     public CarForSalePage(WebDriver driver) {
         super(driver);
     }
 
     private By txtSearch = By.xpath("//input[@type='text']");
-    private By btnSearch = By.xpath("//button[@type='submit']//child::span");
+    private By btnSearch = By.xpath("//button[@aria-label='search-btn']");
     private By carForSales = By.xpath("//a[@label='Cars for Sale']");
     private By lblTitle = By.xpath("//h1[@data-cmp='heading']");
     private By iconZipcode = By.cssSelector("span[class='glyphicon glyphicon-map-marker']");
     private By carList = By.xpath("//div[@data-qaid='cntnr-listings']");
     private By carItem = By.xpath("(//div[@data-cmp='inventorySpotlightListing'])[1]");
     private By lblCarTitle = By.xpath("(//div[@data-cmp='inventorySpotlightListing'])[1]/descendant::h2");
+    private By lblCarDistance = By.xpath(
+            "(//div[@data-cmp='inventorySpotlightListing'])[1]/descendant::div[@class='row']/descendant::div[@class='text-bold']");
+    private By lblCarPrice = By
+            .xpath("(//div[@data-cmp='inventorySpotlightListing'])[1]/descendant::span[@class='first-price']");
+    private By lblSeePayMent = By
+            .xpath("(//div[@data-cmp='inventorySpotlightListing'])[1]/descendant::span[contains(text(),'See')]");
+    private By imgCar = By.xpath("(//div[@data-cmp='inventorySpotlightListing'])[1]/descendant::img");
     private By ddlSort = By.id("149138475");
-    private By lblAlertMessage = By.xpath("//div[@id='ae-show-payments']/preceding-sibling::div");
-    private By lblSubAlertMessage = By.xpath("//div[@id='AlertContainer']/descendant::div[@id='ae-show-payments']");
+    private By lblAlertMessage = By
+            .xpath("//div[@id='showSupplementalMessage']/preceding::div[contains(text(),'Due')]");
+    private By lblSubAlertMessage = By.xpath("//div[@id='showSupplementalMessage']");
     public String expectedAlertMessage = "Due to nationwide inventory shortages, we were unable to find  matches for your search.";
     public String expectedSubAlertMessage = "Try changing your search criteria or remove filters.";
-
-    /*
-     * Return Search text box displayed or not
-     */
-    public boolean isSearchTextBoxDisplayed() {
-        return keyword.findElement(txtSearch).isDisplayed();
-    }
 
     /*
      * Return Search Place Holder Displayed correct or not
@@ -48,20 +46,6 @@ public class CarForSalePage extends BasePage {
         String actualPlaceHolder = keyword.findElement(txtSearch).getAttribute("placeholder");
         String expectedPlaceHolder = "Search by Make, Model, Body Style or Keyword";
         return actualPlaceHolder.equals(expectedPlaceHolder);
-    }
-
-    /*
-     * Return Search Button Displayed correct or not
-     */
-    public boolean isSearchButtonDisplayed() {
-        return keyword.findElement(carForSales).isDisplayed();
-    }
-
-    /*
-     * Return Car For Sales BreadCrums Enabled to click or not
-     */
-    public boolean isCarForSalesBreadcrumbsEnabled() {
-        return keyword.findElement(carForSales).isEnabled();
     }
 
     /*
@@ -74,18 +58,11 @@ public class CarForSalePage extends BasePage {
     }
 
     /*
-     * Return Icon Zipcode Displayed or not
-     */
-    public boolean isIconZipcodeDisplayed() {
-        return keyword.findElement(iconZipcode).isDisplayed();
-    }
-
-    /*
      * Verify the top of the cars for sale section displayed as default
      */
     public boolean isTheTopOfTheCarForSalePageSectionDisplayedAsDefault() {
-        if (isSearchTextBoxDisplayed() & isSearchPlaceHolderDisplayedCorrect() & isSearchButtonDisplayed()
-                & isCarForSalesBreadcrumbsEnabled() & isTitleDisplayedCorrect() & isIconZipcodeDisplayed()) {
+        if (isElementDisplayed(txtSearch) & isSearchPlaceHolderDisplayedCorrect() & isElementDisplayed(btnSearch)
+                & isElementEnabled(carForSales) & isTitleDisplayedCorrect() & isElementDisplayed(iconZipcode)) {
             return true;
         } else
             return false;
@@ -96,11 +73,11 @@ public class CarForSalePage extends BasePage {
      */
     public void isFilterSortValueListDisplayedCorrect() {
         Select select = new Select(keyword.findElement(ddlSort));
-        List actualDropdownValues = new ArrayList();
+        List<String> actualDropdownValues = new ArrayList<String>();
         for (WebElement element : select.getOptions()) {
             actualDropdownValues.add(keyword.getText(element));
         }
-        List expectedDropdownValues = new ArrayList();
+        List<String> expectedDropdownValues = new ArrayList<String>();
         expectedDropdownValues.add("Relevance");
         expectedDropdownValues.add("Price - Lowest");
         expectedDropdownValues.add("Price - Highest");
@@ -164,14 +141,13 @@ public class CarForSalePage extends BasePage {
     }
 
     /**
-     * Action search car
+     * Action to press button Search
      * 
-     * @param keyWord
      * @throws Exception
      */
-    public void searchCar(String keyWord) throws Exception {
-        keyword.setText(keyword.findElement(txtSearch), keyWord);
-        keyword.click(keyword.findElement(btnSearch));
+    public void searchCar(String invalidKeyWord) throws Exception {
+        keyword.setText(keyword.findElement(txtSearch), invalidKeyWord);
+        keyword.pressEnter(keyword.findElement(txtSearch));
     }
 
     /**
@@ -187,4 +163,18 @@ public class CarForSalePage extends BasePage {
         } else
             return false;
     }
+
+    /**
+     * 
+     * @return Car Card Itam Display Correct or not
+     */
+    public boolean isCarCardItemDisplayCorrect() {
+        if (isElementDisplayed(imgCar) & isElementDisplayed(lblCarTitle) & isElementDisplayed(lblCarDistance)
+                & isElementDisplayed(lblCarPrice)
+                & isElementDisplayed(lblSeePayMent)) {
+            return true;
+        } else
+            return false;
+    }
+
 }
