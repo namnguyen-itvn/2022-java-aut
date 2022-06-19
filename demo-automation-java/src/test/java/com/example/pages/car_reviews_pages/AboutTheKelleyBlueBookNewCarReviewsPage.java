@@ -8,6 +8,7 @@ import com.example.pages.BasePage;
 public class AboutTheKelleyBlueBookNewCarReviewsPage extends BasePage {
 
     public AboutTheKelleyBlueBookNewCarReviewsPage(WebDriver driver) {
+        super(driver);
     }
 
     public AboutTheKelleyBlueBookNewCarReviewsPage() {
