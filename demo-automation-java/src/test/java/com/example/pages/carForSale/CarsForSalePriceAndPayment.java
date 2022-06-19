@@ -5,8 +5,12 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.example.pages.BasePage;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class CarsForSalePriceAndPayment extends BasePage {
     public CarsForSalePriceAndPayment(WebDriver driver) {
@@ -40,7 +44,7 @@ public class CarsForSalePriceAndPayment extends BasePage {
             return true;
         }
         else return false;
-    } 
+    }
 
     /**
      *  Return BtnMonthlyPayment is correct or not
@@ -52,14 +56,14 @@ public class CarsForSalePriceAndPayment extends BasePage {
             return true;
         }
         else return false;
-    } 
+    }
 
         /**
      *  Return MinMaxPriceTextHint and btnMonthlyPayment is correct or not
      * @return
      */
     public boolean isMaxMinPriceTextHintCorrect(){
-        if (isMaxPriceTextHintCorrect()==true & 
+        if (isMaxPriceTextHintCorrect()==true &
             isMinPriceTextHintCorrect()==true &
             isBtnMonthlyPaymentNotSet()==true) {
             return true;
@@ -68,11 +72,11 @@ public class CarsForSalePriceAndPayment extends BasePage {
     }
 
             /**
-     *  action setValue for maxmin price 
+     *  action setValue for maxmin price
      * @param min
      * @param max
      */
-    //action setValue for maxmin price 
+    //action setValue for maxmin price
     public void actionSetPrice(String min, String max){
         waitNoCondition();
         keyword.scrollToElement(txbMaxPrice);
@@ -84,13 +88,13 @@ public class CarsForSalePriceAndPayment extends BasePage {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         waitNoCondition();
     }
-    
+
     //action navigate to detail vehicle [effect with ads]
     public void actionNavToCFSVehicleDetails(){
         WebElement imgFirstResults = keyword.findElement(locaimgFirstResults);
         keyword.scrollToElement(imgFirstResults);
         keyword.click(imgFirstResults);
-        waitNoCondition(); 
+        waitNoCondition();
     }
 
     //wait with No Condition
