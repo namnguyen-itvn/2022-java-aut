@@ -85,6 +85,17 @@ public class WebKeyword {
     }
 
     /**
+     * Scroll to element and click
+     * @param webElement
+     * @return
+     */
+    public WebKeyword scrollAndClick(WebElement webElement) {
+        scrollToElement(webElement);
+        waitForElementToBeClickable(webElement).click();
+        return new WebKeyword(driver);
+    }
+
+    /**
      * Wait to element visible
      *
      * @param locator: By.xpath or By.cssSelector...
