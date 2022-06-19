@@ -17,9 +17,13 @@ public class CarsForSaleDetailVehicle extends BasePage {
     private WebElement lblTypeOfWheelDrive = keyword.findElement(By.xpath("//div[@aria-label='DRIVE TYPE']/parent::div/parent::div/child::div[@class='col-xs-10 margin-bottom-0']"));
     private WebElement lblPrice = keyword.findElement(By.xpath("//div[@data-cmp='pricing']/span"));
     private WebElement lblMileage = keyword.findElement(By.xpath("//div[@aria-label='MILEAGE']/parent::div/parent::div/child::div[@class='col-xs-10 margin-bottom-0']"));
+<<<<<<< HEAD
         
     private By lblOptPriceRating = By.cssSelector("div.ribbon-content-left"); 
+=======
+>>>>>>> team2-tuyenttb-implement-testcase-car-for-sale-price-rating-module
     
+    private By lblOptPriceRating = By.xpath("div.ribbon-content-left");
 
     /**
      *  Return TypeOfWheelDriveDisplayed is correct or not

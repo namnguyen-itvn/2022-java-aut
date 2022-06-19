@@ -42,6 +42,7 @@ public class CarForSaleSortDropDownListPage extends BasePage {
      * @throws IOException
      * @throws NumberFormatException
      */
+
     public boolean checkSortDropdownListIsSortedByChosenSortOptionExpectSponsoredCars() throws NumberFormatException, IOException {
         boolean check = false;     
         System.out.println(selectSort.getOptions().get(1).getText());
@@ -51,5 +52,6 @@ public class CarForSaleSortDropDownListPage extends BasePage {
         System.out.println(listPrice.getText());
         return check;
     } 
+
     
 }
