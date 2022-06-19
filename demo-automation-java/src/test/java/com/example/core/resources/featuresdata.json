@@ -1,0 +1,77 @@
+[  
+    {
+        "optionFeatures": "dualRealWheels"
+    },
+    {
+        "optionFeatures": "keylessEntry"
+    },
+    {
+        "optionFeatures": "automaticParking"
+    },
+    {
+        "optionFeatures": "roofRack"
+    },
+    {
+        "optionFeatures": "trailerHitch"
+    },
+    {
+        "optionFeatures": "disabilityEquipped"
+    },
+    {
+        "optionFeatures": "adaptiveCruiseControl"
+    },
+    {
+        "optionFeatures": "appleCarPlay"
+    },
+    {
+        "optionFeatures": "keylessStart"
+    },
+    {
+        "optionFeatures": "navigation"
+    },
+    {
+        "optionFeatures": "portableAudioConnection"
+    },
+    {
+        "optionFeatures": "premiumAudio"
+    },
+    {
+        "optionFeatures": "rainSensingWipers"
+    },
+    {
+        "optionFeatures": "premiumWheels"
+    },  
+    {
+        "optionFeatures": "satelliteRadio"
+    },
+    {
+        "optionFeatures": "cruiseControl"
+    },
+    {
+        "optionFeatures": "BluetoothAndHandsFree"
+    },
+    {
+        "optionFeatures": "dVDPlayer"
+    },
+    {
+        "optionFeatures": "headUpDisplay"
+    },
+    {
+        "optionFeatures": "row3rdSeats"
+    },
+    {
+        "optionFeatures": "sunroof"
+    },
+    {
+        "optionFeatures": "brakeAssist"
+    },
+    {
+        "optionFeatures": "crossTrafficAlert"
+    },
+    {
+        "optionFeatures": "nightVision"
+    },
+    {
+        "optionFeatures": "securitySystem"
+    }
+]

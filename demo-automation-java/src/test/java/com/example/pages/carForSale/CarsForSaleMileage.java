@@ -103,7 +103,8 @@ public class CarsForSaleMileage extends BasePage {
     public void actionNavToCFSVehicleDetails(){
         WebElement imgFirstResults = keyword.findElement(locaimgFirstResults);
         keyword.scrollToElement(imgFirstResults);
-        keyword.click(imgFirstResults);
+        waitNoCondition();
+        keyword.clickWithOutScroll(imgFirstResults);
         waitNoCondition();
     }
 
@@ -119,11 +120,11 @@ public class CarsForSaleMileage extends BasePage {
 
     //wait with No Condition
     public void waitNoCondition(){
-        By locabtnExitAds = By.xpath("//button[@id='fsrFocusFirst']");
-        WebDriverWait wait1 = new WebDriverWait(driver, 3);
         try {
-            WebElement btnExitAds = wait1.until(ExpectedConditions.visibilityOfElementLocated(locabtnExitAds));
-        } catch (Exception e) {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
     }
 }
