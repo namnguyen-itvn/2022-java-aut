@@ -18,8 +18,7 @@ public class CarsForSaleDetailVehicle extends BasePage {
     private WebElement lblPrice = keyword.findElement(By.xpath("//div[@data-cmp='pricing']/span"));
     private WebElement lblMileage = keyword.findElement(By.xpath("//div[@aria-label='MILEAGE']/parent::div/parent::div/child::div[@class='col-xs-10 margin-bottom-0']"));
         
-    
-    private WebElement lblOptPriceRating = keyword.findElement(By.cssSelector("div.ribbon-content-left"));
+    private By lblOptPriceRating = By.cssSelector("div.ribbon-content-left"); 
     
 
     /**
@@ -110,8 +109,9 @@ public class CarsForSaleDetailVehicle extends BasePage {
      * @return
      */
     public boolean isLblPriceRating(String value){
+        WebElement lblOptPriceRating1 = keyword.findElement(lblOptPriceRating);
         value = value.toLowerCase();
-        if (lblOptPriceRating.getText().toLowerCase().equals(value)) {
+        if (lblOptPriceRating1.getText().toLowerCase().equals(value)) {
             return true;
         }
         else return false;
