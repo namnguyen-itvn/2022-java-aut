@@ -90,8 +90,8 @@ public class WebKeyword {
      * @param locator: By.xpath or By.cssSelector...
      * @return element to be located
      */
-    public WebElement findElement(By locator) {
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+    public WebElement findElement(By by) {
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(by));
     }
 
     /**
@@ -223,7 +223,6 @@ public class WebKeyword {
         ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true);", webElement);
         return new WebKeyword(driver);
     }
-
     // KeyWord from NhatNM19
     /**
      * wait element display
