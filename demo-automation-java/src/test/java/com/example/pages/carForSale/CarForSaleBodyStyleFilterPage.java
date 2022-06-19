@@ -86,6 +86,7 @@ public class CarForSaleBodyStyleFilterPage extends BasePage {
         keyword.scrollToElement(linkClearFilters);
         if (linkOption.isDisplayed() && txtYourSearchBodyStyle.isDisplayed() && linkClearFilters.isDisplayed()) {
 
+
             check = true;
         } else {
             check = false;
