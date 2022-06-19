@@ -85,13 +85,24 @@ public class WebKeyword {
     }
 
     /**
+     * Scroll to element and click
+     * @param webElement
+     * @return
+     */
+    public WebKeyword scrollAndClick(WebElement webElement) {
+        scrollToElement(webElement);
+        waitForElementToBeClickable(webElement).click();
+        return new WebKeyword(driver);
+    }
+
+    /**
      * Wait to element visible
      *
      * @param locator: By.xpath or By.cssSelector...
      * @return element to be located
      */
-    public WebElement findElement(By locator) {
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+    public WebElement findElement(By by) {
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(by));
     }
 
     /**
@@ -223,7 +234,6 @@ public class WebKeyword {
         ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true);", webElement);
         return new WebKeyword(driver);
     }
-
     // KeyWord from NhatNM19
     /**
      * wait element display
