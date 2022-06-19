@@ -20,7 +20,7 @@ public class CarForSaleFuelEconomyPage extends BasePage{
      * @param expectedFuelEconomy: data to compare with option of fuel economy type
      * @return: true or false
      */
-    public boolean isTheFuelEconomyFilterDisplayCorrect(String expectedFuelEconomy){
+    public boolean isTheFuelEconomyFilterDisplayCorrectAsReqirement(String expectedFuelEconomy){
         keyword.click(linkNotNow);
         keyword.scrollToElement(lblFuelEconomy);
         keyword.click(lblFuelEconomy);
@@ -47,9 +47,11 @@ public class CarForSaleFuelEconomyPage extends BasePage{
         keyword.click(ddlFuelEconomy);
         keyword.setValueForSelectElement(ddlFuelEconomy, chooseTypeOfSelect.selectByValue, fuel);
         keyword.scrollToElement(lblYourSearch);
-        WebElement btnCondition = keyword.findElementByLocator(By.xpath("//div[contains(@data-cmp, 'chip')]/child::span[contains(text(), '"+fuel+"')]"));
+        WebElement btnFilter = keyword.findElementByLocator(By.xpath("//div[contains(@data-cmp, 'chip')]/child::span[contains(text(), '"+fuel+"')]"));
         WebElement linkClearFilter = keyword.findElementByLocator(By.xpath("//span[contains(text(), 'Clear Filters')]"));
-        if (keyword.getText(btnCondition).contains(fuel) && isElementEnabled(btnCondition) && isElementEnabled(linkClearFilter)){
+        if (keyword.getText(btnFilter).contains(fuel) && 
+            isElementEnabled(btnFilter) == true && 
+            isElementEnabled(linkClearFilter) == true){
             return true;
         }else return false;
     }
