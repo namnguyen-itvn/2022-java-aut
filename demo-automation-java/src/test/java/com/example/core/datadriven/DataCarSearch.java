@@ -6,7 +6,14 @@ import com.example.core.helper.JsonHelper;
 
 public class DataCarSearch {
     @DataProvider(name = "DataCarSearch")
-    public static Object[][] dataTest() {
-        return JsonHelper.ReadJsonFromFile("src/test/java/com/example/core/resources/DataCar.json");
+    public static Object[][] dataHonda() {
+        return JsonHelper.ReadJsonFromFile("src/test/java/com/example/core/resources/DataCar.json");    
+    }
+    @DataProvider(name = "DataNotHasExpertReview")
+    public static Object[][] dataEagle() {
+        return JsonHelper.ReadJsonFromFile("src/test/java/com/example/core/resources/DataHasNotExpertReview.json");
+
+
+    }
 }
-}
+
