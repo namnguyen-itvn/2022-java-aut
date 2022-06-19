@@ -35,7 +35,7 @@ public class WebKeyword {
 
     /**
      * set value for Element by Select
-     * 
+     *
      * @param webElement element to set value
      * @param type       type of select element (e.g selectByValue,
      *                   selectByVisibleText, selectByIndex)
@@ -60,7 +60,7 @@ public class WebKeyword {
 
     /**
      * Get all option in drop down list
-     * 
+     *
      * @param element drop down list
      * @return List of options
      */
@@ -73,7 +73,7 @@ public class WebKeyword {
 
     /**
      * Method to check the url then opening the url
-     * 
+     *
      * @param url website to open
      * @throws Exception Exception
      */
@@ -86,7 +86,7 @@ public class WebKeyword {
 
     /**
      * Wait to element visible
-     * 
+     *
      * @param locator: By.xpath or By.cssSelector...
      * @return element to be located
      */
@@ -96,8 +96,8 @@ public class WebKeyword {
 
     /**
      * Wait to element visible
-     * 
-     * @param locator: By.xpath or By.cssSelector...
+     *
+     * @param element: By.xpath or By.cssSelector...
      * @return element to be located
      */
     public WebElement findElement(WebElement element) {
@@ -106,7 +106,7 @@ public class WebKeyword {
 
     /**
      * Keyword for set text to element
-     * 
+     *
      * @param webElement: element to set text
      * @param text:       text
      * @return: keyword to set text for element
@@ -124,9 +124,8 @@ public class WebKeyword {
 
     /**
      * Keyword for set text to element
-     * 
+     *
      * @param webElement: element to set text
-     * @param text:       text
      * @return: keyword to set text for element
      * @throws Exception: exception
      */
@@ -141,7 +140,7 @@ public class WebKeyword {
 
     /**
      * Keyword for get text of element
-     * 
+     *
      * @param webElement: element to get text
      * @return: keyword to get text from element
      */
@@ -156,7 +155,7 @@ public class WebKeyword {
 
     /**
      * Keyword for click on element
-     * 
+     *
      * @param webElement: element to click
      * @return: keyword to click on element
      */
@@ -167,7 +166,7 @@ public class WebKeyword {
 
     /**
      * Keyword for click on element
-     * 
+     *
      * @param webElement: element to click
      * @return: keyword to click on element
      */
@@ -180,7 +179,7 @@ public class WebKeyword {
     /**
      * Keyword for click on element but used by JavaScript for some situation that
      * throw Click Exception
-     * 
+     *
      * @param webElement: element to click
      * @return: keyword to click on element
      */
@@ -191,7 +190,7 @@ public class WebKeyword {
 
     /**
      * Wait for element clickable
-     * 
+     *
      * @param webElement
      * @return
      */
@@ -216,7 +215,7 @@ public class WebKeyword {
 
     /**
      * Keyword for scroll to element
-     * 
+     *
      * @param webElement: element
      * @return: keyword for scroll to element
      */
@@ -228,7 +227,7 @@ public class WebKeyword {
     // KeyWord from NhatNM19
     /**
      * wait element display
-     * 
+     *
      * @param wElement
      * @return
      */
@@ -238,7 +237,7 @@ public class WebKeyword {
 
     /**
      * wait elemnt able click
-     * 
+     *
      * @param mwElement
      * @return
      */
@@ -248,7 +247,7 @@ public class WebKeyword {
 
     /**
      * check element disolay
-     * 
+     *
      * @param webElement
      * @return
      */
@@ -259,7 +258,7 @@ public class WebKeyword {
 
     /**
      * check element able to click
-     * 
+     *
      * @param webElement
      * @return
      */
@@ -270,7 +269,7 @@ public class WebKeyword {
 
     /**
      * check message correct with message expected
-     * 
+     *
      * @param webElement
      * @param expectedMessage
      * @return
@@ -281,9 +280,9 @@ public class WebKeyword {
 
     /**
      * check option diplay correct with data input
-     * 
+     *
      * @param webElement
-     * @param expectedMessage
+     * @param dataInput
      * @return
      */
     public boolean isOptionSelectedIsCorrect(WebElement webElement, String dataInput) {
@@ -294,7 +293,7 @@ public class WebKeyword {
 
     /**
      * Get text element
-     * 
+     *
      * @param webElement
      * @return
      */
@@ -314,8 +313,8 @@ public class WebKeyword {
     /**
      * Wait to locator of element visible
      /**KeyWord from ChauTA1
-     * Keyword to find list element 
-     * 
+     * Keyword to find list element
+     *
      * @param locator: By.xpath or By.cssSelector...
      * @return element to be located
      */
