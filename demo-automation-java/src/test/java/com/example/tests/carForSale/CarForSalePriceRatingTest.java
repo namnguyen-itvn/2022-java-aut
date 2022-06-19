@@ -5,6 +5,7 @@ import org.testng.annotations.Test;
 
 import com.example.pages.BasePage;
 import com.example.pages.carForSale.CarForSalePriceRating;
+import com.example.pages.carForSale.CarsForSaleDetailVehicle;
 import com.example.tests.BaseTest;
 
 public class CarForSalePriceRatingTest extends BaseTest {
@@ -27,15 +28,15 @@ public class CarForSalePriceRatingTest extends BaseTest {
         Assert.assertTrue(carForSalePriceRating. isCheckBoxNotSelect());
     }
 
-    @Test(testName = "Verify title page of first car should be displayed in Vehicle Detail Page when click on return result")
-    public void verifyTitlePageOfFirstCarShouldBbeDisplayedInVehicleDetailPageWhenClickOnReturnResult() throws InterruptedException  
+    @Test(testName = "Verify option price rating of first car should be displayed in Vehicle Detail Page when click on return result")
+    public void verifyOptionPriceRatingOfFirstCarShouldBbeDisplayedInVehicleDetailPageWhenClickOnReturnResult() throws InterruptedException  
     {
         BasePage basePage = new BasePage(driver);
         basePage.navigateToPage("Sale");
-
         CarForSalePriceRating carForSalePriceRating = new CarForSalePriceRating(driver, "Good Price");
         carForSalePriceRating.actionNavToCFSVehicleDetails();
-        Assert.assertTrue(carForSalePriceRating.isTitleCorrected(carForSalePriceRating.expectedFirstCar));
+        CarsForSaleDetailVehicle carsForSaleDetailVehicle = new CarsForSaleDetailVehicle(driver);
+        Assert.assertTrue(carsForSaleDetailVehicle.isLblPriceRating("Good Price"));
     }
     
 }

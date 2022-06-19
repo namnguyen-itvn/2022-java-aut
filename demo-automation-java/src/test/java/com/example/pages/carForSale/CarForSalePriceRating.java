@@ -4,6 +4,8 @@ package com.example.pages.carForSale;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.example.pages.BasePage;
 
@@ -19,7 +21,6 @@ public class CarForSalePriceRating extends BasePage {
     private WebElement ddlPriceRating = keyword.findElement(By.xpath("//span[text()='Price Rating']/parent::span/parent::div"));
     private WebElement lblResults = keyword.findElement(By.cssSelector("div.text-size-md-300"));
 
-
     private By localblResults = By.cssSelector("div.text-size-md-300");
     private By locatagPriceRatingPriceRating  = By.xpath(String.format("//span[text()='%s']",PriceRatingElement));
     private By locatagPriceRatingXIcon = By.xpath(String.format("//span[text()='%s']/parent::*/span/span",PriceRatingElement));
@@ -29,8 +30,8 @@ public class CarForSalePriceRating extends BasePage {
     private By localblClearFilters = By.xpath("//span[@class='text-link']");
     private By locaimgFirstResults = By.xpath("(//div[@data-cmp='itemCard'])[1]");
     private By locaMoreInfo = By.xpath("//span[@id='dealInfo']");
-    private By locaoptPriceRating1 = By.xpath("//input[@value='goodprice']");
-    private By locaoptPriceRating2 = By.xpath("//input[@value='greatprice']");
+    private By locaoptPriceRating1 = By.xpath("//input[@value='goodprice']/parent::label");
+    private By locaoptPriceRating2 = By.xpath("//input[@value='greatprice']/parent::label");
 
     //Result before and after change
 
@@ -55,34 +56,29 @@ public class CarForSalePriceRating extends BasePage {
 
     //action select opt Price Ratinge and compare result before and after click
     public void actionSelectOptPriceRating(){
-        actionExitAds();
+        waitNoCondition();
         keyword.scrollToElement(ddlPriceRating);
-        keyword.click(ddlPriceRating);
         beforeResults = parseStringResultsToNumber(lblResults.getText());
         WebElement optDiveType = keyword.findElement(locaoptPriceRating );
         keyword.click(optDiveType);
 
-        actionExitAds();
-
+        waitNoCondition();
         WebElement lblResults2 = keyword.findElement(localblResults);
         afterResults = parseStringResultsToNumber(lblResults2.getText());
 
-        actionExitAds();
+        waitNoCondition();
     }
 
-    //action exit ads
-    public void actionExitAds(){
+    //wait with No Condition
+    public void waitNoCondition(){
+        By locabtnExitAds = By.xpath("//button[@id='fsrFocusFirst']");
+        WebDriverWait wait1 = new WebDriverWait(driver, 3);
         try {
-            WebElement btnExitAds = keyword.findElement(locabtnExitAds);
-            keyword.click(btnExitAds);
+            WebElement btnExitAds = wait1.until(ExpectedConditions.visibilityOfElementLocated(locabtnExitAds));
         } catch (Exception e) {
-            try {
-                WebElement btnExitAds2 = keyword.findElement(locabtnExitAds2);
-                keyword.click(btnExitAds2);
-            } catch (Exception a) {
-            }
         }
     }
+
 
     /**  
      *  Return Number of results is change or not
@@ -103,7 +99,6 @@ public class CarForSalePriceRating extends BasePage {
         String removeClear = removeComma.replace("|Clear Filters","");
         System.out.println(removeClear);
         double number=Float.parseFloat(removeClear);
-        
         return number;
     }
 
@@ -131,7 +126,6 @@ public class CarForSalePriceRating extends BasePage {
     public void actionNavToCFSVehicleDetails(){
         actionSelectOptPriceRating();
         WebElement imgFirstResults = keyword.findElement(locaimgFirstResults);
-        keyword.scrollToElement(imgFirstResults);
         keyword.click(imgFirstResults);
     }
 
@@ -149,11 +143,9 @@ public class CarForSalePriceRating extends BasePage {
     }
 
     public boolean isCheckBoxNotSelect() throws InterruptedException{
-        actionExitAds();
+        waitNoCondition();
         keyword.scrollToElement(ddlPriceRating);
-        keyword.click(ddlPriceRating);
-        actionExitAds();
-        Thread.sleep(3000);
+        waitNoCondition();
         WebElement optDiveType1 = keyword.findElement(locaoptPriceRating1);
         WebElement optDiveType2 = keyword.findElement(locaoptPriceRating2);
         
@@ -168,11 +160,9 @@ public class CarForSalePriceRating extends BasePage {
     public String firstCarPageTitle() {
         return driver.getTitle();
     } 
-    public String expectedFirstCar = "Used 2015 Ford Edge SEL for sale in Amherst, OH 44001: Sport Utility Details - 470064485 - Autotrader";
+    public String expectedFirstCar = "Used 2016 Toyota Camry  for sale in Little Rock, AR 72210: Sedan Details - 502188902 - Autotrader";
     public boolean isTitleCorrected(String expectedTitle) {
         return firstCarPageTitle().equals(expectedTitle);
     }
-
-    
     
 }
