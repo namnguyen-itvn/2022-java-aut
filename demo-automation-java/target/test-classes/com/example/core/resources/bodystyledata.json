@@ -1,0 +1,33 @@
+[
+    {
+        "optionBodyStyle":  "Convertible"
+    },
+
+    {
+        "optionBodyStyle": "Coupe"
+    },
+
+    {
+        "optionBodyStyle": "Hatchback"
+    },
+    
+    {
+        "optionBodyStyle": "Sedan"
+    },
+
+    {
+        "optionBodyStyle": "SUV / Crossover"
+    },
+    
+    {
+        "optionBodyStyle": "Truck"
+    },
+
+    {
+        "optionBodyStyle": "Van / Minivan"
+    },
+    
+    {
+        "optionBodyStyle": "Wagon"
+    }
+]

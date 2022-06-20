@@ -1,5 +1,6 @@
 package com.example.pages;
 
+import com.example.core.configuration.Configuration;
 import com.example.core.keyword.WebKeyword;
 
 import org.openqa.selenium.By;
@@ -8,15 +9,15 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class BasePage {
-
+    public Configuration config;
     public WebDriver driver;
     public WebKeyword keyword;
     public WebDriverWait wait;
-    private int timeout = 60;
+    public By btnUpdateWallet = By.xpath("//span/following-sibling::div/button");
 
     public BasePage() {
     };
-
+    
     public BasePage(WebDriver driver) {
         this.driver = driver;
         this.keyword = new WebKeyword(driver);
@@ -41,6 +42,31 @@ public class BasePage {
                 System.out.println("Invalid page");
                 break;
         }
+
+    }
+
+    public boolean elmIsVisible(By locator) {
+        return keyword.findElement(locator).isDisplayed();
+    }
+
+    public boolean elmIsClickable(By locator) {
+        return keyword.findElement(locator).isEnabled();
+    }
+
+    public boolean elmIsSelected(By locator) {
+        return keyword.findElement(locator).isSelected();
+    }
+
+    public void clickAction(By locator) {
+        keyword.scrollToElement(keyword.findElement(locator));
+        WebElement element = keyword.findElement(locator);
+        keyword.click(element);
+    }
+
+    public boolean isItemCorrect(String expectedItem, By locator) {
+        WebElement element = keyword.findElement(locator);
+        String item = keyword.getText(element);
+        return item.equals(expectedItem);
     }
 
     /**
@@ -70,7 +96,7 @@ public class BasePage {
     }
 
     /**
-     * 
+     *
      * @param locator
      * @return Element displayed or not
      */
@@ -89,7 +115,7 @@ public class BasePage {
 
     /**
      * Check element text is match expected text or not
-     * 
+     *
      * @param element to get text
      * @param expectedText expected text
      * @return True (Match) || False (Not Match)
@@ -97,7 +123,7 @@ public class BasePage {
     public boolean isElementTextEqualExpectedText(WebElement element, String expectedText){
         return keyword.getText(element).equals(expectedText);
     }
-    
+
     /**
      * Get page title
      * @return
@@ -107,7 +133,7 @@ public class BasePage {
     }
 
     /**
-     * 
+     *
      * @param locator
      * @return Element enabled or not
      */
@@ -116,7 +142,7 @@ public class BasePage {
     }
 
     /**
-     * 
+     *
      * @param locator
      * @return text in element
      */

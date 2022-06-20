@@ -14,7 +14,6 @@ public class CarForSaleAtHomeServicesTest extends BaseTest {
         BasePage basePage = new BasePage(driver);
         basePage.navigateToPage("Sale");
         CarForSaleConditionPage conditionPage = new CarForSaleConditionPage(driver);
-        // conditionPage.actionExitAds();
         conditionPage.chooseOptionAtHomeSerVices(optionAtHomeServices);
         Assert.assertTrue(conditionPage.checkOptionCorrectDisplayed(), "false");
     }

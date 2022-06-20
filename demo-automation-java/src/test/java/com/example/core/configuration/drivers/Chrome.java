@@ -21,6 +21,7 @@ public class Chrome implements SeleniumDriver {
             options = new ChromeOptions();
             options.addArguments("--start-maximized");
             options.addExtensions(new File("src\\test\\java\\com\\example\\core\\utils\\extension_1_42_4_0.crx"));
+            options.addExtensions(new File("src/test/java/com/example/core/configuration/browser/adblock_1_42_4_0_chrome.crx"));
             options.merge(capabilities);
         }
         return options;
@@ -44,13 +45,10 @@ public class Chrome implements SeleniumDriver {
     @Override
     public void setDriverOptions(Object options) {
         this.options = (ChromeOptions) options;
-
     }
 
     @Override
     public void setCapabilities(Object capabilities) {
         this.capabilities = (DesiredCapabilities) capabilities;
-
     }
-
 }
