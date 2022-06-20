@@ -61,5 +61,4 @@ public class CarForSaleSearchFuelTypePage extends BasePage{
     private WebElement optGasonline = keyword.findElement(By.xpath("//div[contains(text(), 'Gasoline')]"));
     private WebElement optHybrid = keyword.findElement(By.xpath("//div[contains(text(), 'Hybrid')]"));
     private WebElement optHydrogen = keyword.findElement(By.xpath("//div[contains(text(), 'Hydrogen')]"));
-    
 }

@@ -1,10 +1,7 @@
 package com.example.pages;
 
 import com.example.core.configuration.Configuration;
-import com.example.core.driver.DriverFactory;
 import com.example.core.keyword.WebKeyword;
-
-import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
