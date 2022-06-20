@@ -39,4 +39,9 @@ public class CarForSaleTestData {
     public static Object[][] expectedDistanceData() {
         return JsonHelper.ReadJsonFromFile("src/test/java/com/example/core/resources/expecteddistancedata.json");
     }
+
+    @DataProvider(name="fuelTypeData")
+    public static Object[][] fuelTypeData(){
+        return JsonHelper.ReadJsonFromFile("src/test/java/com/example/core/resources/fueltypedata.json");
+    }
 }
