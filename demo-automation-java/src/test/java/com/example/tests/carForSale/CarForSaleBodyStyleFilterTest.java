@@ -3,10 +3,7 @@ package com.example.tests.carForSale;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-<<<<<<< Updated upstream
-=======
 import com.example.core.datadriven.CarForSaleTestData;
->>>>>>> Stashed changes
 import com.example.pages.BasePage;
 import com.example.pages.carForSale.CarForSaleBodyStyleFilterPage;
 import com.example.tests.BaseTest;

@@ -14,6 +14,10 @@ public class CarReview10BestCarDeals extends BasePage {
     
     private WebElement txtTitlePage=keyword.findElement(By.xpath("//*[@class='tdb-title-text']"));
 
+    /*
+     * Check the title page after redirected change or not
+     * Return true if title change as expected
+     */
     public boolean verifyTitlePage() {
         return txtTitlePage.getText().trim().contains(expectedTitle);
     }
