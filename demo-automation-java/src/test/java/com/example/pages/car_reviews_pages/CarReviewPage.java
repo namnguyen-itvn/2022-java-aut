@@ -19,6 +19,7 @@ public class CarReviewPage extends BasePage {
     private WebElement txtZipCode=driver.findElement(By.cssSelector("[class*='text-input']"));
 	private By btnSubmit = (By.cssSelector("[class*='WrappedButton']"));
 
+	//Fill the information of vehicle to redirect to detail page of that vehicle
 	public void fillInformation(String year,String make,String model,String zipcode)
 	{
 		keyword.setValueForSelectElement(keyword.findElement(ddlYear), chooseTypeOfSelect.selectByValue, year);
