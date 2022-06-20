@@ -12,22 +12,11 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class CarReviewDetailPageConsumerReviewModuleTest extends BaseTest {
-    private void closePopUp() {
-        try {
-            keyword.click(keyword.waitForElementToBeClickable(driver.findElement(By.xpath("//button[@aria-label='Close']"))));
-        } catch (Exception e) {
-        }
-        try {
-            keyword.click(keyword.waitForElementToBeClickable(driver.findElement(By.cssSelector("#fsrFocusFirst"))));
-        } catch (Exception e) {
-        }
-    }
 
     private void actionGetReviewAndNavigateToCarDetailPage(String year, String make, String model, String zipCode) throws Exception {
         BasePage basePage = new BasePage(driver);
         basePage.navigateToPage("Reviews");
         CarReviewPageConsumerReviewModule carReviewPageConsumerReviewModule = new CarReviewPageConsumerReviewModule(driver);
-        // closePopUp();
         carReviewPageConsumerReviewModule.inputAndSubmitGetCarReview(year, make, model, zipCode);
     }
 
