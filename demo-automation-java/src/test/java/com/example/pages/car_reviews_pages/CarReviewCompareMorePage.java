@@ -10,6 +10,10 @@ public class CarReviewCompareMorePage extends BasePage {
         super(driver);
     }
   
+    /*
+     * Check the title page after redirected change or not
+     * Return true if title change as expected
+     */
     public boolean verifyTitleConpareMorePage()
 	{
 		return driver.getTitle().trim().equals(expectedTitle);

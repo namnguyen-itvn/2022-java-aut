@@ -91,16 +91,12 @@ public class CarReviewsModulePage extends BasePage{
         keyword.setValueForSelectElement(ddMake, chooseTypeOfSelect.selectByValue, make);
         keyword.setValueForSelectElement(ddModel, chooseTypeOfSelect.selectByValue, model);
 
-        expectedCarReviewDetailHeaderTitle = "Used " + year + " " + make +" " + model;
-        expectedCarReviewDetailsPageTitle = expectedCarReviewDetailHeaderTitle + " Values & Cars for Sale | Kelley Blue Book";
-
         keyword.setText(txtZipcode, zipCode);
-
         keyword.click(btnGetReviews);
     }
 
     //Expected value
-    public String expectedSelectAVehicleMessage = "Get the straight story from our experts and real-world feedback from consumers like you.";
     public String expectedCarReviewDetailHeaderTitle = "";
     public String expectedCarReviewDetailsPageTitle = "";
+    public String expectedSelectAVehicleMessage = "Get the straight story from our experts and real-world feedback from consumers like you.";
 }

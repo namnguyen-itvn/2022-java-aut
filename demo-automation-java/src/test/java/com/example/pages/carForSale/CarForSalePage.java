@@ -13,6 +13,9 @@ import com.example.pages.BasePage;
 
 public class CarForSalePage extends BasePage {
 
+    public CarForSalePage() {
+    }
+
     public CarForSalePage(WebDriver driver) {
         super(driver);
     }
