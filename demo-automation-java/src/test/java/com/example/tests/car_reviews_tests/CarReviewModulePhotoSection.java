@@ -1,6 +1,5 @@
 package com.example.tests.car_reviews_tests;
 
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.example.pages.BasePage;
