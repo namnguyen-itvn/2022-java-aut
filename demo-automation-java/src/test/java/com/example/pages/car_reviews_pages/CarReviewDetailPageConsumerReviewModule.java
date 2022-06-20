@@ -1,5 +1,8 @@
 package com.example.pages.car_reviews_pages;
 
+import com.aventstack.extentreports.Status;
+import com.example.core.utils.extentreport.ExtentManager;
+import com.example.core.utils.extentreport.ExtentTestManager;
 import com.example.pages.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -14,34 +17,31 @@ public class CarReviewDetailPageConsumerReviewModule extends BasePage {
 
     private WebElement lblTitleConsumerReview = keyword.findElement(By.cssSelector("h1.eisth832"));
     private WebElement lblConsumerOfOverFlow = keyword.findElement(By.xpath("//div[text()='Consumer']"));
-    private WebElement btnReadFullReview = keyword.findElement(By.xpath("//p[text()='Read Consumer Reviews']/parent::button"));
+    private WebElement btnReadConsumerReview = keyword.findElement(By.xpath("//p[text()='Read Consumer Reviews']/parent::button"));
     private WebElement btnWriteAReview = keyword.findElement(By.xpath("//span[text()='Write a Review']/parent::a"));
     private WebElement btnBaseOnReview = keyword.findElement(By.xpath("//a[@data-analytics='consrev_basedonrev_top_lnk']"));
     private WebElement lblRateScore = keyword.findElement(By.cssSelector("#consumerreview .css-1ohwf54"));
-
-    private WebElement lblRateStarConsumer = keyword.findElement(By.xpath("//div[contains(@class,'css-lyztuj')]//div[@class='css-lgzq0v-StarRating']"));
-    private WebElement lblConsumerRating = keyword.findElement(By.cssSelector("#consumerreview div.css-4eaujp"));
-    private WebElement lblPercent = keyword.findElement(By.cssSelector(".css-17ce8km.e1agtnah0"));
-    private WebElement lblRecommendVehicle = keyword.findElement(By.cssSelector(".css-ntz4v8.e1agtnah1"));
-    private WebElement lblTrendingTop = keyword.findElement(By.cssSelector("h4.css-eck5q1-StyledHeading4"));
-    private By btnClearFilter = By.xpath("//a[@data-analytics='cr_clear_filters']");
-    private List<WebElement> listStarLine = keyword.findElements(By.cssSelector("div.css-1upilqn.eov6l8h0"));
-    private List<WebElement> listShortBarRating = keyword.findElements(By.cssSelector("#consumerreview div.css-1a6lgqy-ShortHandBarRating"));
-
-    private List<WebElement> listTagsOptionTopic() {
-        return keyword.findElements(By.cssSelector("div.css-1hnrv7x-ToggleDiv"));
-    }
+    private By btnClearFilter= By.xpath("//a[@data-cy='clear_filter_button']");
+    public By lblFilterInfo =By.xpath("//p[@data-cy='filter_info']/span[@class='css-4epbhr']");
 
     private WebElement btnOptionTopic(String topic) {
         return keyword.findElement(By.xpath("//div[contains(@class,'css-1c5vle7-Label') and text()='" + topic + "']"));
+    }
+
+    private WebElement lblCheckOfTrendTopic(String topicName){
+        return keyword.findElement(By.xpath("//input[@name='trending' and @value='"+topicName+"']"));
+    }
+
+    private List<WebElement> listElementFullStarOfReview(Integer indexOfReview) {
+        return keyword.findElements(By.xpath("//div[@data-cy='consumer_review_" + indexOfReview + "']//img[@alt='fullStar']"));
     }
 
     private List<WebElement> btnLikeIconOfReview() {
         return keyword.findElements(By.xpath("//a[@aria-label='helpful']"));
     }
 
-    private List<WebElement> lblLikeNumber() {
-        return keyword.findElements(By.xpath("//span[@data-testid='positive']"));
+    private WebElement lblLikePercentOfStar(int star) {
+        return keyword.findElement(By.xpath("//div[@data-analytics='cr_filter_" + star + "_stars_reviews']//div[contains(@class,'eov6l8h1')]//span[contains(@class,'css-1jyh237-PercentageNumber')]"));
     }
 
     private List<WebElement> btnDislikeIconOfReview() {
@@ -52,21 +52,53 @@ public class CarReviewDetailPageConsumerReviewModule extends BasePage {
         return keyword.findElements(By.cssSelector(".css-542wex.e9ci9ab0"));
     }
 
+    /**
+     * Click label "Consumer" of overflow on the top to scroll down to Consumer section
+     */
     public void clickToScrollToConsumerReviewSection() {
         keyword.click(lblConsumerOfOverFlow);
     }
 
+    /**
+     * Click to show full review
+     */
     public void clickToSeeFullReview() {
-
-        keyword.clickByJS(btnReadFullReview);
+        keyword.clickByJS(btnReadConsumerReview);
     }
 
+    /**
+     * Click on Write a review button
+     */
     public void clickWriteAReviewButton() {
         keyword.clickByJS(btnWriteAReview);
     }
 
+    /**
+     * Click on Base On Consumer Review
+     */
     public void clickBtnBaseOnConsumerReview() {
         keyword.clickByJS(btnBaseOnReview);
+    }
+
+    /**
+     * Click on Star line
+     */
+    public void clickToChooseFilterByStar(Integer star) {
+        keyword.clickByJS(lblLikePercentOfStar(star));;
+    }
+
+    /**
+     * Click on Trending topic Tag
+     */
+    public void clickToChooseFilterByTrendingTopic(String topic) {
+        keyword.clickByJS(btnOptionTopic(topic));;
+    }
+
+    /**
+     * Click on Link text to Clear filter
+     */
+    public void clickOnClearFilter(){
+        keyword.clickByJS(keyword.findElement(btnClearFilter));
     }
 
     /**
@@ -94,8 +126,6 @@ public class CarReviewDetailPageConsumerReviewModule extends BasePage {
      * return is Like Icon Clickable or not
      */
     public boolean isLikeIconClickable(int index) {
-        clickToScrollToConsumerReviewSection();
-        clickToSeeFullReview();
         return isElementEnabled(btnLikeIconOfReview().get(index));
     }
 
@@ -106,9 +136,62 @@ public class CarReviewDetailPageConsumerReviewModule extends BasePage {
         return isElementEnabled(btnDislikeIconOfReview().get(index));
     }
 
+    /**
+     * return is Score Rated Equal Average Of Percent Per Star or not
+     */
+    public boolean isScoreRatedEqualAverageOfPercentPerStar() {
+        double averagePercentPerStar = 0;
+        for (int i = 1; i <= 5; i++) {
+            Double percent = Double.valueOf(keyword.getText(lblLikePercentOfStar(i)).replace("%", "").trim());
+            averagePercentPerStar += (i * (percent / 100));
+        }
+        averagePercentPerStar = Math.round(averagePercentPerStar);
+        System.out.println(lblRateScore);
+        System.out.println(String.valueOf(averagePercentPerStar));
+        return keyword.getText(lblRateScore).equals(String.valueOf(averagePercentPerStar));
+    }
+
+    /**
+     * return is Rated Star Of Reviews Match With The Star User Choose or not
+     * @param star the number of the star which user choose
+     */
+    public boolean isRatedStarOfReviewsMatchWithTheStarUserChoose(Integer star) {
+        boolean result = true;
+        for (int i = 0; i < EXPECTED_REVIEW_PER_PAGE; i++) {
+            keyword.scrollToElement(userReviewContain().get(i));
+            if (star.equals(listElementFullStarOfReview(i).size())) {
+                result = true;
+            } else {
+                result = false;
+                ExtentTestManager
+                    .getTest()
+                    .log(Status.FAIL, "Rated star of review number " + (i + 1)
+                        + " not match with the star chosen by user");
+                break;
+            }
+        }
+        return result;
+    }
+
+    /**
+     * @param topic user chose before
+     * @param expectedFilterInfo filter info before click chose filter
+     * @return is The Filter Cleared or not
+     */
+    public boolean isTheFilterCleared(String topic,String expectedFilterInfo){
+        boolean result = true;
+        if(lblCheckOfTrendTopic(topic).isSelected()){
+            result = false;
+        }
+        if(!expectedFilterInfo.equals(getText(lblFilterInfo))){
+            ExtentTestManager
+                .getTest()
+                .log(Status.FAIL,"Filter info still not clear filter");
+            result = false;
+        }
+        return result;
+    }
+
     Integer EXPECTED_REVIEW_PER_PAGE = 6;
-    String EXPECTED_LBL_CONSUMER_RATING = "Consumer Rating";
-    String EXPECTED_RECOMMEND_VEHICLE = "Recommend this vehicle";
-    String EXPECTED_TRENDING_TOPICS = "Trending Topics in KBB.com Consumer Review";
 }
 
