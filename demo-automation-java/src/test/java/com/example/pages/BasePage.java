@@ -124,6 +124,7 @@ public class BasePage {
         return keyword.getText(element).equals(expectedText);
     }
 
+
     /**
      * Get page title
      * @return

@@ -3,10 +3,14 @@ package com.example.tests.car_reviews_tests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import com.example.core.datadriven.DataCarSearch;
 import com.example.core.datadriven.DataReviewCarUnderTest;
 import com.example.pages.BasePage;
+import com.example.pages.car_reviews_pages.BuildAndPricePage;
+import com.example.pages.car_reviews_pages.CarReviewPageConsumerReviewModule;
 import com.example.pages.car_reviews_pages.CarReviewsDetailModulePage1;
 import com.example.pages.car_reviews_pages.CarReviewsModulePage;
+import com.example.pages.car_reviews_pages.SeeCarForSalePage;
 import com.example.tests.BaseTest;
 
 public class CarReviewsModuleTests1 extends BaseTest {
@@ -155,4 +159,72 @@ public class CarReviewsModuleTests1 extends BaseTest {
         CarReviewsDetailModulePage1 carReviewsDetailModulePage = new CarReviewsDetailModulePage1(driver);
         Assert.assertTrue(carReviewsDetailModulePage.isContentOtherYearDisplayCorrectly(make, model));
     }
+    @Test(testName = "Verify User can navigate to Build & Price page", dataProvider = "DataCarSearch", dataProviderClass = DataCarSearch.class)
+    public void verifyUserCanNavigateToBuildPricePage(String year, String make, String model, String zipCode) throws Exception{
+        BasePage basePage = new BasePage(driver);
+        basePage.navigateToPage("Reviews");
+
+        CarReviewPageConsumerReviewModule carReviewPageConsumerReviewModule = new CarReviewPageConsumerReviewModule(driver);
+        carReviewPageConsumerReviewModule.inputAndSubmitGetCarReview(year, make, model, zipCode);
+
+
+        CarReviewsDetailModulePage1 carreviewsDetailPage= new CarReviewsDetailModulePage1(driver);
+        carreviewsDetailPage.clickOnBuildAndPriceButton(year, make, model);
+
+        BuildAndPricePage buildAndPricePage = new BuildAndPricePage(driver);
+        Assert.assertTrue(buildAndPricePage.isTitlePageBuildAndPriceDisplaysCorrect(year, make, model));
+    }
+
+    @Test(testName = "Verify User can navigate to See Car For Sale page", dataProvider = "DataCarSearch", dataProviderClass = DataCarSearch.class)
+    public void verifyUserCanNavigateToSeeCarForSale(String year, String make, String model,String zipCode) throws Exception{
+        BasePage basePage = new BasePage(driver);
+        basePage.navigateToPage("Reviews");
+
+        CarReviewPageConsumerReviewModule carReviewPageConsumerReviewModule = new CarReviewPageConsumerReviewModule(driver);
+        carReviewPageConsumerReviewModule.inputAndSubmitGetCarReview(year, make, model, zipCode);
+
+
+        CarReviewsDetailModulePage1 carreviewsDetailPage= new CarReviewsDetailModulePage1(driver);
+        carreviewsDetailPage.clickOnSeeCarForSaleButton(year, make, model);
+
+        SeeCarForSalePage seeCarForSalePage = new SeeCarForSalePage();
+        Assert.assertTrue(seeCarForSalePage.isTitlePageSeeCarForSaleDisplaysCorrect(year, make, model));
+    }
+
+    @Test(testName = "Verify that Expert Reviews should be displayed as required when it has expert's review", dataProvider = "DataCarSearch", dataProviderClass = DataCarSearch.class)
+    public void VerifyThatExpertReviewsShouldDisplayedWhenHasExpertReview(String year, String make, String model,String zipCode) throws Exception{
+        BasePage basePage = new BasePage(driver);
+        basePage.navigateToPage("Reviews");
+
+        CarReviewPageConsumerReviewModule carReviewPageConsumerReviewModule = new CarReviewPageConsumerReviewModule(driver);
+        carReviewPageConsumerReviewModule.inputAndSubmitGetCarReview(year, make, model, zipCode);
+
+        CarReviewsDetailModulePage1 carreviewsDetailPage= new CarReviewsDetailModulePage1(driver);
+        Assert.assertTrue(carreviewsDetailPage.isExpertReviewDisplay(year, make, model)); 
+    }
+
+    @Test(testName = "Verify that Expert Reviews should be displayed as required when it hasn't expert's review", dataProvider = "DataNotHasExpertReview", dataProviderClass = DataCarSearch.class)
+    public void VerifyThatExpertReviewsShouldDisplayedWhenHasNotExpertReview(String year, String make, String model,String zipCode) throws Exception{
+        BasePage basePage = new BasePage(driver);
+        basePage.navigateToPage("Reviews");
+
+        CarReviewPageConsumerReviewModule carReviewPageConsumerReviewModule = new CarReviewPageConsumerReviewModule(driver);
+        carReviewPageConsumerReviewModule.inputAndSubmitGetCarReview(year, make, model, zipCode);
+
+        CarReviewsDetailModulePage1 carreviewsDetailPage= new CarReviewsDetailModulePage1(driver);
+        Assert.assertTrue(carreviewsDetailPage.isMessageNoHasExpertReviewDisplay()); 
+    }
+
+    @Test(testName = "Verify that Zipcode label should be display Error Message when input invalid value", dataProvider = "DataInvalidZipcode", dataProviderClass = DataCarSearch.class)
+    public void VerifyThatZipCodeLabelShouldDisplayErrorMessageWhenInputInvalidValue(String year, String make, String model,String zipCode) throws Exception{
+        BasePage basePage = new BasePage(driver);
+        basePage.navigateToPage("Reviews");
+
+        CarReviewPageConsumerReviewModule carReviewPageConsumerReviewModule = new CarReviewPageConsumerReviewModule(driver);
+        carReviewPageConsumerReviewModule.inputAndSubmitGetCarReview(year, make, model, zipCode);
+
+        CarReviewsDetailModulePage1 carReviewsDetailPage= new CarReviewsDetailModulePage1(driver);
+        Assert.assertTrue(carReviewsDetailPage.isInValueMessageDisplayCorrect()); 
+    }
+
 }

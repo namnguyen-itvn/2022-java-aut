@@ -105,7 +105,7 @@ public class CarReviewDetailPageConsumerReviewModuleTest extends BaseTest {
         carReviewDetailPageConsumerReviewModule.clickToScrollToConsumerReviewSection();
         carReviewDetailPageConsumerReviewModule.clickToSeeFullReview();
         String expectedInfoFilterBeforeClickFilter =
-            carReviewDetailPageConsumerReviewModule.getText(carReviewDetailPageConsumerReviewModule.lblFilterInfo);
+        carReviewDetailPageConsumerReviewModule.getText(carReviewDetailPageConsumerReviewModule.lblFilterInfo);
         carReviewDetailPageConsumerReviewModule.clickToChooseFilterByTrendingTopic("Looks");
         carReviewDetailPageConsumerReviewModule.clickOnClearFilter();
         Assert.assertTrue(carReviewDetailPageConsumerReviewModule.isTheFilterCleared("Looks", expectedInfoFilterBeforeClickFilter));

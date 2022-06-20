@@ -50,6 +50,8 @@ public class CarReviewsDetailNewCarPriceQuotePage extends BasePage {
     private By txtYearVihicleCard=By.xpath("//div[contains(@class,'efy00sb1')][1]/div//div[@type='default']/div");
     private By txtMakeModelVihicleCard=By.xpath("//div[contains(@class,'efy00sb1')][1]/div//div[@type='default']/following-sibling::*");
 
+    
+
     /**
      * check Car Price Quote Section Display
      * @return
@@ -205,6 +207,16 @@ public class CarReviewsDetailNewCarPriceQuotePage extends BasePage {
     public String getLabelVihicle() {
         System.out.println(keyword.getTextElenment(keyword.findElement(txtYearVihicleCard))+" "+keyword.getTextElenment(keyword.findElement(txtMakeModelVihicleCard)));
         return keyword.getTextElenment(keyword.findElement(txtYearVihicleCard))+" "+keyword.getTextElenment(keyword.findElement(txtMakeModelVihicleCard));
+    }
+
+    public void clickOnBuildAndPriceButton(String year, String make, String model){
+        WebElement btnBuildAndPrice  = driver.findElement(By.xpath("//a[@href='https://staging.kbb.com/"+make+"/"+model+"/"+year+"/styles/?intent=buy-used']"));
+        keyword.click(btnBuildAndPrice);
+    }
+
+    public void clickOnSeeCarForSaleButton(String year, String make, String model){
+        WebElement btnSeeCarForSale  = driver.findElement(By.xpath("https://staging.kbb.com/cars-for-sale/used/"+year+"/"+make+"/"+model));
+        keyword.click(btnSeeCarForSale);
     }
 
     //data expected
