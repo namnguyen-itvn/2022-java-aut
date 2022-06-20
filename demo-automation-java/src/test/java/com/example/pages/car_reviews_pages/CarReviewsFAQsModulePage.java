@@ -8,9 +8,6 @@ import com.example.pages.BasePage;
 
 public class CarReviewsFAQsModulePage extends BasePage {
 
-    public CarReviewsFAQsModulePage() {
-    }
-    
     public CarReviewsFAQsModulePage(WebDriver driver) {
         super(driver);
     }
@@ -24,6 +21,9 @@ public class CarReviewsFAQsModulePage extends BasePage {
     private WebElement lblthirdQuestion = driver.findElement(By.xpath("//h4[normalize-space()='What is the MPG for a 2012 Audi A3?']"));
     private WebElement lblthirdAnswer = driver.findElement(By.xpath("//div[normalize-space()='The 2012 Audi A3 gets 22 mpg in the city and 28 mpg on the highway.']"));
     
+    /*
+     * verify url correct or not 
+     */
     public boolean isUrlCorrect(String year, String make, String model){
         String expectedUrl = "https://staging.kbb.com/"+  make.toLowerCase() +"/"+ model.toLowerCase() +"/"+ year +"/";
         if(driver.getCurrentUrl().contentEquals(expectedUrl)){
@@ -33,6 +33,9 @@ public class CarReviewsFAQsModulePage extends BasePage {
         }
     }
 
+    /*
+     * verify vehicle title correct or not
+     */
     public boolean isLblSelectedCarCorrect(String year, String make, String model){
         String expectedLabel = year + " " + make + " " + model;
         if (Integer.parseInt(year) < 2021) {
@@ -45,6 +48,9 @@ public class CarReviewsFAQsModulePage extends BasePage {
         }
     }
 
+    /*
+     * verify FAQs Section displayed correct or not when first time navigate
+     */
     public boolean assertScopeIsDefaultUIOfFAQsSectionDiplayedCorrect(){
         keyword.scrollToElement(lblFAQs);
         if(isElementDisplayed(lblfirstQuestion) == true
@@ -66,6 +72,9 @@ public class CarReviewsFAQsModulePage extends BasePage {
         }
     }
 
+    /*
+     * verify url and vehicle title correct or not
+     */
     public boolean assertScopeAreUrlAndLblSelectedCarCorrect(String year, String make, String model){
         if(isLblSelectedCarCorrect(year, make, model) == true && isUrlCorrect(year, make, model) == true){
             return true;

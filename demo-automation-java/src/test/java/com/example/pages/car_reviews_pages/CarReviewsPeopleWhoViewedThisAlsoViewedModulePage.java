@@ -22,6 +22,9 @@ public class CarReviewsPeopleWhoViewedThisAlsoViewedModulePage extends BasePage 
     private By btnSeeLess = By.xpath("//button[@data-analytics='readless_ucymm_alsoviewed_btn']");
     private WebElement lblOtherWagon = driver.findElement(By.cssSelector(".css-gf467u.e1fn9flx0"));
         
+    /*
+     * verify url correct or not
+     */
     public boolean isUrlCorrect(String year, String make, String model){
         String expectedUrl = "https://staging.kbb.com/"+  make.toLowerCase() +"/"+ model.toLowerCase() +"/"+ year +"/";
         if(driver.getCurrentUrl().contentEquals(expectedUrl)){
@@ -31,6 +34,9 @@ public class CarReviewsPeopleWhoViewedThisAlsoViewedModulePage extends BasePage 
         }
     }
 
+    /*
+     * verify vehicle title correct or not
+     */
     public boolean isLblSelectedCarCorrect(String year, String make, String model){
         String expectedLabel = year + " " + make + " " + model;
         if (Integer.parseInt(year) < 2021) {
@@ -43,6 +49,9 @@ public class CarReviewsPeopleWhoViewedThisAlsoViewedModulePage extends BasePage 
         }
     }
 
+    /*
+     * verify the number of vehicles displayed by default in peole also viewed
+     */
     public boolean isTheNumberOfVehiclesIsDisplayedCorrectlyAsRequired() {
         List<WebElement> vehicleItems = keyword.findElements(imgVehicles);
         if (vehicleItems.size() == numberOfVehiclesDisplayedByDefault) {
@@ -51,6 +60,9 @@ public class CarReviewsPeopleWhoViewedThisAlsoViewedModulePage extends BasePage 
             return false;
     }
 
+    /*
+     * verify the number of vehicles displayed in peole also viewed after user click on see more button
+     */
     public boolean isTheNumberOfVehiclesIsDisplayedCorrectlyAfterUserClickOnSeeMoreButton() {
         keyword.click(btnSeeMore);
         List<WebElement> vehicleItems = keyword.findElements(imgVehicles);
@@ -60,6 +72,9 @@ public class CarReviewsPeopleWhoViewedThisAlsoViewedModulePage extends BasePage 
             return false;
     }
 
+    /*
+     * verify the number of vehicles displayed in peole also viewed after user click on see less button
+     */
     public boolean isTheNumberOfVehiclesIsDisplayedCorrectlyAfterUserClickOnSeeLessButton() {
         keyword.scrollToElement(btnSeeMore);
         JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -79,6 +94,9 @@ public class CarReviewsPeopleWhoViewedThisAlsoViewedModulePage extends BasePage 
         }
     }
 
+    /*
+     * verify see less button is diplayed or not
+     */
     public boolean isSeeLessButtonDisplayed() {
         try {
             keyword.scrollToElement(lblOtherWagon);
@@ -91,6 +109,9 @@ public class CarReviewsPeopleWhoViewedThisAlsoViewedModulePage extends BasePage 
         }
     }
 
+    /*
+     * verify People Also Viewed section displayed correct or not when first time navigate
+     */
     public boolean assertScopeIsDefaultUIOfPeopleAlsoViewedDisplayedCorrectAsRequired(){
         keyword.scrollToElement(lblPeopleAlsoViewed);
         if(isElementDisplayed(lblPeopleAlsoViewed) == true 
@@ -102,6 +123,9 @@ public class CarReviewsPeopleWhoViewedThisAlsoViewedModulePage extends BasePage 
         }
     }
 
+    /*
+     * verify url and vehicle title correct or not
+     */
     public boolean assertScopeIsUrlAndLblSelectedCarCorrect(String year, String make, String model){
         if(isLblSelectedCarCorrect(year, make, model) == true && isUrlCorrect(year, make, model) == true){
             return true;
