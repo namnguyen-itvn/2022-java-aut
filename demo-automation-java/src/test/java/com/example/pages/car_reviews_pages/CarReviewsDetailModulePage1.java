@@ -81,6 +81,7 @@ public class CarReviewsDetailModulePage1 extends BasePage {
     private By txtEngine;
     private By btnSelectStyles;
 
+
     /**
      * Declare element of BestCar
      */
@@ -102,6 +103,17 @@ public class CarReviewsDetailModulePage1 extends BasePage {
     private By containersContentOtherYear = By.xpath(
             "//li[@class='evwqgx80 css-y8n0kn-CommonListItem-CustomListItem e3ol5gl0']/span/a[@data-analytics='ymm_otheryears_lnk']");
     private By contentOtherYear;
+ /**
+     * Declare element Expert Review Section
+     */
+    private By tstTitleOfExpertReviewSection = By.cssSelector("h2[class*='css-7q8m0g-StyledHeading2 e148eed11']");
+    private By btnAuthorName =By.cssSelector("span[class*='css-dq7l91 e1b9ten30']");
+    private By imgAuthor = By.xpath("//div[@class='eijuktk3 css-5m5jmw-ContentContainer e1qqueke0']//img");
+    private By expertReview= By.cssSelector("div[data-analytics*='readmore_ucymm_expert_review_btn']"); 
+    private By btnSeeMoreReview = By.cssSelector("button[class*='css-92974k-FocusWrapper e1july549']");
+    private By messageNoHasExpertReview = By.xpath("//div[@class='css-de22qy-ColBase e1l0ytpk0']//p[@class='css-113e3v-StyledParagraph emgezi80']");
+    private By codeInvalidMessage = By.xpath("//span[@class='css-tiv2r2-StyledError e2plhlo1']");
+    private By btnGetReviews = By.xpath("//button[@class='css-1hn5qfm-transitionRules-default-WrappedButton']");
 
     /**
      * funtion Click to Tab
@@ -241,8 +253,6 @@ public class CarReviewsDetailModulePage1 extends BasePage {
         return false;
     }
 
-   
-
     /**
      * check elemnt in container of tab Styles displayed correct or not
      * 
@@ -254,6 +264,7 @@ public class CarReviewsDetailModulePage1 extends BasePage {
     public boolean isContainersStylesDisplayedCorrectly(String year, String make, String model) {
 
         String expectTitleStyle = year + " " + make + " " + model + " Styles";
+       
         for (int i = 1; i < listcontainers(containersStyles).size(); i++) {
             titlecontainers = By.xpath("//div[@id='styles']//a[" + i + "]//h3");
             txtCombineFuelEconomy = By.xpath("//div[@id='styles']//a[" + i + "]//div[text()='Combined Fuel Economy']");
@@ -309,6 +320,82 @@ public class CarReviewsDetailModulePage1 extends BasePage {
             else
                 break;
         }
+        return false;
+    }
+
+    /**
+     * navigate to Build&Price Page went click on button
+     * @param year
+     * @param make
+     * @param model
+    */
+    public void clickOnBuildAndPriceButton(String year, String make, String model){
+        WebElement btnBuildAndPrice  = driver.findElement(By.xpath("//a[@data-analytics='buyused_overview_btn']"));
+        keyword.click(btnBuildAndPrice);
+    }
+
+    /**
+     * navigate to See Car For Sale Page Went Click on this button
+      * @param year
+     * @param make
+     * @param model
+    */
+    public void clickOnSeeCarForSaleButton(String year, String make, String model){
+        WebElement btnSeeCarForSale  = driver.findElement(By.xpath("//a[@data-analytics='inv_findinv_btn']"));
+        keyword.click(btnSeeCarForSale);
+    }
+
+    /**
+     * Click on the img or the name of Author when has Expert Review Section
+     * @param webElement
+    */
+    public void clickOnImgAuthorToNavigateAuthorPage(){
+        keyword.click(keyword.findElement(imgAuthor));
+    }
+
+    /**
+     * Click on the img or the name of Author when has Expert Review Section
+     * @param webElement
+    */
+    public void clickOnAuthorNameToNavigateAuthorPage(){
+        keyword.click(keyword.findElement(btnAuthorName));
+    }
+
+
+    /**
+     * Verify the Expert Review display or not
+     * @param year
+     * @param make
+     * @param model
+     * @return
+    */
+    public boolean isExpertReviewDisplay(String year,String make,String model){
+        String expectTitleExpertReview=year + " " + make + " " + model + " Review";
+        if(isElementDisplayed(keyword.findElement(tstTitleOfExpertReviewSection))
+        &&isElementDisplayed(keyword.findElement(expertReview))
+        &&isElementDisplayed(keyword.findElement(btnSeeMoreReview))
+        &&isElementTextEqualExpectedText(keyword.findElement(tstTitleOfExpertReviewSection), expectTitleExpertReview))
+        return true;
+        return false;
+    }
+
+    /**
+     * return the message no has expert Review display or not
+     * @return
+    */
+    public boolean isMessageNoHasExpertReviewDisplay(){
+        if(isElementDisplayed(keyword.findElement(messageNoHasExpertReview)))
+            return true;
+        return false;
+    }
+
+    /**
+     * 
+     * @return
+    */
+    public boolean isInValueMessageDisplayCorrect(){
+        String expcetedMessage = "ZIP Code is invalid.";
+        if(isElementDisplayed(keyword.findElement(codeInvalidMessage))&&isElementTextEqualExpectedText(keyword.findElement(codeInvalidMessage),expcetedMessage )&&isElementEnabled(keyword.findElement(btnGetReviews))==false)return true;
         return false;
     }
 }

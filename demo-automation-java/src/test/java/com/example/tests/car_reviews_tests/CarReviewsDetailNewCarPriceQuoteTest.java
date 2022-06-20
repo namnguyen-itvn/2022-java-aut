@@ -1,8 +1,11 @@
 package com.example.tests.car_reviews_tests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import com.example.core.datadriven.DataCarSearch;
 import com.example.core.datadriven.InfoCarUnderTest;
 import com.example.pages.BasePage;
+import com.example.pages.car_reviews_pages.BuildAndPricePage;
 import com.example.pages.car_reviews_pages.CarReviewsCarYouMayLike;
 import com.example.pages.car_reviews_pages.CarReviewsDetailNewCarPriceQuotePage;
 import com.example.pages.car_reviews_pages.CarReviewsNewCarPriceQuotePage;
@@ -145,4 +148,6 @@ public class CarReviewsDetailNewCarPriceQuoteTest extends BaseTest {
         Assert.assertTrue(CarReviewsCarYouMayLike.checkRedirectToCarForSaleWithCarSeleted(label), 
         "UI Of Car You May Like Not Correct When Car No Longer Avaiable");
     }
+
+    
 }
