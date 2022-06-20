@@ -1,6 +1,8 @@
 package com.example.pages.carForSale;
 
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,64 +11,72 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.example.pages.BasePage;
 
-public class CarForSalePriceRating extends BasePage {
-    public CarForSalePriceRating(WebDriver driver,String PriceRatingElement) {
+public class CarForSaleMake extends BasePage {
+    public CarForSaleMake(WebDriver driver,String MakeElement) {
         super(driver);
-        this.PriceRatingElement = PriceRatingElement;
+        this.MakeElement = MakeElement;
     }
 
     //Cars for sale element
-    private String PriceRatingElement = "Good Price";
+    private String MakeElement = "BMW";
     
-    private WebElement ddlPriceRating = keyword.findElement(By.xpath("//span[text()='Price Rating']/parent::span/parent::div"));
+    private WebElement ddlMake = keyword.findElement(By.xpath("//span[text()='Make']/parent::span/parent::div"));
     private WebElement lblResults = keyword.findElement(By.cssSelector("div.text-size-md-300"));
 
     private By localblResults = By.cssSelector("div.text-size-md-300");
-    private By locatagPriceRatingPriceRating  = By.xpath(String.format("//span[text()='%s']",PriceRatingElement));
-    private By locatagPriceRatingXIcon = By.xpath(String.format("//span[text()='%s']/parent::*/span/span",PriceRatingElement));
-    private By locaoptPriceRating = By.xpath(String.format("//div[text()='%s']",PriceRatingElement));
-    private By locabtnExitAds = By.xpath("//button[@id='fsrFocusFirst']");
-    private By locabtnExitAds2 = By.cssSelector("button.QSIWebResponsiveDialog-Layout1-SI_5d3NX5IIzg7mUmN_close-btn");
+
+    private By locatagMake  = By.xpath(String.format("//span[text()='%s']",MakeElement));
+    private By locatagMakeXIcon = By.xpath(String.format("//span[text()='%s']/parent::*/span/span",MakeElement));
+
     private By localblClearFilters = By.xpath("//span[@class='text-link']");
     private By locaimgFirstResults = By.xpath("(//div[@data-cmp='itemCard'])[1]");
-    private By locaMoreInfo = By.xpath("//span[@id='dealInfo']");
-    private By locaoptPriceRating1 = By.xpath("//input[@value='goodprice']/parent::label");
-    private By locaoptPriceRating2 = By.xpath("//input[@value='greatprice']/parent::label");
+
+    private By locaListOptMake = By.xpath("//input[@value='ACURA']/parent::label/parent::div/label");
+    private By locaListOptSeries = By.xpath("//input[@value='M3_SERIES']/parent::label/parent::div/label");
+    private By locaListOptModel = By.xpath("//input[@value='BMW230I']/parent::label/parent::div/label");
+
 
     //Result before and after change
-
-    private double beforeResults = 0;
+    private double beforeResults = 0;   
     private double afterResults = 0;
-
-
 
     /**
      *  Return tag Price Rating 'Good Price' is correct or not
      * @return
      */
-    public boolean isTagPriceRatingDisplayed(){
+    public boolean isTagMakeDisplayed(){
         //after click
-        WebElement tagPriceRatingPriceRating = keyword.findElement(locatagPriceRatingPriceRating );
-        WebElement tagDiveTypeDiveTypeXIcon = keyword.findElement(locatagPriceRatingXIcon);
-        if(tagPriceRatingPriceRating .isDisplayed()==true & tagDiveTypeDiveTypeXIcon.isDisplayed()==true){
+        WebElement tagMakeMake = keyword.findElement(locatagMake );
+        WebElement tagDiveTypeDiveTypeXIcon = keyword.findElement(locatagMakeXIcon);
+        if(tagMakeMake .isDisplayed()==true & tagDiveTypeDiveTypeXIcon.isDisplayed()==true){
             return true;
         }
         else return false;
     }
 
     //action select opt Price Ratinge and compare result before and after click
-    public void actionSelectOptPriceRating(){
+    public void actionSelectOptMake(){
         waitNoCondition();
-        keyword.scrollToElement(ddlPriceRating);
+        keyword.scrollToElement(ddlMake);
+        waitNoCondition();
+        keyword.clickWithOutScroll(ddlMake);
         beforeResults = parseStringResultsToNumber(lblResults.getText());
-        WebElement optDiveType = keyword.findElement(locaoptPriceRating );
-        keyword.click(optDiveType);
+        List<WebElement> listOptMake = driver.findElements(locaListOptMake);
+        keyword.click(listOptMake.get(6));
 
+        waitNoCondition();
+        List<WebElement> listOptSeries = driver.findElements(locaListOptSeries);
+        keyword.scrollToElement(listOptSeries.get(8));
+        keyword.clickWithOutScroll(listOptSeries.get(8));
+
+        waitNoCondition();
+        List<WebElement> listOptModel = driver.findElements(locaListOptModel);
+        keyword.scrollToElement(listOptModel.get(8));
+        keyword.clickWithOutScroll(listOptModel.get(8));
+        
         waitNoCondition();
         WebElement lblResults2 = keyword.findElement(localblResults);
         afterResults = parseStringResultsToNumber(lblResults2.getText());
-
-        waitNoCondition();
     }
 
     //wait with No Condition
@@ -84,7 +94,6 @@ public class CarForSalePriceRating extends BasePage {
             e.printStackTrace();
         }
     }
-
 
     /**  
      *  Return Number of results is change or not
@@ -120,28 +129,20 @@ public class CarForSalePriceRating extends BasePage {
         else return false;
     }
 
-    public boolean isMoreInfoDisplayed(){
-        WebElement lblMoreInfo = keyword.findElement(locaMoreInfo);
-        if(lblMoreInfo.isDisplayed()==true){
-            return true;
-        }
-        else return false;
-    }
-
     //action navigate to cars-for-sale vehicle details page
     public void actionNavToCFSVehicleDetails(){
-        actionSelectOptPriceRating();
+        actionSelectOptMake();
         WebElement imgFirstResults = keyword.findElement(locaimgFirstResults);
         keyword.click(imgFirstResults);
     }
 
     /**
-     *  Return AllPriceRatingAfterClick is correct or not
+     *  Return AllMakeAfterClick is correct or not
      * @return
      */
-    public boolean isAllPriceRatingAfterClick(){
+    public boolean isAllMakeAfterClick(){
         if (isNumberOfResultsChange()==true &
-            isTagPriceRatingDisplayed()==true &
+            isTagMakeDisplayed()==true &
             islblClearFiltersDisplayed()==true) {
             return true;
         }
@@ -150,17 +151,15 @@ public class CarForSalePriceRating extends BasePage {
 
     public boolean isCheckBoxNotSelect() throws InterruptedException{
         waitNoCondition();
-        keyword.scrollToElement(ddlPriceRating);
+        keyword.scrollToElement(ddlMake);
         waitNoCondition();
-        WebElement optDiveType1 = keyword.findElement(locaoptPriceRating1);
-        WebElement optDiveType2 = keyword.findElement(locaoptPriceRating2);
         
-        if (optDiveType1.isSelected() == false &
-            optDiveType2.isSelected() == false &
-            isMoreInfoDisplayed() == true ) {
-            return true;
+        List<WebElement> listOpt = driver.findElements(locaListOptMake);
+        for (WebElement webElement : listOpt) {
+            if (webElement.isSelected() == true ) {
+            return false;
         }
-        else return false;
+        }return true;
     }
 
     public String firstCarPageTitle() {

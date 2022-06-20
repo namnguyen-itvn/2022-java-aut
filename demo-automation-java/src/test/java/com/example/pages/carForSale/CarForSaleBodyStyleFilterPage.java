@@ -29,6 +29,7 @@ public class CarForSaleBodyStyleFilterPage extends BasePage {
     }
 
     /**
+
      * choose option in Body Style
      * @param option
      */
@@ -84,10 +85,14 @@ public class CarForSaleBodyStyleFilterPage extends BasePage {
         WebElement linkClearFilters = keyword.findElement(By.xpath("//span[text()='Clear Filters']"));
         keyword.scrollToElement(linkClearFilters);
         if (linkOption.isDisplayed() && txtYourSearchBodyStyle.isDisplayed() && linkClearFilters.isDisplayed()) {
+
+
             check = true;
         } else {
             check = false;
         }
+
         return check; 
     }   
+
 }
