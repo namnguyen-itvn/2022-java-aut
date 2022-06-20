@@ -3,10 +3,13 @@ package com.example.tests.carForSale;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-<<<<<<< Updated upstream
-=======
+<<<<<<< HEAD
 import com.example.core.datadriven.CarForSaleTestData;
->>>>>>> Stashed changes
+=======
+
+import com.example.core.datadriven.CarForSaleTestData;
+
+>>>>>>> team2-tuyenttb-implement-testcase-car-for-sale-price-rating-module
 import com.example.pages.BasePage;
 import com.example.pages.carForSale.CarForSaleBodyStyleFilterPage;
 import com.example.tests.BaseTest;
@@ -19,15 +22,11 @@ public class CarForSaleBodyStyleFilterTest extends BaseTest {
         CarForSaleBodyStyleFilterPage carForSaleBodyStyleFilterPage = new CarForSaleBodyStyleFilterPage(driver);
         Assert.assertTrue(carForSaleBodyStyleFilterPage.checkBodyStyleOnFilterShouldBeExtended());
     }
-
-<<<<<<< Updated upstream
-    @Test(testName = "Verify Body Style Options On Filter Should Be Filted After Choose")
-    public void verifyBodyStyleOptionsOnFilterShouldBeFiltedAfterChoose() {
-        BasePage basePage = new BasePage(driver);
-        basePage.navigateToPage("Sale");
-        CarForSaleBodyStyleFilterPage carForSaleBodyStyleFilterPage = new CarForSaleBodyStyleFilterPage(driver);
-        Assert.assertTrue(carForSaleBodyStyleFilterPage.checkBodyStyleOptionsOnFilterShouldBeFilteredAfterChose());
+<<<<<<< HEAD
 =======
+
+
+>>>>>>> team2-tuyenttb-implement-testcase-car-for-sale-price-rating-module
     @Test(testName = "Verify Body Style Options On Filter Should Be Filted After Choose", dataProvider = "bodyStyleData", dataProviderClass = CarForSaleTestData.class)
     public void verifyBodyStyleOptionsOnFilterShouldBeFiltedAfterChoose(String option) {
         BasePage basePage = new BasePage(driver);
@@ -35,6 +34,9 @@ public class CarForSaleBodyStyleFilterTest extends BaseTest {
         CarForSaleBodyStyleFilterPage carForSaleBodyStyleFilterPage = new CarForSaleBodyStyleFilterPage(driver);
         carForSaleBodyStyleFilterPage.chooseOptionInBodyStyle(option);
         Assert.assertTrue(carForSaleBodyStyleFilterPage.checkBodyStyleOptionsOnFilterShouldBeFilteredAfterChose(option));
->>>>>>> Stashed changes
+<<<<<<< HEAD
+=======
+
+>>>>>>> team2-tuyenttb-implement-testcase-car-for-sale-price-rating-module
     }
 }
