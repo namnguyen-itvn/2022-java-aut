@@ -7,7 +7,6 @@ import com.example.pages.car_reviews_pages.CarReviewPageConsumerReviewModule;
 import com.example.pages.car_reviews_pages.ConsumerReviewPage;
 import com.example.pages.car_reviews_pages.WriteAReviewPage;
 import com.example.tests.BaseTest;
-import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 

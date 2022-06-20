@@ -96,5 +96,7 @@ public class CarReviewsModulePage extends BasePage{
     }
 
     //Expected value
+    public String expectedCarReviewDetailHeaderTitle = "";
+    public String expectedCarReviewDetailsPageTitle = "";
     public String expectedSelectAVehicleMessage = "Get the straight story from our experts and real-world feedback from consumers like you.";
 }
