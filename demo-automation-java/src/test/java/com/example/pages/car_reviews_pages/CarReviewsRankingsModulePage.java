@@ -28,6 +28,9 @@ public class CarReviewsRankingsModulePage extends BasePage {
     private By lblRating = By.xpath("//div[normalize-space()='Rating']");
     private By lbl2013SubaruImpreza = By.xpath("//a[normalize-space()='2013 Subaru Impreza']");
     
+    /*
+     * verify url correct or not 
+     */
     public boolean isUrlCorrect(String year, String make, String model){
         String expectedUrl = "https://staging.kbb.com/"+  make.toLowerCase() +"/"+ model.toLowerCase() +"/"+ year +"/";
         if(driver.getCurrentUrl().contentEquals(expectedUrl)){
@@ -37,6 +40,9 @@ public class CarReviewsRankingsModulePage extends BasePage {
         }
     }
 
+    /*
+     * verify vehicle title correct or not 
+     */
     public boolean isLblSelectedCarCorrect(String year, String make, String model){
         String expectedLabel = year + " " + make + " " + model;
         if (Integer.parseInt(year) < 2021) {
@@ -49,6 +55,9 @@ public class CarReviewsRankingsModulePage extends BasePage {
         }
     }
 
+    /*
+     * verify Horsepower Table displayed correct or not when first time navigate
+     */
     public boolean assertScopeAreDefaultUIOfHorsepowerTableDiplayedCorrect(){
         keyword.scrollToElement(lblSelectedCarRankings);
         if(isElementDisplayed(lblSelectedCarRankings) == true && isElementDisplayed(lblHorsepower) == true
@@ -60,6 +69,9 @@ public class CarReviewsRankingsModulePage extends BasePage {
         }
     }
 
+    /*
+     * verify MPG Combined Table displayed correct or not when first time navigate
+     */
     public boolean assertScopeAreDefaultUIOfMPGCombinedTableDiplayedCorrect(){
         keyword.scrollToElement(lblMPGCombined);
         JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -74,6 +86,9 @@ public class CarReviewsRankingsModulePage extends BasePage {
         }
     }
 
+    /*
+     * verify Consumer Ratings Table displayed correct or not when first time navigate
+     */
     public boolean assertScopeAreDefaultUIOfConsumerRatingsTableDiplayedCorrect(){
         keyword.scrollToElement(lblConsumerRatings);
         JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -88,6 +103,9 @@ public class CarReviewsRankingsModulePage extends BasePage {
         }
     }
 
+    /*
+     * verify url and vehicle title correct or not
+     */
     public boolean assertScopeAreUrlAndLblSelectedCarCorrect(String year, String make, String model){
         if(isLblSelectedCarCorrect(year, make, model) == true && isUrlCorrect(year, make, model) == true){
             return true;
@@ -96,6 +114,9 @@ public class CarReviewsRankingsModulePage extends BasePage {
         }
     }
 
+    /*
+     * click on one vehicle in Rankings section
+     */
     public void selectVehicleInRankingsSection() {
         keyword.scrollToElement(lblSelectedCarRankings);
         String vehicleData = keyword.getTextWithOutScroll(keyword.findElement(lbl2013SubaruImpreza));
@@ -103,6 +124,9 @@ public class CarReviewsRankingsModulePage extends BasePage {
         keyword.clickWithOutScroll(keyword.findElement(lbl2013SubaruImpreza));
     }
 
+    /*
+     * verify url and vehicle title of selected vehicle in rankings correct or not
+     */
     public boolean assertScopeAreUrlAndLblSelectedCarInRankingsSectionCorrect(){
         String[] split = vehicleDataInRankingsSection.split(" ");
         if(isLblSelectedCarCorrect(split[0], split[1], split[2]) == true && isUrlCorrect(split[0], split[1], split[2]) == true){
